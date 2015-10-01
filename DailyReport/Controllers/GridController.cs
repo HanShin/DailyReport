@@ -28,5 +28,20 @@ namespace DailyReport.Controllers
         {
             return View();
         }
+
+        public ActionResult ModelProgressLine_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = Enumerable.Range(0, 50).Select(i => new DR_MODELPROGRESS_LINE
+            {
+                OID = "ABCDEFG"+ i,
+                LINE_NO = "HHSIRJADU" + i * 10,
+                CREATED_BY = "HanShin",
+                CREATED_DATE = DateTime.Now.AddDays(-(2 * i)),
+                MODIFIED_BY = "Modeler",
+                MODIFIED_DATE = DateTime.Now.AddDays(-(i))
+            });
+
+            return Json(result.ToDataSourceResult(request));
+        }
 	}
 }

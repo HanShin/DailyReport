@@ -23,9 +23,9 @@ namespace DailyReport
                 }
            );
 
-            routes.MapRoute(
+           ol routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{contrler}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
