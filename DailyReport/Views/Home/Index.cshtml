@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Daily Report";
+} 
+
+
+<div class="col-xs-10 col-md-10">
+        @(Html.Kendo().Grid<DailyReport.Models.OrderViewModel>()
+.Name("grid")
+.Columns(columns =>
+{
+    columns.Bound(p => p.OrderID);
+    columns.Bound(p => p.Freight);
+    columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
+    columns.Bound(p => p.ShipName);
+    columns.Bound(p => p.ShipCity);
+})
+.Pageable()
+.Sortable()
+.Scrollable()
+.HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+.DataSource(dataSource => dataSource
+.Ajax()
+.PageSize(25)
+.Read(read => read.Action("Orders_Read", "Grid"))
+)
+        )
+</div>
+
+
+

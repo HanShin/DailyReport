@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - Daily Report For SP3D</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
+    <style>
+        .header{
+            margin: 0px;
+            height: 33px;
+            background-color: #E3F0F2;
+        }
+
+        .k-header h1 {
+            margin: 0;
+            padding: 15px 15px;
+            font-size: 32px;
+            font-weight: lighter;
+        }
+
+        /* Sticky footer styles
+    -------------------------------------------------- */
+        html {
+            position: relative;
+            min-height: 100%;
+            
+        }
+
+        body {
+            /* Margin bottom by footer height */
+            margin-bottom: 60px;
+            background-color: #83B0EC;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 60px;
+            background-color: #f5f5f5;
+        }
+
+        .container-fluid .text-muted {
+            margin: 20px 0;
+        }
+
+        .placeholders {
+            margin: 5px auto;
+        }
+
+        .placeholder img {
+            display: inline-block;
+        }
+
+        p .k-button {
+            margin: 0 15px 0 0;
+        }
+        .btn-toggle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: none;
+            height: 48px;
+        }
+
+        .btn-toggle .k-icon {
+            opacity: 1;
+        }
+
+        .btn-toggle,
+        .k-primary.btn-toggle:hover,
+        .btn-toggle:focus:active:not(.k-state-disabled):not([disabled]),
+        .btn-toggle:focus:not(.k-state-disabled):not([disabled]) {
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .btn-toggle .k-i-hbars,
+        .k-primary.btn-toggle:hover .k-i-hbars,
+        .btn-toggle:focus:active:not(.k-state-disabled):not([disabled]) .k-i-hbars,
+        .btn-toggle:focus:not(.k-state-disabled):not([disabled]) .k-i-hbars {
+            background-position: -80px -32px;
+        }
+        @@media (max-width: 768px) {
+          .k-item {
+            display: block;
+            clear: both;
+            float: none;
+            width: 100%;
+          }
+
+          .k-header h1 {
+            margin: 0;
+            padding: 16px 15px 14px 60px;
+            font-size: 18px;
+            font-weight: lighter;
+           }  
+        }
+        #positionTree{
+            float:left;
+            margin:5px;
+            font-family:tahoma;
+            color:#666666;
+
+        }
+    </style>
+	<link href="@Url.Content("~/Content/kendo/2015.2.902/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2015.2.902/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2015.2.902/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2015.2.902/kendo.uniform.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2015.2.902/kendo.dataviz.uniform.min.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2015.2.902/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2015.2.902/jszip.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2015.2.902/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2015.2.902/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+<body>
+    
+    <div class="header">
+        <div id="positionTree" >Home > Works > Model 작업량 > Pipe Line</div>
+        @(Html.Kendo().Menu()
+                  .Name("HeadMenu").HtmlAttributes(new {style ="overflow: hidden; float: right;"})
+                  .Items(items =>
+                  {
+                      items.Add().Text("Welcome 한신")
+                          .Items(chidren =>
+                          {
+                              chidren.Add().Text("개인설정");
+                          });
+                  })
+                )
+    </div>
+    <div class="container-fluid">
+        <div class="row k-header">
+            <h1>Daily Report</h1>
+            <div id="responsive-panel">
+                @(Html.Kendo().Menu().HtmlAttributes(new { style = "border-bottom-width:2px; border-bottom-color:#79A7E3;" })
+                  .Name("Menu")
+                  .Items(items =>
+                  {
+                      items.Add().Text("SEP");
+                      items.Add().Text("FCC");
+                      items.Add().Text("SHFP");
+                      items.Add().Text("SRIP");
+                  })
+                )
+            </div>
+            <button id="configure" class="k-rpanel-toggle k-button k-primary btn-toggle"><span class="k-icon k-i-hbars"></span></button>
+        </div>
+    </div>
+    <div class="container-fluid placeholders"> 
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-xs-2 col-md-2 k-header" style=" border-width:1px;border-style:solid; border-color:darkgray; background-color: #F2F8FF; ">
+                @(Html.Kendo().TreeView().HtmlAttributes(new { style = " color:#003399;" })
+            .Name("treeview")
+            .Items(treeview =>
+            {
+                treeview.Add().Text("Works")
+                    .Expanded(true)
+                    .Items(root =>
+                    {
+                        root.Add().Text("Model 작업량")
+                            .Expanded(true)
+                            .Items(item =>
+                            {
+                                item.Add().Text("Pipe Line")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+
+                                item.Add().Text("Pipe Run")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+
+                                item.Add().Text("Pipe Part")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+
+                                item.Add().Text("Instrument")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+                            });
+                    });
+
+                        treeview.Add().Text("진도율")
+                            .Expanded(true)
+                            .Items(resources =>
+                            {
+                                resources.Add().Text("Linelist 대비 line 모델률 비교")
+                                    .Expanded(true)
+                                    .Items(item =>
+                                    {
+                                        item.Add().Text("Linelist")
+                                            .ImageUrl(Url.Content("~/Images/bullet.png" ));
+                                    });
+
+                                resources.Add().Text("Size 별 line").Expanded(true)
+                                    .Items(item =>
+                                    {
+                                        item.Add().Text(@"below 2""")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text(@"2""~6""")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text(@"8""~24""")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text(@"larger than 24""")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    });
+                            
+                                resources.Add().Text("Line 대비 ISO 준비율").Expanded(true)
+                                    .Items(item =>
+                                    {
+                                        item.Add().Text("Line 별 ISO list")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    });
+                            
+                                resources.Add().Text("ISO dwg revision").Expanded(true)
+                                    .Items(item =>
+                                    {
+                                        item.Add().Text("revision status 확인")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("revision description 확인")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    });
+                            });
+
+                        treeview.Add().Text("Consistency")
+                            .Expanded(true)
+                            .Items(children =>
+                            {
+                                children.Add().Text("Line 기준으로 Key item list 산출")
+                                    .Expanded(true)
+                                    .Items(item =>
+                                    {
+                                        item.Add().Text("Valve")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("Instrument")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("Specialty")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    });
+                            });
+                        treeview.Add().Text("Model 검증")
+                                    .Expanded(true)
+                                    .Items(children =>
+                                    {
+                                        children.Add().Text("To do list")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        children.Add().Text("MTO off list")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    });
+                    
+                        treeview.Add().Text("Report")
+                            .Expanded(true)
+                            .Items(children =>
+                            {
+                                children.Add().Text("B/M")
+                                    .Expanded(true)
+                                    .Items(item =>
+                                    {
+                                        item.Add().Text("Bulk")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("Support")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("Instrument")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("Specialty")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    
+                                        item.Add().Text("Electrical")
+                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                    });
+
+                                children.Add().Text("Support report")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+                            
+                                children.Add().Text("Instrument report")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+                            
+                                children.Add().Text("Specialty report")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+                            
+                                children.Add().Text("Equipment report")
+                                .ImageUrl(Url.Content("~/Images/bullet.png"));
+                        });
+                })
+            )
+        
+            </div>
+        @RenderBody()
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-18 col-md-12">
+                <div id="grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="text-muted">Copyright © 2015 Doftech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+</body>
+</html>

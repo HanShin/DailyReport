@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<style>
+    html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, hr, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, button {
+        margin: 0;
+        padding: 0;
+    }
+    img, fieldset {
+        border: none;
+    }
+    button {
+        border: none;
+    }
+    button {
+        border: 0;
+        background: 0;
+        font-family: '나눔고딕', 'Nanum Gothic', 'ng', 'Dotum', 'sans-serif';
+    }
+
+    .loginBox .loginForm {
+        position: absolute;
+        margin:auto;
+    }
+
+    .loginBox .loginForm .id {
+        margin-bottom: 5px;
+    }
+    .loginBox .loginForm p {
+        position: relative;
+    }
+
+    .loginBox .loginForm .id label, .loginBox .loginForm .pass label {
+        display: inline-block;
+        width: 82px;
+        font-family: 'ng_b';
+        font-size: 14px;
+        color: #333;
+        line-height: 20px;
+        vertical-align: middle;
+        margin:auto;
+    }
+    .loginBox .loginForm .id input, .loginBox .loginForm .pass input {
+        width: 150px;
+        height: 14px;
+        padding: 12px 11px;
+        font-family: 'ng';
+        font-size: 12px;
+    }
+    .loginBox .loginForm .btnLogin {
+        position: absolute;
+        width: 120px;
+        height: 30px;
+        margin: auto;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        background: #00a77e;
+        font-family: 'ng_b';
+        font-size: 16px;
+        color: #fff;
+    }
+
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+            <div class="loginBox">
+					<form name="loginform" class="loginForm" action="/LoginAccess" method="post">
+						<fieldset>
+                            <legend></legend>
+							<p class="id">
+								<label for="id">아이디</label>
+								<input id="id" type="text" name="id">
+							</p>
+							<p class="pass">
+								<label for="pass">비밀번호</label>
+								<input id="pass" type="password" name="pw">
+							</p>
+                            <br />
+							<input type="submit"class="btnLogin"  value="로그인"/>
+						</fieldset>
+					</form>
+				</div>
+    </div>
+</body>
+</html>
