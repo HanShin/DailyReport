@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "ModelProgressLine";
+}
+
+<div class="col-xs-10 col-md-10">
+    <h3>Instrument Progress</h3>
+        @(Html.Kendo().Grid<DailyReport.Models.DR_MODELPROGRESS_INSTRUMENT>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.OID);
+        columns.Bound(p => p.PART_NAME);
+        columns.Bound(p => p.COORDINATE);
+        columns.Bound(p => p.CREATED_BY);
+        columns.Bound(p => p.CREATED_DATE).Format("{0:MM/dd/yyyy}");
+        columns.Bound(p => p.MODIFIED_BY);
+        columns.Bound(p => p.MODIFIED_DATE).Format("{0:MM/dd/yyyy}");
+    
+    })
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+    .DataSource(dataSource => dataSource
+    .Ajax().Read("ModelProgressLine_Read","Grid")
+    .PageSize(25)
+    )
+)
+</div>
