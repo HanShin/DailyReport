@@ -65,6 +65,7 @@ namespace DailyReport.Controllers
             var result = Enumerable.Range(0, 50).Select(i => new DR_MODELPROGRESS_RUN
             {
                 OID = "ABCDEFG" + i,
+                RUN_NAME = "RUNAAA" + i,
                 FLUID_CODE = "fsdfsgJADU" + i * 10,
                 SPEC = "SPECSHFFDF" + i * 10,
                 CREATED_BY = "HanShin",
