@@ -49,11 +49,11 @@ namespace DailyReport.Controllers
             var result = Enumerable.Range(0, 50).Select(i => new DR_MODELPROGRESS_LINE
             {
                 OID = "ABCDEFG"+ i,
-                LINE_NO = "HHSIRJADU" + i * 10,
-                CREATED_BY = "HanShin",
-                CREATED_DATE = DateTime.Now.AddDays(-(2 * i)),
-                MODIFIED_BY = "Modeler",
-                MODIFIED_DATE = DateTime.Now.AddDays(-(i))
+                PIPELINE = "HHSIRJADU" + i * 10,
+                CREATEDBY = "HanShin",
+                DATECREATED = DateTime.Now.AddDays(-(2 * i)),
+                LASTMODIFIEDBY = "Modeler",
+                DATELASTMODIFIED = DateTime.Now.AddDays(-(i))
             });
 
             return Json(result.ToDataSourceResult(request));
@@ -65,13 +65,13 @@ namespace DailyReport.Controllers
             var result = Enumerable.Range(0, 50).Select(i => new DR_MODELPROGRESS_RUN
             {
                 OID = "ABCDEFG" + i,
-                RUN_NAME = "RUNAAA" + i,
-                FLUID_CODE = "fsdfsgJADU" + i * 10,
-                SPEC = "SPECSHFFDF" + i * 10,
-                CREATED_BY = "HanShin",
-                CREATED_DATE = DateTime.Now.AddDays(-(2 * i)),
-                MODIFIED_BY = "Modeler",
-                MODIFIED_DATE = DateTime.Now.AddDays(-(i))
+                PIPERUN = "RUNAAA" + i,
+                FLUIDCODE = "fsdfsgJADU" + i * 10,
+                SPECNAME = "SPECSHFFDF" + i * 10,
+                CREATEDBY = "HanShin",
+                DATECREATED = DateTime.Now.AddDays(-(2 * i)),
+                LASTMODIFIEDBY = "Modeler",
+                DATELASTMODIFIED = DateTime.Now.AddDays(-(i))
             });
 
             return Json(result.ToDataSourceResult(request));
@@ -83,11 +83,11 @@ namespace DailyReport.Controllers
             var result = Enumerable.Range(0, 50).Select(i => new DR_MODELPROGRESS_PART
             {
                 OID = "ABCDEFG" + i,
-                PART_NAME = "PART_HHSIRJADU" + i * 10,
-                CREATED_BY = "HanShin",
-                CREATED_DATE = DateTime.Now.AddDays(-(2 * i)),
-                MODIFIED_BY = "Modeler",
-                MODIFIED_DATE = DateTime.Now.AddDays(-(i))
+                PART = "PART_HHSIRJADU" + i * 10,
+                CREATEDBY = "HanShin",
+                DATECREATED = DateTime.Now.AddDays(-(2 * i)),
+                LASTMODIFIEDBY = "Modeler",
+                DATELASTMODIFIED = DateTime.Now.AddDays(-(i))
             });
 
             return Json(result.ToDataSourceResult(request));
@@ -99,12 +99,14 @@ namespace DailyReport.Controllers
             var result = Enumerable.Range(0, 50).Select(i => new DR_MODELPROGRESS_INSTRUMENT
             {
                 OID = "ABCDEFG" + i,
-                PART_NAME = "HHSIRJADU" + i * 10,
-                COORDINATE = "COORDNATE_" + (i * 10),
-                CREATED_BY = "HanShin",
-                CREATED_DATE = DateTime.Now.AddDays(-(2 * i)),
-                MODIFIED_BY = "Modeler",
-                MODIFIED_DATE = DateTime.Now.AddDays(-(i))
+                INST = "HHSIRJADU" + i * 10,
+                E = 100,
+                N = 300,
+                EL = 400,
+                CREATEDBY = "HanShin",
+                DATECREATED = DateTime.Now.AddDays(-(2 * i)),
+                LASTMODIFIEDBY = "Modeler",
+                DATELASTMODIFIED = DateTime.Now.AddDays(-(i))
             });
 
             return Json(result.ToDataSourceResult(request));

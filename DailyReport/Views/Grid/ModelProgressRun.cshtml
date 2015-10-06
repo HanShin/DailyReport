@@ -9,13 +9,13 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.OID);
-        columns.Bound(p => p.RUN_NAME);
-        columns.Bound(p => p.SPEC);
-        columns.Bound(p => p.FLUID_CODE);
-        columns.Bound(p => p.CREATED_BY);
-        columns.Bound(p => p.CREATED_DATE).Format("{0:MM/dd/yyyy}");
-        columns.Bound(p => p.MODIFIED_BY);
-        columns.Bound(p => p.MODIFIED_DATE).Format("{0:MM/dd/yyyy}");
+        columns.Bound(p => p.PIPERUN);
+        columns.Bound(p => p.SPECNAME);
+        columns.Bound(p => p.FLUIDCODE);
+        columns.Bound(p => p.CREATEDBY);
+        columns.Bound(p => p.DATECREATED).Format("{0:MM/dd/yyyy}");
+        columns.Bound(p => p.LASTMODIFIEDBY);
+        columns.Bound(p => p.DATELASTMODIFIED).Format("{0:MM/dd/yyyy}");
     
     })
     .Pageable()

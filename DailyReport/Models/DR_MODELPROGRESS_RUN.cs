@@ -8,12 +8,13 @@ namespace DailyReport.Models
     public class DR_MODELPROGRESS_RUN
     {
         public string OID { get; set; }
-        public string RUN_NAME { get; set; }
-        public string SPEC { get; set; }
-        public string FLUID_CODE { get; set; }
-        public string CREATED_BY { get; set; }
-        public DateTime? CREATED_DATE { get; set; }
-        public string MODIFIED_BY { get; set; }
-        public DateTime? MODIFIED_DATE { get; set; }
+        public string PIPERUN { get; set; }
+        public string SPECNAME { get; set; }
+        public string FLUIDCODE { get; set; }
+        public string CREATEDBY { get; set; }
+        public DateTime? DATECREATED { get; set; }
+        public string LASTMODIFIEDBY { get; set; }
+        public DateTime? DATELASTMODIFIED { get; set; }
+        public string PROJECT { get; set; }
     }
 }

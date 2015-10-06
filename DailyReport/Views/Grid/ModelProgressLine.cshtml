@@ -9,11 +9,11 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.OID);
-        columns.Bound(p => p.LINE_NO);
-        columns.Bound(p => p.CREATED_BY);
-        columns.Bound(p => p.CREATED_DATE).Format("{0:MM/dd/yyyy}");
-        columns.Bound(p => p.MODIFIED_BY);
-        columns.Bound(p => p.MODIFIED_DATE).Format("{0:MM/dd/yyyy}");
+        columns.Bound(p => p.PIPELINE);
+        columns.Bound(p => p.CREATEDBY);
+        columns.Bound(p => p.DATECREATED).Format("{0:MM/dd/yyyy}");
+        columns.Bound(p => p.LASTMODIFIEDBY);
+        columns.Bound(p => p.DATELASTMODIFIED).Format("{0:MM/dd/yyyy}");
     
     })
     .Pageable()

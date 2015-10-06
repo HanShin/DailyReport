@@ -8,12 +8,11 @@ namespace DailyReport.Models
     public class DR_MODELPROGRESS_PART
     {
         public string OID { get; set; }
-        public string PART_NAME { get; set; }
-        public string COMMODITY_CODE { get; set; }
-        public string SHORT_CODE { get; set; }
-        public string CREATED_BY { get; set; }
-        public DateTime? CREATED_DATE { get; set; }
-        public string MODIFIED_BY { get; set; }
-        public DateTime? MODIFIED_DATE { get; set; }
+        public string PART { get; set; }
+        public string INDUSTRYCOMMODITYCODE { get; set; }
+        public string CREATEDBY { get; set; }
+        public DateTime? DATECREATED { get; set; }
+        public string LASTMODIFIEDBY { get; set; }
+        public DateTime? DATELASTMODIFIED { get; set; }
     }
 }
