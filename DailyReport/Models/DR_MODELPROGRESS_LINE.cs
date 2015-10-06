@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Data.Entity;
 
 namespace DailyReport.Models
 {
@@ -14,5 +12,10 @@ namespace DailyReport.Models
         public string LASTMODIFIEDBY { get; set; }
         public DateTime? DATELASTMODIFIED { get; set; }
         public string PROJECT { get; set; }
+    }
+
+    public class DR_MODELPROGRESS_LINE_DBContext : DbContext 
+    {
+        public DbSet<DR_MODELPROGRESS_LINE> DR_MODELPROGRESS_LINES { get; set; } 
     }
 }

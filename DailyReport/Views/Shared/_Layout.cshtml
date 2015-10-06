@@ -189,8 +189,10 @@
                                     .Expanded(true)
                                     .Items(item =>
                                     {
-                                        item.Add().Text("Linelist")
+                                        item.Add().Text("PipingLineList")
                                             .ImageUrl(Url.Content("~/Images/bullet.png" ));
+                                        item.Add().Text("ModelLineList")
+                                            .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     });
 
                                 resources.Add().Text("Size 별 line").Expanded(true)
