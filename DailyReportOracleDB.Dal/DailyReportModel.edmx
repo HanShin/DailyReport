@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Models.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="DR_CONSISTENCY_INSTRUMENT" EntityType="Models.Store.DR_CONSISTENCY_INSTRUMENT" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_CONSISTENCY_SPECIALTY" EntityType="Models.Store.DR_CONSISTENCY_SPECIALTY" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_CONSISTENCY_VALVE" EntityType="Models.Store.DR_CONSISTENCY_VALVE" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_MODELPROGRESS_INSTRUMENT" EntityType="Models.Store.DR_MODELPROGRESS_INSTRUMENT" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Models.Store.DR_MODELPROGRESS_LINE" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Models.Store.DR_MODELPROGRESS_PART" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_MODELPROGRESS_RUN" EntityType="Models.Store.DR_MODELPROGRESS_RUN" store:Type="Tables" Schema="SYSTEM" />
+        </EntityContainer>
+        <EntityType Name="DR_CONSISTENCY_INSTRUMENT">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="LINENO" Type="varchar2" MaxLength="500" />
+          <Property Name="INS" Type="varchar2" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DR_CONSISTENCY_SPECIALTY">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="LINENO" Type="varchar2" MaxLength="500" />
+          <Property Name="TAG" Type="varchar2" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DR_CONSISTENCY_VALVE">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="PIPELINE" Type="varchar2" MaxLength="500" />
+          <Property Name="ITEMNAME" Type="varchar2" MaxLength="500" />
+          <Property Name="INDUSTRYCOMMODITYCODE" Type="varchar2" MaxLength="500" />
+          <Property Name="NPD" Type="number" />
+          <Property Name="LONGMATERIALDESCRIPTION" Type="varchar2" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="INST" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="E" Type="number" />
+          <Property Name="N" Type="number" />
+          <Property Name="EL" Type="number" />
+          <Property Name="CREATEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATECREATED" Type="date" />
+          <Property Name="LASTMODIFIEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATELASTMODIFIED" Type="date" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_LINE">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="PIPELINE" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="CREATEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATECREATED" Type="date" />
+          <Property Name="LASTMODIFIEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATELASTMODIFIED" Type="date" />
+          <Property Name="PROJECT" Type="varchar2" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_PART">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="PART" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="INDUSTRYCOMMODITYCODE" Type="varchar2" MaxLength="500" />
+          <Property Name="CREATEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATECREATED" Type="date" />
+          <Property Name="LASTMODIFIEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATELASTMODIFIED" Type="date" />
+          <Property Name="PROJECT" Type="varchar2" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_RUN">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="PIPERUN" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="SPECNAME" Type="varchar2" MaxLength="500" />
+          <Property Name="FLUIDCODE" Type="varchar2" MaxLength="500" />
+          <Property Name="CREATEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATECREATED" Type="date" />
+          <Property Name="LASTMODIFIEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATELASTMODIFIED" Type="date" />
+          <Property Name="PROJECT" Type="varchar2" MaxLength="500" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="DR_CONSISTENCY_INSTRUMENT" EntityType="Models.DR_CONSISTENCY_INSTRUMENT" />
+          <EntitySet Name="DR_CONSISTENCY_SPECIALTY" EntityType="Models.DR_CONSISTENCY_SPECIALTY" />
+          <EntitySet Name="DR_CONSISTENCY_VALVE" EntityType="Models.DR_CONSISTENCY_VALVE" />
+          <EntitySet Name="DR_MODELPROGRESS_INSTRUMENT" EntityType="Models.DR_MODELPROGRESS_INSTRUMENT" />
+          <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Models.DR_MODELPROGRESS_LINE" />
+          <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Models.DR_MODELPROGRESS_PART" />
+          <EntitySet Name="DR_MODELPROGRESS_RUN" EntityType="Models.DR_MODELPROGRESS_RUN" />
+        </EntityContainer>
+        <EntityType Name="DR_CONSISTENCY_INSTRUMENT">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="LINENO" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="INS" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DR_CONSISTENCY_SPECIALTY">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="LINENO" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="TAG" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DR_CONSISTENCY_VALVE">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="PIPELINE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="ITEMNAME" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="INDUSTRYCOMMODITYCODE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="NPD" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="LONGMATERIALDESCRIPTION" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="INST" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="E" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="EL" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATELASTMODIFIED" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_LINE">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="PIPELINE" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATELASTMODIFIED" Type="DateTime" />
+          <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_PART">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="PART" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="INDUSTRYCOMMODITYCODE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATELASTMODIFIED" Type="DateTime" />
+          <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_RUN">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="PIPERUN" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SPECNAME" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="FLUIDCODE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DATELASTMODIFIED" Type="DateTime" />
+          <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="DR_CONSISTENCY_INSTRUMENT">
+            <EntityTypeMapping TypeName="Models.DR_CONSISTENCY_INSTRUMENT">
+              <MappingFragment StoreEntitySet="DR_CONSISTENCY_INSTRUMENT">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="LINENO" ColumnName="LINENO" />
+                <ScalarProperty Name="INS" ColumnName="INS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_CONSISTENCY_SPECIALTY">
+            <EntityTypeMapping TypeName="Models.DR_CONSISTENCY_SPECIALTY">
+              <MappingFragment StoreEntitySet="DR_CONSISTENCY_SPECIALTY">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="LINENO" ColumnName="LINENO" />
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_CONSISTENCY_VALVE">
+            <EntityTypeMapping TypeName="Models.DR_CONSISTENCY_VALVE">
+              <MappingFragment StoreEntitySet="DR_CONSISTENCY_VALVE">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="PIPELINE" ColumnName="PIPELINE" />
+                <ScalarProperty Name="ITEMNAME" ColumnName="ITEMNAME" />
+                <ScalarProperty Name="INDUSTRYCOMMODITYCODE" ColumnName="INDUSTRYCOMMODITYCODE" />
+                <ScalarProperty Name="NPD" ColumnName="NPD" />
+                <ScalarProperty Name="LONGMATERIALDESCRIPTION" ColumnName="LONGMATERIALDESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_INSTRUMENT">
+            <EntityTypeMapping TypeName="Models.DR_MODELPROGRESS_INSTRUMENT">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_INSTRUMENT">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="INST" ColumnName="INST" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="N" ColumnName="N" />
+                <ScalarProperty Name="EL" ColumnName="EL" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_LINE">
+            <EntityTypeMapping TypeName="Models.DR_MODELPROGRESS_LINE">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_LINE">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="PIPELINE" ColumnName="PIPELINE" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_PART">
+            <EntityTypeMapping TypeName="Models.DR_MODELPROGRESS_PART">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_PART">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="PART" ColumnName="PART" />
+                <ScalarProperty Name="INDUSTRYCOMMODITYCODE" ColumnName="INDUSTRYCOMMODITYCODE" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_RUN">
+            <EntityTypeMapping TypeName="Models.DR_MODELPROGRESS_RUN">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_RUN">
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="PIPERUN" ColumnName="PIPERUN" />
+                <ScalarProperty Name="SPECNAME" ColumnName="SPECNAME" />
+                <ScalarProperty Name="FLUIDCODE" ColumnName="FLUIDCODE" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

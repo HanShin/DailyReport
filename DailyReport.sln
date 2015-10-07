@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyReport", "DailyReport\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyReportTests", "DailyReportTests\DailyReportTests.csproj", "{F71084FB-F6A3-47E0-BF8A-11234A3FD8F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyReportOracleDB.Dal", "DailyReportOracleDB.Dal\DailyReportOracleDB.Dal.csproj", "{40EA3E70-3276-4E7F-B9C8-688C4359481D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{F71084FB-F6A3-47E0-BF8A-11234A3FD8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F71084FB-F6A3-47E0-BF8A-11234A3FD8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F71084FB-F6A3-47E0-BF8A-11234A3FD8F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40EA3E70-3276-4E7F-B9C8-688C4359481D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40EA3E70-3276-4E7F-B9C8-688C4359481D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40EA3E70-3276-4E7F-B9C8-688C4359481D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40EA3E70-3276-4E7F-B9C8-688C4359481D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
