@@ -237,13 +237,13 @@
                                     .Expanded(true)
                                     .Items(item =>
                                     {
-                                        item.Add().Text("Valve")
+                                        item.Add().Text("Valve").Url("/Grid/ConsistencyValve")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text("Instrument")
+
+                                        item.Add().Text("Instrument").Url("/Grid/ConsistencyInstrument")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text("Specialty")
+
+                                        item.Add().Text("Specialty").Url("/Grid/ConsistencySpecialty")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     });
                             });
