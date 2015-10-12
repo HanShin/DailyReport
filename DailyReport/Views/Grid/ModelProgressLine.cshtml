@@ -4,25 +4,22 @@
 
 <div class="col-xs-10 col-md-10">
     <h3>PipeLine Progress</h3>
-        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_MODELPROGRESS_LINE>()
-    .Name("grid")
-    .Columns(columns =>
-    {
-        columns.Bound(p => p.OID);
-        columns.Bound(p => p.PIPELINE);
-        columns.Bound(p => p.CREATEDBY);
-        columns.Bound(p => p.DATECREATED).Format("{0:MM/dd/yyyy}");
-        columns.Bound(p => p.LASTMODIFIEDBY);
-        columns.Bound(p => p.DATELASTMODIFIED).Format("{0:MM/dd/yyyy}");
-    
-    })
-    .Pageable()
-    .Sortable()
-    .Scrollable()
-    .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
-    .DataSource(dataSource => dataSource
-    .Ajax().Read("ModelProgressLine_Read","Grid")
-    .PageSize(25)
-    )
+        @(Html.Kendo().Chart<DailyReport.Models.ModelProgressLineDatas>()
+        .Name("LineChart")
+        .Title("Pipe Line 작업량")
+        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
+        .DataSource(ds => ds.Read(read => read
+            .Action("ModelProgressLine_Chart","Chart"))
+        )
+        .Series(series => {
+            series.Bar(model => model.Count).Name("Count");
+        })
+        .CategoryAxis(axis => axis
+            .Categories(t => t.Date.Value)
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Line(line => line.Visible(false)) 
+        )
 )
 </div>

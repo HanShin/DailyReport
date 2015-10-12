@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "ConsistencyValve";
+}
+
+<div class="col-xs-10 col-md-10">
+    <h3>Instrument Progress</h3>
+        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_CONSISTENCY_VALVE>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.OID);
+        columns.Bound(p => p.PIPELINE);
+        columns.Bound(p => p.ITEMNAME);
+        columns.Bound(p => p.INDUSTRYCOMMODITYCODE);
+        columns.Bound(p => p.NPD).Width(50);
+        columns.Bound(p => p.LONGMATERIALDESCRIPTION);
+    
+    })
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+    .DataSource(dataSource => dataSource
+    .Ajax().Read("ConsistencyValve_Read","Grid")
+    .PageSize(25)
+    )
+)
+</div>

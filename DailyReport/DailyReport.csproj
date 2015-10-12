@@ -169,6 +169,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelProgressLineDatas.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -842,6 +844,9 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Grid\ConsistencyInstrument.cshtml" />
+    <Content Include="Views\Grid\ConsistencySpecialty.cshtml" />
+    <Content Include="Views\Grid\ConsistencyValve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

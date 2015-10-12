@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "ConsistencySpecialty";
+}
+
+<div class="col-xs-10 col-md-10">
+    <h3>Instrument Progress</h3>
+        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_CONSISTENCY_SPECIALTY>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.OID);
+        columns.Bound(p => p.LINENO);
+        columns.Bound(p => p.TAG);
+    })
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+    .DataSource(dataSource => dataSource
+    .Ajax().Read("ConsistencySpecialty_Read","Grid")
+    .PageSize(25)
+    )
+)
+</div>

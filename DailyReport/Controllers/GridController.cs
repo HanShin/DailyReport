@@ -46,13 +46,20 @@ namespace DailyReport.Controllers
             return View();
         }
 
-        public ActionResult ModelProgressLine_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult ConsistencyInstrument()
         {
-            var result = db.DR_MODELPROGRESS_LINE.ToList();
-
-            return Json(result.ToDataSourceResult(request));
+            return View();
         }
 
+        public ActionResult ConsistencySpecialty()
+        {
+            return View();
+        }
+
+        public ActionResult ConsistencyValve()
+        {
+            return View();
+        }
   
         public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -61,7 +68,7 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
-        // TODO
+
         public ActionResult ModelProgressPart_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = db.DR_MODELPROGRESS_PART.ToList();
@@ -69,10 +76,33 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
-        // TODO
         public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = db.DR_MODELPROGRESS_INSTRUMENT.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+        // TODO
+        public ActionResult ConsistencyInstrument_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_CONSISTENCY_INSTRUMENT.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+        // TODO
+        public ActionResult ConsistencySpecialty_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_CONSISTENCY_SPECIALTY.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+        // TODO
+        public ActionResult ConsistencyValve_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_CONSISTENCY_VALVE.ToList();
 
             return Json(result.ToDataSourceResult(request));
         }
