@@ -2,6 +2,13 @@
     ViewBag.Title = "ModelProgressLine";
 }
 
+ <style>
+        .chart-wrapper, .chart-wrapper .k-chart
+        {
+            height: 1000px;
+        }
+</style>
+
 <div class="col-xs-10 col-md-10">
     <h3>PipeLine Progress</h3>
         @(Html.Kendo().Chart<DailyReport.Models.ModelProgressLineDatas>()
@@ -12,14 +19,21 @@
             .Action("ModelProgressLine_Chart","Chart"))
         )
         .Series(series => {
-            series.Bar(model => model.Count).Name("Count");
+            series.Bar(model => model.Count).Name("Count").Labels(true);
         })
         .CategoryAxis(axis => axis
-            .Categories(t => t.Date.Value)
+            .Categories(categories => categories.Date).Title("날짜")
+            .Labels(Label => Label.Visible(true))
         )
         .ValueAxis(axis => axis
             .Numeric()
-            .Line(line => line.Visible(false)) 
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(5)
+            
         )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+        )
+        .ChartArea(chart => chart.Height(900))
 )
 </div>

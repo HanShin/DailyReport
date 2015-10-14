@@ -13,21 +13,22 @@ namespace DailyReport.Controllers
     public class ChartController : Controller
     {
         private Entities db = new Entities();
-        [HttpPost]
+
         public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request)
         {
             var result = (from lines in db.DR_MODELPROGRESS_LINE
                      where lines.DATECREATED >= new DateTime(2014, 11, 1) && lines.DATECREATED <= new DateTime(2014, 12, 31)
                      group lines by lines.DATECREATED into g
                      let dataCount = g.Count()
+                     let datas = g.Key.Value.ToShortDateString()
                       select new ModelProgressLineDatas
                      {
                          Count = dataCount,
-                         Date = g.Key
+                         Date = datas
                      }).ToList();
 
             //var result = db.DR_MODELPROGRESS_LINE.Where(line => line.DATECREATED.Value >= new DateTime(2014, 11, 1) && line.DATECREATED.Value <= new DateTime(2014, 12, 31)).GroupBy(line => line.DATECREATED).ToList();
-            return Json(result.ToDataSourceResult(request));
+            return Json(result);
         }
 
     }
