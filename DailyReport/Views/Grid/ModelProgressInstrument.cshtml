@@ -1,6 +1,33 @@
 ﻿@{
     ViewBag.Title = "ModelProgressInstrument";
 }
+<div>
+    @(Html.Kendo().ComboBox()
+    .Name("combo")
+    .Filter("contains")
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .BindTo(new List<SelectListItem>
+    {
+        new SelectListItem()
+        {
+            Text = "전체", Value = "1"
+        },
+        new SelectListItem()
+        {
+            Text = "모델러별", Value = "2"
+        }
+    })
+    .SelectedIndex(1)
+    .Suggest(true)
+    )
+    
+    @(Html.Kendo().RadioButton()
+        
+    )
+
+</div>
+
 
 <div class="col-xs-10 col-md-10">
     <h3>PipeInstrument Progress</h3>
@@ -14,7 +41,7 @@
         )
         .Series(series =>
         {
-            series.Bar(model => model.Count).Name("Count").Labels(true);
+            series.Bar(model => model.Count).Name("전체").Labels(true);
         })
         .CategoryAxis(axis => axis
             .Categories(categories => categories.Date).Title("날짜")
@@ -29,6 +56,7 @@
             .Visible(true)
         )
         .ChartArea(chart => chart.Height(900))
+        
 
 )
 </div>

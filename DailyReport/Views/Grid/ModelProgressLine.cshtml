@@ -15,7 +15,7 @@
         )
         .Series(series =>
         {
-            series.Bar(model => model.Count).Name("Count").Labels(true);
+            series.Bar(model => model.Count).Name("전체").Labels(true);
         })
         .CategoryAxis(axis => axis
             .Categories(categories => categories.Date).Title("날짜")
