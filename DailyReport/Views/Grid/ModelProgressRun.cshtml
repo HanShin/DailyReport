@@ -1,30 +1,34 @@
 ﻿@{
-    ViewBag.Title = "ModelProgressLine";
+    ViewBag.Title = "ModelProgressRun";
 }
 
 <div class="col-xs-10 col-md-10">
     <h3>PipeRun Progress</h3>
-        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_MODELPROGRESS_RUN>()
-    .Name("grid")
-    .Columns(columns =>
-    {
-        columns.Bound(p => p.OID);
-        columns.Bound(p => p.PIPERUN);
-        columns.Bound(p => p.SPECNAME);
-        columns.Bound(p => p.FLUIDCODE);
-        columns.Bound(p => p.CREATEDBY);
-        columns.Bound(p => p.DATECREATED).Format("{0:MM/dd/yyyy}");
-        columns.Bound(p => p.LASTMODIFIEDBY);
-        columns.Bound(p => p.DATELASTMODIFIED).Format("{0:MM/dd/yyyy}");
-    
-    })
-    .Pageable()
-    .Sortable()
-    .Scrollable()
-    .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
-    .DataSource(dataSource => dataSource
-    .Ajax().Read("ModelProgressRun_Read","Grid")
-    .PageSize(25)
-    )
+        @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
+        .Name("LineChart")
+        .Title("Pipe Run 작업량")
+        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
+        .DataSource(ds => ds
+            .Read(read => read
+            .Action("ModelProgressRun_Chart", "Chart"))
+        )
+        .Series(series =>
+        {
+            series.Bar(model => model.Count).Name("Count").Labels(true);
+        })
+        .CategoryAxis(axis => axis
+            .Categories(categories => categories.Date).Title("날짜")
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(50)
+
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+        )
+        .ChartArea(chart => chart.Height(900))
+
 )
 </div>

@@ -7,7 +7,7 @@ namespace DailyReport.Models
 {
     public class ModelProgressLineDatas
     {
-        public string Date { get; set; }
+        public DateTime? Date { get; set; }
         public int Count { get; set; }
     }
 }

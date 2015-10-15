@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "ModelProgressLine";
+}
+
+ <style>
+        .chart-wrapper, .chart-wrapper .k-chart
+        {
+            height: 1000px;
+        }
+</style>
+
+<div class="col-xs-10 col-md-10">
+    <h3>PipeLine Progress</h3>
+        @(Html.Kendo().Chart<DailyReport.Models.ModelProgressLineDatas>()
+        .Name("LineChart")
+        .Title("Pipe Line 작업량")
+        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
+        .DataSource(ds => ds.Read(read => read
+            .Action("ModelProgressLine_Chart","Chart"))
+        )
+        .Series(series => {
+            series.Bar(model => model.Count).Name("Count").Labels(true);
+        })
+        .CategoryAxis(axis => axis
+            .Categories(t => t.Date)
+            
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(5)
+            
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+        )
+        .Pannable(pannable => pannable
+            .Lock(ChartAxisLock.Y)
+        )
+        .ChartArea(chart => chart.Height(900))
+        .Zoomable(zoomable => zoomable
+            .Mousewheel(mousewheel => mousewheel.Lock(ChartAxisLock.Y))
+            .Selection(selection => selection.Lock(ChartAxisLock.Y))
+        )
+)
+</div>

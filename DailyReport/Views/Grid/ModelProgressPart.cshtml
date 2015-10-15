@@ -1,29 +1,35 @@
 ﻿@{
-    ViewBag.Title = "ModelProgressLine";
+    ViewBag.Title = "ModelProgressPart";
 }
 
 <div class="col-xs-10 col-md-10">
     <h3>PipePart Progress</h3>
-        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_MODELPROGRESS_PART>()
-    .Name("grid")
-    .Columns(columns =>
-    {
-        columns.Bound(p => p.OID);
-        columns.Bound(p => p.PART);
-        columns.Bound(p => p.CREATEDBY);
-        columns.Bound(p => p.INDUSTRYCOMMODITYCODE );
-        columns.Bound(p => p.DATECREATED).Format("{0:MM/dd/yyyy}");
-        columns.Bound(p => p.LASTMODIFIEDBY);
-        columns.Bound(p => p.LASTMODIFIEDBY).Format("{0:MM/dd/yyyy}");
-    
-    })
-    .Pageable()
-    .Sortable()
-    .Scrollable()
-    .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
-    .DataSource(dataSource => dataSource
-    .Ajax().Read("ModelProgressPart_Read","Grid")
-    .PageSize(25)
-    )
+        @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
+        .Name("PartChart")
+        .Title("Part 작업량")
+        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
+        .DataSource(ds => ds
+            .Read(read => read
+            .Action("ModelProgressPart_Chart", "Chart"))
+        )
+        .Series(series =>
+        {
+            series.Bar(model => model.Count).Name("Count").Labels(true);
+        })
+        .CategoryAxis(axis => axis
+            .Categories(categories => categories.Date).Title("날짜")
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(100)
+
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+        )
+        .ChartArea(chart => chart.Height(900))
+
 )
 </div>
+
