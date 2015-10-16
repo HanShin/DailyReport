@@ -4,6 +4,17 @@
 
 <div class="col-xs-10 col-md-10">
     <h3>PipeLine Progress</h3>
+    <div class="radio-section k-header">
+
+    <ul>
+        <li>
+            @(Html.Kendo().RadioButton().Name("engine1").Checked(true).HtmlAttributes(new{@name = "selecttype"}).Label("전체"))
+        </li>
+        <li>
+            @(Html.Kendo().RadioButton().Name("engine2").HtmlAttributes(new{@name = "selecttype"}).Label("모델러별"))
+        </li>
+    </ul>
+</div>
         @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
         .Name("LineChart")
         .Title("Pipe Line 작업량")
@@ -11,7 +22,10 @@
         .DataSource(ds => ds
             .Read(read => read
             .Action("ModelProgressLine_Chart", "Chart"))
-
+            .Filter(filter => {
+                filter.Add(item => item.Date);
+                }
+            )
         )
         .Series(series =>
         {

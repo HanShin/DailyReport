@@ -27,7 +27,7 @@ namespace DailyReport.Controllers
         public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request)
         {
             var temp = (from lines in db.DR_MODELPROGRESS_LINE
-                          where lines.DATECREATED >= new DateTime(2014, 6, 1) && lines.DATECREATED <= new DateTime(2014, 12, 31)
+                          
                           group lines by lines.DATECREATED into g
                           let dataCount = g.Count()
                           orderby g.Key descending

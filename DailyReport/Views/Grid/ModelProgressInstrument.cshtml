@@ -1,32 +1,7 @@
 ﻿@{
     ViewBag.Title = "ModelProgressInstrument";
 }
-<div>
-    @(Html.Kendo().ComboBox()
-    .Name("combo")
-    .Filter("contains")
-    .DataTextField("Text")
-    .DataValueField("Value")
-    .BindTo(new List<SelectListItem>
-    {
-        new SelectListItem()
-        {
-            Text = "전체", Value = "1"
-        },
-        new SelectListItem()
-        {
-            Text = "모델러별", Value = "2"
-        }
-    })
-    .SelectedIndex(1)
-    .Suggest(true)
-    )
-    
-    @(Html.Kendo().RadioButton()
-        
-    )
 
-</div>
 
 
 <div class="col-xs-10 col-md-10">
