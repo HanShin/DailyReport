@@ -26,8 +26,8 @@ namespace DailyReport.Controllers
 
         public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from lines in db.DR_MODELPROGRESS_LINE
-
+            var temp = (from lines in db.DR_MODELPROGRESS_LINE
+                          where lines.DATECREATED >= new DateTime(2014, 6, 1) && lines.DATECREATED <= new DateTime(2014, 12, 31)
                           group lines by lines.DATECREATED into g
                           let dataCount = g.Count()
                           orderby g.Key descending
@@ -36,12 +36,23 @@ namespace DailyReport.Controllers
                              Count = dataCount,
                              Date = g.Key
                          }).ToList();
+
+            List<ModelCountData> result = new List<ModelCountData>();
+            foreach(tempClass tempData in temp)
+            {
+                result.Add(new ModelCountData
+                {
+                    Count = tempData.Count,
+                    Date = tempData.Date.Value.ToShortDateString()
+                });
+            }
             return Json(result);
         }
 
         public ActionResult ModelProgressRun_Chart([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from run in db.DR_MODELPROGRESS_RUN
+            var temp = (from run in db.DR_MODELPROGRESS_RUN
+                        where run.DATECREATED >= new DateTime(2014, 6, 1) && run.DATECREATED <= new DateTime(2014, 12, 31)
                         group run by run.DATECREATED into g
                         let dataCount = g.Count()
                         orderby g.Key descending
@@ -50,12 +61,23 @@ namespace DailyReport.Controllers
                             Count = dataCount,
                             Date = g.Key
                         }).ToList();
+
+            List<ModelCountData> result = new List<ModelCountData>();
+            foreach (tempClass tempData in temp)
+            {
+                result.Add(new ModelCountData
+                {
+                    Count = tempData.Count,
+                    Date = tempData.Date.Value.ToShortDateString()
+                });
+            }
             return Json(result);
         }
 
         public ActionResult ModelProgressPart_Chart([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from part in db.DR_MODELPROGRESS_PART
+            var temp = (from part in db.DR_MODELPROGRESS_PART
+                        where part.DATECREATED >= new DateTime(2014, 6, 1) && part.DATECREATED <= new DateTime(2014, 12, 31)
                         group part by part.DATECREATED into g
                         let dataCount = g.Count()
                         orderby g.Key descending
@@ -65,12 +87,22 @@ namespace DailyReport.Controllers
                             Date = g.Key
                         }).ToList();
 
+            List<ModelCountData> result = new List<ModelCountData>();
+            foreach (tempClass tempData in temp)
+            {
+                result.Add(new ModelCountData
+                {
+                    Count = tempData.Count,
+                    Date = tempData.Date.Value.ToShortDateString()
+                });
+            }
             return Json(result);
         }
 
         public ActionResult ModelProgressInstrument_Chart([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from instrument in db.DR_MODELPROGRESS_INSTRUMENT
+            var temp = (from instrument in db.DR_MODELPROGRESS_INSTRUMENT
+                        where instrument.DATECREATED >= new DateTime(2014, 6, 1) && instrument.DATECREATED <= new DateTime(2014, 12, 31)
                         group instrument by instrument.DATECREATED into g
                         let dataCount = g.Count()
                         orderby g.Key descending
@@ -80,6 +112,15 @@ namespace DailyReport.Controllers
                             Date = g.Key
                         }).ToList();
 
+            List<ModelCountData> result = new List<ModelCountData>();
+            foreach (tempClass tempData in temp)
+            {
+                result.Add(new ModelCountData
+                {
+                    Count = tempData.Count,
+                    Date = tempData.Date.Value.ToShortDateString()
+                });
+            }
             return Json(result);
         }
     }

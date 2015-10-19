@@ -1,16 +1,17 @@
 ﻿@{
-    ViewBag.Title = "ModelProgressRun";
+    ViewBag.Title = "ModelProgressLine";
 }
 
 <div class="col-xs-10 col-md-10">
-    <h3>PipeRun Progress</h3>
+    <h3>PipeLine Progress</h3>
         @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
         .Name("LineChart")
-        .Title("Pipe Run 작업량")
+        .Title("Pipe Line 작업량")
         .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
         .DataSource(ds => ds
             .Read(read => read
-            .Action("ModelProgressRun_Chart", "Chart", new { startDate = "2014-10-1" }))
+            .Action("ModelProgressLine_Chart", "Chart"))
+
         )
         .Series(series =>
         {
@@ -22,7 +23,7 @@
         .ValueAxis(axis => axis
             .Numeric()
             .Labels(labels => labels.Visible(true))
-            .MajorUnit(50)
+            .MajorUnit(10)
 
         )
         .Tooltip(tooltip => tooltip

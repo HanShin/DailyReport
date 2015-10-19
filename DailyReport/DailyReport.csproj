@@ -733,9 +733,7 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Grid\ConsistencyInstrument.cshtml" />
-    <Content Include="Views\Grid\ConsistencySpecialty.cshtml" />
-    <Content Include="Views\Grid\ConsistencyValve.cshtml" />
+    <Content Include="Views\Grid\Consistency.cshtml" />
     <Content Include="Scripts\kendo\2015.3.930\jquery.min.map" />
     <Content Include="Scripts\kendo\2015.3.930\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\2015.3.930\kendo.angular.min.js.map" />

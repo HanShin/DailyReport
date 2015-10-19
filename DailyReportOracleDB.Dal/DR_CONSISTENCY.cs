@@ -12,13 +12,19 @@ namespace DailyReportOracleDB.Dal
     using System;
     using System.Collections.Generic;
     
-    public partial class DR_CONSISTENCY_SPECIALTY
+    public partial class DR_CONSISTENCY
     {
-        public string OID { get; set; }
-        public string LINENO { get; set; }
-        public string TAG { get; set; }
-        public decimal NUM { get; set; }
+        public DR_CONSISTENCY()
+        {
+            this.DR_CONSISTENCY_INSTRUMENT = new HashSet<DR_CONSISTENCY_INSTRUMENT>();
+            this.DR_CONSISTENCY_SPECIALTY = new HashSet<DR_CONSISTENCY_SPECIALTY>();
+            this.DR_CONSISTENCY_VALVE = new HashSet<DR_CONSISTENCY_VALVE>();
+        }
     
-        public virtual DR_CONSISTENCY DR_CONSISTENCY { get; set; }
+        public string LINENO { get; set; }
+    
+        public virtual ICollection<DR_CONSISTENCY_INSTRUMENT> DR_CONSISTENCY_INSTRUMENT { get; set; }
+        public virtual ICollection<DR_CONSISTENCY_SPECIALTY> DR_CONSISTENCY_SPECIALTY { get; set; }
+        public virtual ICollection<DR_CONSISTENCY_VALVE> DR_CONSISTENCY_VALVE { get; set; }
     }
 }

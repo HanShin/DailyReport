@@ -25,14 +25,15 @@ namespace DailyReportOracleDB.Dal
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<DR_CONSISTENCY_INSTRUMENT> DR_CONSISTENCY_INSTRUMENT { get; set; }
-        public DbSet<DR_CONSISTENCY_SPECIALTY> DR_CONSISTENCY_SPECIALTY { get; set; }
-        public DbSet<DR_CONSISTENCY_VALVE> DR_CONSISTENCY_VALVE { get; set; }
         public DbSet<DR_MODELPROGRESS_INSTRUMENT> DR_MODELPROGRESS_INSTRUMENT { get; set; }
-        public DbSet<DR_MODELPROGRESS_LINE> DR_MODELPROGRESS_LINE { get; set; }
         public DbSet<DR_MODELPROGRESS_PART> DR_MODELPROGRESS_PART { get; set; }
         public DbSet<DR_MODELPROGRESS_RUN> DR_MODELPROGRESS_RUN { get; set; }
         public DbSet<DR_PROGRESS_CPIPINGLINELIST> DR_PROGRESS_CPIPINGLINELIST { get; set; }
         public DbSet<DR_PROGRESS_PIPINGLINELIST> DR_PROGRESS_PIPINGLINELIST { get; set; }
+        public DbSet<DR_CONSISTENCY> DR_CONSISTENCY { get; set; }
+        public DbSet<DR_CONSISTENCY_INSTRUMENT> DR_CONSISTENCY_INSTRUMENT { get; set; }
+        public DbSet<DR_CONSISTENCY_SPECIALTY> DR_CONSISTENCY_SPECIALTY { get; set; }
+        public DbSet<DR_CONSISTENCY_VALVE> DR_CONSISTENCY_VALVE { get; set; }
+        public DbSet<DR_MODELPROGRESS_LINE> DR_MODELPROGRESS_LINE { get; set; }
     }
 }

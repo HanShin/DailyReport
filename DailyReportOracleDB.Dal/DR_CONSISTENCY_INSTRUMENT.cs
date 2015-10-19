@@ -17,5 +17,8 @@ namespace DailyReportOracleDB.Dal
         public string OID { get; set; }
         public string LINENO { get; set; }
         public string INS { get; set; }
+        public decimal NUM { get; set; }
+    
+        public virtual DR_CONSISTENCY DR_CONSISTENCY { get; set; }
     }
 }

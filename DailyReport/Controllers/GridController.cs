@@ -46,17 +46,7 @@ namespace DailyReport.Controllers
             return View();
         }
 
-        public ActionResult ConsistencyInstrument()
-        {
-            return View();
-        }
-
-        public ActionResult ConsistencySpecialty()
-        {
-            return View();
-        }
-
-        public ActionResult ConsistencyValve()
+        public ActionResult Consistency()
         {
             return View();
         }
@@ -84,27 +74,30 @@ namespace DailyReport.Controllers
         }
 
         // TODO
-        public ActionResult ConsistencyInstrument_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var result = db.DR_CONSISTENCY_INSTRUMENT.ToList();
+            var result = db.DR_CONSISTENCY.ToList();
 
-            return Json(result.ToDataSourceResult(request));
-        }
+            foreach (var item in result)
+            {
+                foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
+                {
+                    subitem.DR_CONSISTENCY = null;
+                }
 
-        // TODO
-        public ActionResult ConsistencySpecialty_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_CONSISTENCY_SPECIALTY.ToList();
+                foreach (var subitem in item.DR_CONSISTENCY_SPECIALTY)
+                {
+                    subitem.DR_CONSISTENCY = null;
+                }
 
-            return Json(result.ToDataSourceResult(request));
-        }
+                foreach (var subitem in item.DR_CONSISTENCY_VALVE)
+                {
+                    subitem.DR_CONSISTENCY = null;
+                }
+            }
 
-        // TODO
-        public ActionResult ConsistencyValve_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_CONSISTENCY_VALVE.ToList();
 
-            return Json(result.ToDataSourceResult(request));
+            return Json(result,JsonRequestBehavior.AllowGet);
         }
     }
 }
