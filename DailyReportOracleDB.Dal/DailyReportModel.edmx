@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Models.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Models.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="DR_CONSISTENCY_INSTRUMENT" EntityType="Models.Store.DR_CONSISTENCY_INSTRUMENT" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_CONSISTENCY_SPECIALTY" EntityType="Models.Store.DR_CONSISTENCY_SPECIALTY" store:Type="Tables" Schema="SYSTEM" />
@@ -13,6 +13,8 @@
           <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Models.Store.DR_MODELPROGRESS_LINE" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Models.Store.DR_MODELPROGRESS_PART" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_MODELPROGRESS_RUN" EntityType="Models.Store.DR_MODELPROGRESS_RUN" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_PROGRESS_CPIPINGLINELIST" EntityType="Models.Store.DR_PROGRESS_CPIPINGLINELIST" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_PROGRESS_PIPINGLINELIST" EntityType="Models.Store.DR_PROGRESS_PIPINGLINELIST" store:Type="Tables" Schema="SYSTEM" />
         </EntityContainer>
         <EntityType Name="DR_CONSISTENCY_INSTRUMENT">
           <Key>
@@ -94,8 +96,25 @@
           <Property Name="DATELASTMODIFIED" Type="date" />
           <Property Name="PROJECT" Type="varchar2" MaxLength="500" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="DR_PROGRESS_CPIPINGLINELIST">
+          <Key>
+            <PropertyRef Name="IND" />
+          </Key>
+          <Property Name="LINE_NO" Type="varchar2" MaxLength="30" />
+          <Property Name="COOPERATOR" Type="varchar2" MaxLength="30" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="30" />
+          <Property Name="IND" Type="varchar2" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DR_PROGRESS_PIPINGLINELIST">
+          <Key>
+            <PropertyRef Name="IND" />
+          </Key>
+          <Property Name="STATUS" Type="varchar2" MaxLength="30" />
+          <Property Name="LINE_NO" Type="varchar2" MaxLength="30" />
+          <Property Name="COOPERATOR" Type="varchar2" MaxLength="30" />
+          <Property Name="IND" Type="varchar2" Nullable="false" MaxLength="10" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Models" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -107,6 +126,8 @@
           <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Models.DR_MODELPROGRESS_LINE" />
           <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Models.DR_MODELPROGRESS_PART" />
           <EntitySet Name="DR_MODELPROGRESS_RUN" EntityType="Models.DR_MODELPROGRESS_RUN" />
+          <EntitySet Name="DR_PROGRESS_CPIPINGLINELIST" EntityType="Models.DR_PROGRESS_CPIPINGLINELIST" />
+          <EntitySet Name="DR_PROGRESS_PIPINGLINELIST" EntityType="Models.DR_PROGRESS_PIPINGLINELIST" />
         </EntityContainer>
         <EntityType Name="DR_CONSISTENCY_INSTRUMENT">
           <Key>
@@ -187,6 +208,24 @@
           <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
           <Property Name="DATELASTMODIFIED" Type="DateTime" />
           <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DR_PROGRESS_CPIPINGLINELIST">
+          <Key>
+            <PropertyRef Name="IND" />
+          </Key>
+          <Property Type="String" Name="LINE_NO" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="COOPERATOR" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="STATUS" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IND" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DR_PROGRESS_PIPINGLINELIST">
+          <Key>
+            <PropertyRef Name="IND" />
+          </Key>
+          <Property Type="String" Name="STATUS" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LINE_NO" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="COOPERATOR" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IND" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -281,6 +320,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DR_PROGRESS_CPIPINGLINELIST">
+            <EntityTypeMapping TypeName="Models.DR_PROGRESS_CPIPINGLINELIST">
+              <MappingFragment StoreEntitySet="DR_PROGRESS_CPIPINGLINELIST">
+                <ScalarProperty Name="IND" ColumnName="IND" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="COOPERATOR" ColumnName="COOPERATOR" />
+                <ScalarProperty Name="LINE_NO" ColumnName="LINE_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_PROGRESS_PIPINGLINELIST">
+            <EntityTypeMapping TypeName="Models.DR_PROGRESS_PIPINGLINELIST">
+              <MappingFragment StoreEntitySet="DR_PROGRESS_PIPINGLINELIST">
+                <ScalarProperty Name="IND" ColumnName="IND" />
+                <ScalarProperty Name="COOPERATOR" ColumnName="COOPERATOR" />
+                <ScalarProperty Name="LINE_NO" ColumnName="LINE_NO" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -296,7 +355,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
       </DesignerInfoPropertySet>
     </Options>

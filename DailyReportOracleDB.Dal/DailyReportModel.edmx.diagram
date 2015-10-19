@@ -12,6 +12,8 @@
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_LINE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_PART" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_RUN" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.DR_PROGRESS_CPIPINGLINELIST" Width="1.5" PointX="6.1082300870251984" PointY="26.9720231122207" />
+        <EntityTypeShape EntityType="Models.DR_PROGRESS_PIPINGLINELIST" Width="1.5" PointX="5.9430244462299271" PointY="17.680132397301556" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,5 +32,7 @@ namespace DailyReportOracleDB.Dal
         public DbSet<DR_MODELPROGRESS_LINE> DR_MODELPROGRESS_LINE { get; set; }
         public DbSet<DR_MODELPROGRESS_PART> DR_MODELPROGRESS_PART { get; set; }
         public DbSet<DR_MODELPROGRESS_RUN> DR_MODELPROGRESS_RUN { get; set; }
+        public DbSet<DR_PROGRESS_CPIPINGLINELIST> DR_PROGRESS_CPIPINGLINELIST { get; set; }
+        public DbSet<DR_PROGRESS_PIPINGLINELIST> DR_PROGRESS_PIPINGLINELIST { get; set; }
     }
 }

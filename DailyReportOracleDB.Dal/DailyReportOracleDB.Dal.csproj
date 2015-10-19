@@ -83,6 +83,12 @@
     <Compile Include="DR_MODELPROGRESS_RUN.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DR_PROGRESS_CPIPINGLINELIST.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_PROGRESS_PIPINGLINELIST.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
