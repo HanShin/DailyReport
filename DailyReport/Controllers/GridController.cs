@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using DailyReportOracleDB.Dal;
+using DailyReport.Models;
 
 namespace DailyReport.Controllers
 {
@@ -76,10 +77,17 @@ namespace DailyReport.Controllers
         // TODO
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var result = db.DR_CONSISTENCY.ToList();
-
-            foreach (var item in result)
+            var tempItem = db.DR_CONSISTENCY.ToList();
+            List<ConsistencyItem> result = new List<ConsistencyItem>();
+            foreach (var item in tempItem)
             {
+                ConsistencyItem consistency = new ConsistencyItem();
+                foreach (var subitem in item.DR_CONSISTENCY_VALVE)
+                {
+                    consistency.ITEMS += subitem.LONGMATERIALDESCRIPTION.Substring(0, subitem.LONGMATERIALDESCRIPTION.IndexOf(" "));
+                    subitem.DR_CONSISTENCY = null;
+                }
+
                 foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
                 {
                     subitem.DR_CONSISTENCY = null;
@@ -90,14 +98,11 @@ namespace DailyReport.Controllers
                     subitem.DR_CONSISTENCY = null;
                 }
 
-                foreach (var subitem in item.DR_CONSISTENCY_VALVE)
-                {
-                    subitem.DR_CONSISTENCY = null;
-                }
+
             }
 
 
-            return Json(result,JsonRequestBehavior.AllowGet);
+            return Json(result.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
         }
     }
 }

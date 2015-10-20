@@ -233,19 +233,8 @@
                             .Expanded(true)
                             .Items(children =>
                             {
-                                children.Add().Text("Line 기준으로 Key item list 산출")
-                                    .Expanded(true)
-                                    .Items(item =>
-                                    {
-                                        item.Add().Text("Valve").Url("/Grid/Consistency")
-                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
+                                children.Add().Text("Line 기준으로 Key item list 산출").Url("/Grid/Consistency");
 
-                                        item.Add().Text("Instrument").Url("/Grid/ConsistencyInstrument")
-                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
-
-                                        item.Add().Text("Specialty").Url("/Grid/ConsistencySpecialty")
-                                        .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    });
                             });
                         treeview.Add().Text("Model 검증")
                                     .Expanded(true)
