@@ -82,26 +82,28 @@ namespace DailyReport.Controllers
             foreach (var item in tempItem)
             {
                 ConsistencyItem consistency = new ConsistencyItem();
+                consistency.PIPE_LINE = item.LINENO;
                 foreach (var subitem in item.DR_CONSISTENCY_VALVE)
                 {
+                    consistency.ITEMS += ",";
                     consistency.ITEMS += subitem.LONGMATERIALDESCRIPTION.Substring(0, subitem.LONGMATERIALDESCRIPTION.IndexOf(" "));
                     subitem.DR_CONSISTENCY = null;
                 }
 
                 foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
                 {
+                    consistency.ITEMS += ",";
+                    consistency.ITEMS += "SP_" + subitem.INS;
                     subitem.DR_CONSISTENCY = null;
                 }
 
                 foreach (var subitem in item.DR_CONSISTENCY_SPECIALTY)
                 {
+                    consistency.ITEMS += ",";
+                    consistency.ITEMS += "SP_" + subitem.TAG;
                     subitem.DR_CONSISTENCY = null;
                 }
-
-
             }
-
-
             return Json(result.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
         }
     }

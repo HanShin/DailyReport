@@ -4,11 +4,13 @@
 
 <div class="col-xs-10 col-md-10">
     <h3>Instrument Progress</h3>
-        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_CONSISTENCY>()
+        @(Html.Kendo().Grid<DailyReport.Models.ConsistencyItem>()
     .Name("grid")
     .Columns(columns =>
     {
-        columns.Bound(p => p.LINENO);
+        columns.Bound(p => p.PIPE_LINE);
+        columns.Bound(p => p.ITEMS).ClientTemplate(
+            "<img src= '" + Url.Content("~/Images/Items/Ball.png") '/>" );
     })
     .Pageable()
     .Sortable()

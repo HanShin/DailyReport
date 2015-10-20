@@ -15,9 +15,6 @@ namespace DailyReport.Controllers
     {
         private Entities db = new Entities();
 
-        // TODO : Linq 에서 DateTime 데이터가 string으로 변환이 안되서 Chart에 표현하기 어려워서 데이터 변형용으로 임시로 만든 클래스
-        // 나중에 해결방법 찾으면 수정한다.
-        // (Datetime형 데이터는 자료가 없는 날짜에도 Chart에 표시되어서 string으로 변형하려 했는데 실패)
         private class tempClass
         {
             public Nullable<DateTime> Date { get; set; }
