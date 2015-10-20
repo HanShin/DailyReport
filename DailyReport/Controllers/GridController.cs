@@ -46,6 +46,11 @@ namespace DailyReport.Controllers
             return View();
         }
 
+        public ActionResult ProgressPipingLineList()
+        {
+            return View();
+        }
+
         public ActionResult Consistency()
         {
             return View();
@@ -73,6 +78,13 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
+        public ActionResult ProgressPipingLineList_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_PROGRESS_PIPINGLINELIST.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
         // TODO
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -95,7 +107,6 @@ namespace DailyReport.Controllers
                     subitem.DR_CONSISTENCY = null;
                 }
             }
-
 
             return Json(result,JsonRequestBehavior.AllowGet);
         }

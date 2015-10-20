@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelCountData.cs" />
+    <Compile Include="Models\ModelLineNumData.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -855,6 +856,7 @@
     <Content Include="Scripts\kendo\2015.3.930\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2015.3.930\kendo.webcomponents.min.js.map" />
     <Content Include="Scripts\kendo\2015.3.930\kendo.window.min.js.map" />
+    <Content Include="Views\Grid\ProgressPipingLineList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

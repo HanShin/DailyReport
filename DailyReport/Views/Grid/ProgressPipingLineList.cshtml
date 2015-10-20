@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "ProgressPipingLineList";
+}
+
+<div class="col-xs-10 col-md-10">
+    <h3>PipeLineList Progress</h3>
+    <div class="radio-section k-header">
+    @*<ul>
+        <li>
+            @(Html.Kendo().RadioButton().Name("engine1").Checked(true).HtmlAttributes(new{@name = "selecttype"}).Label("전체"))
+        </li>
+        <li>
+            @(Html.Kendo().RadioButton().Name("engine2").HtmlAttributes(new{@name = "selecttype"}).Label("협력사별"))
+        </li>
+    </ul>*@
+    @*<style>
+        #chart
+        {
+            background: center
+        }
+    </style>*@
+</div>
+        @(Html.Kendo().Chart<DailyReport.Models.ModelLineNumData>()
+        .Name("aLineListChart")
+        .Title("Pipe Line List 작업량")
+                        .Legend(legend => legend.Visible(false))
+        .DataSource(ds => ds.Read(read => read.Action("ProgressPipingLineList_Chart", "Chart"))
+            .Filter(filter =>
+            {
+                filter.Add(item => item.Total);
+            }
+            )
+        )
+                .Series(series =>
+                {
+                    series.Bar(model => model.Mpercentage).Name("모델").Labels(true);
+                    series.Bar(model => model.Tpercentage).Name("전체").Labels(true);
+                })
+
+        .CategoryAxis(axis => axis
+            .Categories("모델", "전체")
+                    .MajorGridLines(lines => lines.Visible(false))
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Max(100)
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(10)
+
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .ChartArea(chart =>
+        {
+            chart.Height(400);
+            chart.Width(700);
+        })
+
+)
+    
+    @(Html.Kendo().Chart<DailyReport.Models.ModelLineNumData>()
+    .Name("cLineListChart")
+        .Title("Pipe Line List 작업량(협력사별)")
+        .Legend(legend => legend.Visible(false))
+        .DataSource(ds => ds.Read(read => read.Action("ProgressPipingLineList_Chart", "Chart"))
+            .Filter(filter => {filter.Add(item => item.Total);
+                }
+            )
+        )
+                .Series(series =>
+                {
+                    series.Bar(model => model.Kpercentage).Name("경신").Labels(true);
+                    series.Bar(model => model.Wpercentage).Name("우림").Labels(true);
+                    series.Bar(model => model.Spercentage).Name("스페이스").Labels(true);
+                })
+        
+        .CategoryAxis(axis => axis
+            .Categories("경신","우림","스페이스")
+            .MajorGridLines(lines => lines.Visible(false))
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Max(100)
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(10)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Template("#= series.name #: #= value #")
+        )
+        .ChartArea(chart => { chart.Height(400); 
+                   chart.Width(700);}) 
+)
+</div>
+    
+
