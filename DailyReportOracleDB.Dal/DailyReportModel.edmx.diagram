@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0f56e1e521264fc19642316713f97565" Name="다이어그램1" ZoomLevel="91">
-        <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_INSTRUMENT" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_INSTRUMENT" Width="1.5" PointX="2" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_PART" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_RUN" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Models.DR_PROGRESS_CPIPINGLINELIST" Width="1.5" PointX="6.1082300870251984" PointY="26.9720231122207" />
         <EntityTypeShape EntityType="Models.DR_PROGRESS_PIPINGLINELIST" Width="1.5" PointX="13.625" PointY="8.25" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY" Width="1.5" PointX="10.530052033499839" PointY="14.334793022989665" />
+        <EntityTypeShape EntityType="Models.DR_CONSISTENCY" Width="2.5" PointX="10.875" PointY="14.5" />
         <EntityTypeShape EntityType="Models.DR_CONSISTENCY_INSTRUMENT" Width="1.5" PointX="10.165620523582035" PointY="9.7447542444545565" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_SPECIALTY" Width="1.5" PointX="5.8495817491084257" PointY="6.4130425483049089" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_VALVE" Width="1.5" PointX="11.829575272197637" PointY="12.473753875342084" />
+        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_SPECIALTY" Width="1.5" PointX="10.875" PointY="6.875" />
+        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_VALVE" Width="1.5" PointX="14.375" PointY="12.75" />
         <AssociationConnector Association="Models.DR_CONSISTENCY_INSTRUMENT_FK1" />
         <AssociationConnector Association="Models.DR_CONSISTENCY_SPECIALTY_FK1" />
-        <AssociationConnector Association="Models.DR_CONSISTENCY_VALVE_FK1" />
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_LINE" Width="1.5" PointX="8.4722687976771365" PointY="13.950390896736826" />
+        <AssociationConnector Association="Models.DR_CONSISTENCY_VALVE_FK1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

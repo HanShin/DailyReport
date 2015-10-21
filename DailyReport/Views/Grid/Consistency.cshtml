@@ -1,15 +1,24 @@
 ﻿@{
     ViewBag.Title = "ConsistencyValve";
 }
-
+<style>
+    .SPItem
+    {
+        background-image:url("/Images/Items/SP.png");
+        background-position:center;
+        background-repeat:no-repeat;
+        height:200px;
+        text-align : center;
+    }
+</style>
 <div class="col-xs-10 col-md-10">
-    <h3>Instrument Progress</h3>
         @(Html.Kendo().Grid<DailyReport.Models.ConsistencyItem>()
     .Name("grid")
     .Columns(columns =>
     {
         columns.Bound(p => p.PIPE_LINE);
-        columns.Bound(p => p.ITEMS).ClientTemplate("<img src='" + Url.Content("~/Images/Items/Ball.png") + "'/>");
+        columns.Bound(p => p.ITEMS).ClientTemplate("#= itemImage(ITEMS) #");
+
     })
     .Pageable()
     .Sortable()
@@ -22,3 +31,25 @@
     )
 )
 </div>
+
+<script>
+    function itemImage(item) {
+        var listValue = item.split(',');
+        var html = "";
+        for (var i in listValue) {
+            
+            if (i == 0) continue;
+            if (listValue[i].substr(0,2) == "SP") {
+                html += "<div class='SPItem'>" + listValue[i] + "</div>"
+                //"<img src='/Images/Items/SP.png')/>"
+            }
+            else {
+                html += "<img src='/Images/Items/" + listValue[i] + ".png')/>"
+            }
+           
+        }
+        return html
+        //"<img src='" + Url.Content("~/Images/Items/Ball.png") + "'/>" + "item");
+    }
+
+</script>

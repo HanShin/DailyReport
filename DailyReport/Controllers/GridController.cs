@@ -89,7 +89,7 @@ namespace DailyReport.Controllers
         // TODO
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var tempItem = db.DR_CONSISTENCY.ToList();
+            var tempItem = db.DR_CONSISTENCY.Take(500).ToList();
             List<ConsistencyItem> result = new List<ConsistencyItem>();
             foreach (var item in tempItem)
             {
@@ -97,8 +97,13 @@ namespace DailyReport.Controllers
                 consistency.PIPE_LINE = item.LINENO;
                 foreach (var subitem in item.DR_CONSISTENCY_VALVE)
                 {
+                    if (string.IsNullOrEmpty(subitem.LONGMATERIALDESCRIPTION))
+                    {
+                        continue;
+                    }
                     consistency.ITEMS += ",";
-                    consistency.ITEMS += subitem.LONGMATERIALDESCRIPTION.Substring(0, subitem.LONGMATERIALDESCRIPTION.IndexOf(" "));
+                    consistency.ITEMS +=  subitem.LONGMATERIALDESCRIPTION.Split(' ').First();
+                    //consistency.ITEMS += subitem.LONGMATERIALDESCRIPTION.Substring(0, subitem.LONGMATERIALDESCRIPTION.IndexOf(" "));
                     subitem.DR_CONSISTENCY = null;
                 }
 
@@ -115,6 +120,7 @@ namespace DailyReport.Controllers
                     consistency.ITEMS += "SP_" + subitem.TAG;
                     subitem.DR_CONSISTENCY = null;
                 }
+                result.Add(consistency);
             }
             return Json(result.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
         }

@@ -168,7 +168,7 @@
               <PropertyRef Name="LINENO" />
             </Principal>
             <Dependent Role="DR_CONSISTENCY_VALVE">
-              <PropertyRef Name="OID" />
+              <PropertyRef Name="PIPELINE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,11 +194,11 @@
             <End Role="DR_CONSISTENCY" EntitySet="DR_CONSISTENCY" />
             <End Role="DR_CONSISTENCY_SPECIALTY" EntitySet="DR_CONSISTENCY_SPECIALTY" />
           </AssociationSet>
+          <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Models.DR_MODELPROGRESS_LINE" />
           <AssociationSet Name="DR_CONSISTENCY_VALVE_FK1" Association="Models.DR_CONSISTENCY_VALVE_FK1">
             <End Role="DR_CONSISTENCY" EntitySet="DR_CONSISTENCY" />
             <End Role="DR_CONSISTENCY_VALVE" EntitySet="DR_CONSISTENCY_VALVE" />
           </AssociationSet>
-          <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Models.DR_MODELPROGRESS_LINE" />
           </EntityContainer>
         <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
           <Key>
@@ -325,18 +325,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DR_CONSISTENCY_VALVE_FK1">
-          <End Type="Models.DR_CONSISTENCY" Role="DR_CONSISTENCY" Multiplicity="0..1" />
-          <End Type="Models.DR_CONSISTENCY_VALVE" Role="DR_CONSISTENCY_VALVE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DR_CONSISTENCY">
-              <PropertyRef Name="LINENO" />
-            </Principal>
-            <Dependent Role="DR_CONSISTENCY_VALVE">
-              <PropertyRef Name="OID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="DR_MODELPROGRESS_LINE">
           <Key>
             <PropertyRef Name="OID" />
@@ -349,6 +337,18 @@
           <Property Type="DateTime" Name="DATELASTMODIFIED" />
           <Property Type="String" Name="PROJECT" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="DR_CONSISTENCY_VALVE_FK1">
+          <End Type="Models.DR_CONSISTENCY" Role="DR_CONSISTENCY" Multiplicity="0..1" />
+          <End Type="Models.DR_CONSISTENCY_VALVE" Role="DR_CONSISTENCY_VALVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DR_CONSISTENCY">
+              <PropertyRef Name="LINENO" />
+            </Principal>
+            <Dependent Role="DR_CONSISTENCY_VALVE">
+              <PropertyRef Name="PIPELINE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
