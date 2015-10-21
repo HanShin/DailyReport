@@ -178,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConsistencyItem.cs" />
     <Compile Include="Models\ModelCountData.cs" />
     <Compile Include="Models\ModelLineNumData.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
@@ -553,6 +554,15 @@
     <None Include="Properties\PublishProfiles\DailyReport.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\200.png" />
+    <Content Include="Images\Items\Ball.png" />
+    <Content Include="Images\Items\Butterfly.png" />
+    <Content Include="Images\Items\Check.png" />
+    <Content Include="Images\Items\gate.png" />
+    <Content Include="Images\Items\Globe.png" />
+    <Content Include="Images\Items\Needle.png" />
+    <Content Include="Images\Items\Plug.png" />
+    <Content Include="Images\Items\SP.png" />
+    <Content Include="Images\Items\STOPCheck.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
