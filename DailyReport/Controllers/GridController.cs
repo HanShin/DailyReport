@@ -47,6 +47,11 @@ namespace DailyReport.Controllers
             return View();
         }
 
+        public ActionResult ProgressPipingLineList()
+        {
+            return View();
+        }
+
         public ActionResult Consistency()
         {
             return View();
@@ -70,6 +75,13 @@ namespace DailyReport.Controllers
         public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = db.DR_MODELPROGRESS_INSTRUMENT.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+        public ActionResult ProgressPipingLineList_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_PROGRESS_PIPINGLINELIST.ToList();
 
             return Json(result.ToDataSourceResult(request));
         }
