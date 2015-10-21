@@ -9,8 +9,7 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.PIPE_LINE);
-        columns.Bound(p => p.ITEMS).ClientTemplate(
-            "<img src= '" + Url.Content("~/Images/Items/Ball.png") '/>" );
+        columns.Bound(p => p.ITEMS).ClientTemplate("<img src='" + Url.Content("~/Images/Items/Ball.png") + "'/>");
     })
     .Pageable()
     .Sortable()
