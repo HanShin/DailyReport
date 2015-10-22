@@ -21,24 +21,15 @@
         .Title("Pipe Line List 작업량")
         .Legend(legend => legend.Visible(true).Position(ChartLegendPosition.Bottom))
         .DataSource(ds => ds.Read(read => read.Action("ProgressPipingLineList_Chart", "Chart"))
-        
-            //.Filter(filter =>
-            //{
-            //    filter.Add(item => item.Total);
-            //}
-            //)
         )
             .CategoryAxis(axis => axis
                     .MajorGridLines(lines => lines.Visible(false))
                     .Categories(model=>model)
-                                    //.Categories("전체").Name("전체")
-                //.Categories(categories => categories.Mtotal).Title("모델")
-                        //.Categories(categories => categories.Total).Title("전체")
                 )
         
                 .Series(series =>
                 {
-                    series.Bar(model => model.Mpercentage).Name("모델").Labels(true);
+                    series.Bar(model => model.Mpercentage).Name("모델").Labels(true).Tooltip(tooltip => tooltip.Template("#=series.name #: #= dataItem.Mtotal # /  #= dataItem.Total #"));
                     series.Bar(model => model.Tpercentage).Name("전체").Labels(true).Tooltip(tooltip => tooltip.Template("#=series.name #: #= dataItem.Total # /  #= dataItem.Total #"));
                     
                 })
@@ -53,8 +44,6 @@
         .Tooltip(tooltip => tooltip
 
             .Visible(true)
-            .Template("#=series.name #: #= dataItem.Mtotal# / #= dataItem.Total #")
-
            .Format("")
         )
         .ChartArea(chart =>
