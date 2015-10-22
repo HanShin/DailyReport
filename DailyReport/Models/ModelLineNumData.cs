@@ -16,11 +16,11 @@ namespace DailyReport.Models
             Koperator = kOperator;
             Total = total;
             Wpercentage = wPercentage;
-            Spercentage = Spercentage;
+            Spercentage = sPercentage;
             Kpercentage = kPercentage;
             Tpercentage = tPercentage;
             Mpercentage = mPercentage;
-            Mtotal = Mtotal;
+            Mtotal = mTotal;
         }
         public int Woperator { get; set; }
         public int Soperator { get; set; }

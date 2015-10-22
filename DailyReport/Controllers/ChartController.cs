@@ -87,7 +87,6 @@ namespace DailyReport.Controllers
         }
         public ActionResult ProgressPipingLineList_Chart([DataSourceRequest]DataSourceRequest request)
         {
-            var a = db.DR_PROGRESS_PIPINGLINELIST.ToList();
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
                         select new Progress
                         {
@@ -104,13 +103,13 @@ namespace DailyReport.Controllers
             int total = temp.Count();
 
             // //// 전체 수량에 대한 백분율
-            int model = pModel / total * 100;
+            int model = pModel * 100 / total;
             int all = 100;
 
             // ////협력사별 백분율
-            int sPer = sCo / total * 100;
-            int wPer = wCo / total * 100;
-            int kPer = kCo / total * 100;
+            int sPer = (int)(sCo * 100 / total);
+            int wPer = (int)(wCo * 100 / total);
+            int kPer = (int)(kCo * 100 / total);
 
             ModelLineNumData mlnd = new ModelLineNumData(wCo, sCo, kCo, total,
                 wPer, sPer, kPer, all, model, pModel);
@@ -127,7 +126,7 @@ namespace DailyReport.Controllers
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
                         from pLinslist in db.DR_PROGRESS_CPIPINGLINELIST
                         //join cLineList in db.DR_PROGRESS_CPIPINGLINELIST on aLineList.COOPERATOR equals cLineList.COOPERATOR into temp
-                        where aLineList.COOPERATOR == "s" && aLineList.LINE_NO == pLinslist.LINE_NO
+                        where aLineList.COOPERATOR == "S" && aLineList.LINE_NO == pLinslist.LINE_NO
                         select new Progress
                         {
                             Line_no = aLineList.LINE_NO,
@@ -142,7 +141,7 @@ namespace DailyReport.Controllers
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
                         from pLinslist in db.DR_PROGRESS_CPIPINGLINELIST
                         //join cLineList in db.DR_PROGRESS_CPIPINGLINELIST on aLineList.COOPERATOR equals cLineList.COOPERATOR into temp
-                        where aLineList.COOPERATOR == "w" && aLineList.LINE_NO == pLinslist.LINE_NO
+                        where aLineList.COOPERATOR == "W" && aLineList.LINE_NO == pLinslist.LINE_NO
                         select new Progress
                         {
                             Line_no = aLineList.LINE_NO,
@@ -157,7 +156,7 @@ namespace DailyReport.Controllers
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
                         from pLinslist in db.DR_PROGRESS_CPIPINGLINELIST
                         //join cLineList in db.DR_PROGRESS_CPIPINGLINELIST on aLineList.COOPERATOR equals cLineList.COOPERATOR into temp
-                        where aLineList.COOPERATOR == "k" && aLineList.LINE_NO == pLinslist.LINE_NO
+                        where aLineList.COOPERATOR == "K" && aLineList.LINE_NO == pLinslist.LINE_NO
                         select new Progress
                         {
                             Line_no = aLineList.LINE_NO,
