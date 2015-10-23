@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DailyReportModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DR_BULKBM.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DR_CONSISTENCY.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>

@@ -27,22 +27,7 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
-        public ActionResult ModelProgressLine()
-        {
-            return View();
-        }
-
-        public ActionResult ModelProgressRun()
-        {
-            return View();
-        }
-
-        public ActionResult ModelProgressPart()
-        {
-            return View();
-        }
-
-        public ActionResult ModelProgressInstrument()
+        public ActionResult BulkBM()
         {
             return View();
         }
@@ -56,28 +41,6 @@ namespace DailyReport.Controllers
         {
             return View();
         }
-  
-        public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_MODELPROGRESS_RUN.ToList();
-
-            return Json(result.ToDataSourceResult(request));
-        }
-
-
-        public ActionResult ModelProgressPart_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_MODELPROGRESS_PART.ToList();
-
-            return Json(result.ToDataSourceResult(request));
-        }
-
-        public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_MODELPROGRESS_INSTRUMENT.ToList();
-
-            return Json(result.ToDataSourceResult(request));
-        }
 
         public ActionResult ProgressPipingLineList_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -86,7 +49,7 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
-        // TODO
+
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
             var tempItem = db.DR_CONSISTENCY.Take(500).ToList();
@@ -123,6 +86,13 @@ namespace DailyReport.Controllers
                 result.Add(consistency);
             }
             return Json(result.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
+        }
+
+        // TODO
+        public ActionResult BulkBM_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_BULKBM.ToList();
+            return Json(result.ToDataSourceResult(request)) ;
         }
     }
 }

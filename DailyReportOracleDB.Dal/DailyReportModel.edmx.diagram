@@ -18,6 +18,7 @@
         <AssociationConnector Association="Models.DR_CONSISTENCY_SPECIALTY_FK1" />
         <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_LINE" Width="1.5" PointX="8.4722687976771365" PointY="13.950390896736826" />
         <AssociationConnector Association="Models.DR_CONSISTENCY_VALVE_FK1" />
+        <EntityTypeShape EntityType="Models.DR_BULKBM" Width="1.5" PointX="0.75997352076693137" PointY="18.393582337719195" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

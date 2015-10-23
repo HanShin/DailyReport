@@ -167,16 +167,16 @@
                             .Expanded(true)
                             .Items(item =>
                             {
-                                item.Add().Text("Pipe Line").Url("/Grid/ModelProgressLine")
+                                item.Add().Text("Pipe Line").Url("/Chart/ModelProgressLine")
                                 .ImageUrl(Url.Content("~/Images/bullet.png"));
 
-                                item.Add().Text("Pipe Run").Url("/Grid/ModelProgressRun")
+                                item.Add().Text("Pipe Run").Url("/Chart/ModelProgressRun")
                                 .ImageUrl(Url.Content("~/Images/bullet.png"));
 
-                                item.Add().Text("Pipe Part").Url("/Grid/ModelProgressPart")
+                                item.Add().Text("Pipe Part").Url("/Chart/ModelProgressPart")
                                 .ImageUrl(Url.Content("~/Images/bullet.png"));
 
-                                item.Add().Text("Instrument").Url("/Grid/ModelProgressInstrument")
+                                item.Add().Text("Instrument").Url("/Chart/ModelProgressInstrument")
                                 .ImageUrl(Url.Content("~/Images/bullet.png"));
                             });
                     });
@@ -255,7 +255,7 @@
                                     .Expanded(true)
                                     .Items(item =>
                                     {
-                                        item.Add().Text("Bulk")
+                                        item.Add().Text("Bulk").Url("~/Grid/BulkBM")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     
                                         item.Add().Text("Support")

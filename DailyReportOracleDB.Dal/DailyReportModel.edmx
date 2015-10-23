@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="Models.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="DR_BULKBM" EntityType="Models.Store.DR_BULKBM" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_CONSISTENCY" EntityType="Models.Store.DR_CONSISTENCY" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_CONSISTENCY_INSTRUMENT" EntityType="Models.Store.DR_CONSISTENCY_INSTRUMENT" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_CONSISTENCY_SPECIALTY" EntityType="Models.Store.DR_CONSISTENCY_SPECIALTY" store:Type="Tables" Schema="SYSTEM" />
@@ -29,6 +30,21 @@
             <End Role="DR_CONSISTENCY_VALVE" EntitySet="DR_CONSISTENCY_VALVE" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DR_BULKBM">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Name="NUM" Type="number" Nullable="false" />
+          <Property Name="OID" Type="varchar2" MaxLength="500" />
+          <Property Name="DWGNO" Type="varchar2" MaxLength="500" />
+          <Property Name="SPECNAME" Type="varchar2" MaxLength="500" />
+          <Property Name="INDUSTRYCOMMODITYCODE" Type="varchar2" MaxLength="500" />
+          <Property Name="PART" Type="varchar2" MaxLength="500" />
+          <Property Name="LONGMATERIALDESCRIPTION" Type="varchar2" MaxLength="500" />
+          <Property Name="COMMENTS" Type="varchar2" MaxLength="500" />
+          <Property Name="PARTNUMBER" Type="varchar2" MaxLength="500" />
+          <Property Name="FABRICATIONTYPE" Type="varchar2" MaxLength="500" />
+        </EntityType>
         <EntityType Name="DR_CONSISTENCY">
           <Key>
             <PropertyRef Name="LINENO" />
@@ -199,6 +215,7 @@
             <End Role="DR_CONSISTENCY" EntitySet="DR_CONSISTENCY" />
             <End Role="DR_CONSISTENCY_VALVE" EntitySet="DR_CONSISTENCY_VALVE" />
           </AssociationSet>
+          <EntitySet Name="DR_BULKBM" EntityType="Models.DR_BULKBM" />
           </EntityContainer>
         <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
           <Key>
@@ -349,6 +366,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DR_BULKBM">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="OID" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SPECNAME" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INDUSTRYCOMMODITYCODE" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PART" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LONGMATERIALDESCRIPTION" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="COMMENTS" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PARTNUMBER" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FABRICATIONTYPE" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -469,6 +501,22 @@
                 <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
                 <ScalarProperty Name="PIPELINE" ColumnName="PIPELINE" />
                 <ScalarProperty Name="OID" ColumnName="OID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_BULKBM">
+            <EntityTypeMapping TypeName="Models.DR_BULKBM">
+              <MappingFragment StoreEntitySet="DR_BULKBM">
+                <ScalarProperty Name="FABRICATIONTYPE" ColumnName="FABRICATIONTYPE" />
+                <ScalarProperty Name="PARTNUMBER" ColumnName="PARTNUMBER" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="LONGMATERIALDESCRIPTION" ColumnName="LONGMATERIALDESCRIPTION" />
+                <ScalarProperty Name="PART" ColumnName="PART" />
+                <ScalarProperty Name="INDUSTRYCOMMODITYCODE" ColumnName="INDUSTRYCOMMODITYCODE" />
+                <ScalarProperty Name="SPECNAME" ColumnName="SPECNAME" />
+                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -178,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BMItem.cs" />
     <Compile Include="Models\ConsistencyItem.cs" />
     <Compile Include="Models\ModelCountData.cs" />
     <Compile Include="Models\ModelLineNumData.cs" />
@@ -712,10 +713,10 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Views\Grid\ModelProgressInstrument.cshtml" />
-    <Content Include="Views\Grid\ModelProgressLine.cshtml" />
-    <Content Include="Views\Grid\ModelProgressPart.cshtml" />
-    <Content Include="Views\Grid\ModelProgressRun.cshtml" />
+    <Content Include="Views\Chart\ModelProgressInstrument.cshtml" />
+    <Content Include="Views\Chart\ModelProgressLine.cshtml" />
+    <Content Include="Views\Chart\ModelProgressPart.cshtml" />
+    <Content Include="Views\Chart\ModelProgressRun.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -867,6 +868,7 @@
     <Content Include="Scripts\kendo\2015.3.930\kendo.webcomponents.min.js.map" />
     <Content Include="Scripts\kendo\2015.3.930\kendo.window.min.js.map" />
     <Content Include="Views\Grid\ProgressPipingLineList.cshtml" />
+    <Content Include="Views\Grid\BulkBM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

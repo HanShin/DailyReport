@@ -27,6 +27,49 @@ namespace DailyReport.Controllers
             public string Operator { get; set; }
         }
 
+        public ActionResult ModelProgressLine()
+        {
+            return View();
+        }
+
+        public ActionResult ModelProgressRun()
+        {
+            return View();
+        }
+
+        public ActionResult ModelProgressPart()
+        {
+            return View();
+        }
+
+        public ActionResult ModelProgressInstrument()
+        {
+            return View();
+        }
+
+        public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_MODELPROGRESS_RUN.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+
+        public ActionResult ModelProgressPart_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_MODELPROGRESS_PART.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+        public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_MODELPROGRESS_INSTRUMENT.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
+
+
         public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request)
         {
             var result = (from lines in db.DR_MODELPROGRESS_LINE
