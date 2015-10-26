@@ -5,18 +5,18 @@ using System.Web;
 
 namespace DailyReport.Models
 {
-    public class ModelLineNumData
+    public class CoModelLineNumData
     {
-        public ModelLineNumData(string col, int percentage, int mTotal, int total)
+        public CoModelLineNumData(string col, int percentage, int quantity, int total)
         {
             Col = col;
             Percentage = percentage;
-            Mtotal = mTotal;
+            Quantity = quantity;
             Total = total;
         }
         public string Col { get; set; }
         public int Percentage { get; set; }
-        public int Mtotal { get; set; }
+        public int Quantity { get; set; }
         public int Total { get; set; }
     }
 }

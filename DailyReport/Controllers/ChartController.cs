@@ -47,6 +47,16 @@ namespace DailyReport.Controllers
             return View();
         }
 
+        public ActionResult ProgressPipingLineList()
+        {
+            return View();
+        }
+
+        public ActionResult coProgressPipingLineList()
+        {
+            return View();
+        }
+
         public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = db.DR_MODELPROGRESS_RUN.ToList();
@@ -128,6 +138,13 @@ namespace DailyReport.Controllers
 
             return Json(result);
         }
+
+        public ActionResult ProgressPipingLineList_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_PROGRESS_PIPINGLINELIST.ToList();
+
+            return Json(result.ToDataSourceResult(request));
+        }
         public ActionResult ProgressPipingLineList_Chart([DataSourceRequest]DataSourceRequest request)
         {
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
@@ -137,39 +154,71 @@ namespace DailyReport.Controllers
                             Operator = aLineList.COOPERATOR
                         }).ToList();
             // /// 협력사별 수량
-            int sCo = sOperator();
-            int wCo = wOperator();
-            int kCo = kOperator();
+            int sQuantity = sOperator("S");
+            int wQuantity = sOperator("W");
+            int kQuantity = sOperator("K");
 
             // /// 협력사별 수량 합과 전체 수량
-            int pModel = sCo + wCo + kCo;
-            int total = temp.Count();
+            int mTotal = sQuantity + wQuantity + kQuantity;
+            int Total = temp.Count();
 
             // //// 전체 수량에 대한 백분율
-            int model = pModel * 100 / total;
-            int all = 100;
+            int mPercentage = mTotal * 100 / Total;
+            int tPercentage = 100;
+            string Col1 = "모델"; string Col2 = "전체";
 
-            // ////협력사별 백분율
-            int sPer = (int)(sCo * 100 / total);
-            int wPer = (int)(wCo * 100 / total);
-            int kPer = (int)(kCo * 100 / total);
-
-            ModelLineNumData mlnd = new ModelLineNumData(wCo, sCo, kCo, total,
-                wPer, sPer, kPer, all, model, pModel);
+            ModelLineNumData mlnd = new ModelLineNumData(Col1, mPercentage, mTotal, Total);
+            ModelLineNumData mlnd1 = new ModelLineNumData(Col2, tPercentage, Total, Total);
 
             List<ModelLineNumData> ml = new List<ModelLineNumData>();
-            ml.Add(mlnd);
+            ml.Add(mlnd); ml.Add(mlnd1);
 
             return Json(ml);
         }
 
-        private int sOperator()
+        public ActionResult coProgressPipingLineList_Chart([DataSourceRequest]DataSourceRequest request)
+        {
+            var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
+                        select new Progress
+                        {
+                            Line_no = aLineList.LINE_NO,
+                            Operator = aLineList.COOPERATOR
+                        }).ToList();
+            // /// 협력사별 수량
+            int sQuantity = sOperator("S");
+            int wQuantity = sOperator("W");
+            int kQuantity = sOperator("K");
+
+            // /// 협력사별 수량 합과 전체 수량
+            int mTotal = sQuantity + wQuantity + kQuantity;
+            int Total = temp.Count();
+
+            // //// 전체 수량에 대한 백분율
+            int mPercentage = mTotal * 100 / Total;
+
+            // ///// 협력사별 백분율
+            int sPercentage = (int)(sQuantity * 100 / Total);
+            int wPercentage = (int)(wQuantity * 100 / Total);
+            int kPercentage = (int)(kQuantity * 100 / Total);
+            string Col1 = "경신"; string Col2 = "우림"; string Col3 = "스페이스";
+
+            CoModelLineNumData cmlnd = new CoModelLineNumData(Col1, kPercentage, kQuantity, Total);
+            CoModelLineNumData cmlnd1 = new CoModelLineNumData(Col2, wPercentage, wQuantity, Total);
+            CoModelLineNumData cmlnd2 = new CoModelLineNumData(Col3, sPercentage, sQuantity, Total);
+
+            List<CoModelLineNumData> ml = new List<CoModelLineNumData>();
+            ml.Add(cmlnd); ml.Add(cmlnd1); ml.Add(cmlnd2);
+
+            return Json(ml);
+        }
+
+        private int sOperator(string coOperater)
         {
             ///Cooperator별/////////
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
                         from pLinslist in db.DR_PROGRESS_CPIPINGLINELIST
                         //join cLineList in db.DR_PROGRESS_CPIPINGLINELIST on aLineList.COOPERATOR equals cLineList.COOPERATOR into temp
-                        where aLineList.COOPERATOR == "S" && aLineList.LINE_NO == pLinslist.LINE_NO
+                        where aLineList.COOPERATOR == coOperater && aLineList.LINE_NO == pLinslist.LINE_NO
                         select new Progress
                         {
                             Line_no = aLineList.LINE_NO,
@@ -177,36 +226,5 @@ namespace DailyReport.Controllers
                         }).ToList();
             return temp.Count();
         }
-
-        private int wOperator()
-        {
-            ///Cooperator별/////////
-            var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
-                        from pLinslist in db.DR_PROGRESS_CPIPINGLINELIST
-                        //join cLineList in db.DR_PROGRESS_CPIPINGLINELIST on aLineList.COOPERATOR equals cLineList.COOPERATOR into temp
-                        where aLineList.COOPERATOR == "W" && aLineList.LINE_NO == pLinslist.LINE_NO
-                        select new Progress
-                        {
-                            Line_no = aLineList.LINE_NO,
-                            Operator = aLineList.COOPERATOR
-                        }).ToList();
-            return temp.Count();
-        }
-
-        private int kOperator()
-        {
-            ///Cooperator별/////////
-            var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
-                        from pLinslist in db.DR_PROGRESS_CPIPINGLINELIST
-                        //join cLineList in db.DR_PROGRESS_CPIPINGLINELIST on aLineList.COOPERATOR equals cLineList.COOPERATOR into temp
-                        where aLineList.COOPERATOR == "K" && aLineList.LINE_NO == pLinslist.LINE_NO
-                        select new Progress
-                        {
-                            Line_no = aLineList.LINE_NO,
-                            Operator = aLineList.COOPERATOR
-                        }).ToList();
-            return temp.Count();
-        }
-
     }
 }
