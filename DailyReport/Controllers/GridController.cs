@@ -85,7 +85,6 @@ namespace DailyReport.Controllers
             var result = (from bulkbm in db.DR_BULKBM
                           group bulkbm by new { bulkbm.DWGNO, bulkbm.SPECNAME, bulkbm.INDUSTRYCOMMODITYCODE, bulkbm.PART, bulkbm.LONGMATERIALDESCRIPTION, bulkbm.COMMENTS, bulkbm.PARTNUMBER, bulkbm.FABRICATIONTYPE} into g
                           let dataCount = g.Count()
-                          orderby g.Key descending
                           select new BMItem
                           {
                               // SEP용 JOB_NO = 110670 (다른 프로젝트들이 추가될때 변경)
@@ -122,7 +121,9 @@ namespace DailyReport.Controllers
 
                 int portCount = getPortCount(item.LONGMATERIALDESCRIPTON);
 
-
+                string partNumber = item.PARTNUMBER;
+                partNumber.Substring(0, partNumber.Length / portCount);
+                item.PARTNUMBER = partNumber;
 
             }
             return Json(result.ToDataSourceResult(request)) ;
