@@ -21,5 +21,6 @@ namespace DailyReport.Models
         public string FS_GUBN { get; set; }
         public string INDUSTRYCOMMODITYCODE { get; set; }
         public string PARTNUMBER { get; set; }
+        public string LONGMATERIALDESCRIPTON { get; set; }
     }
 }
