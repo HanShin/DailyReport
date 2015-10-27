@@ -3,15 +3,23 @@
 }
 
 <div class="col-xs-10 col-md-10">
-        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_BULKBM>()
+        @(Html.Kendo().Grid<DailyReport.Models.BMItem>()
             .Name("BulkBMGrid")
             .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
             .Columns(column =>
             {
-                column.Bound(p => p.SPECNAME).Title("JOB_NO");
-                column.Bound(p => p.DWGNO);
-                column.Bound(p => p.SPECNAME).Title("CLASS_CD");
-                column.Bound(p => p.COMMENTS).Title("SYMBOL_CD");
+                column.Bound(p => p.JOB_NO);
+                column.Bound(p => p.DWG_NO);
+                column.Bound(p => p.CLASS_CD);
+                column.Bound(p => p.SYMBOL_CD);
+                column.Bound(p => p.BM_CD);
+                column.Bound(p => p.MAIN_THK);
+                column.Bound(p => p.SUB_THK);
+                column.Bound(p => p.SIZE_UNIT);
+                column.Bound(p => p.MAIN_SIZE);
+                column.Bound(p => p.SUB_SIZE);
+                column.Bound(p => p.DWG_BM_QTY);
+                column.Bound(p => p.FS_GUBN);
             }
             )
             .Pageable()

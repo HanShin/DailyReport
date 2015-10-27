@@ -82,7 +82,24 @@ namespace DailyReport.Controllers
         // TODO
         public ActionResult BulkBM_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var result = db.DR_BULKBM.ToList();
+            var result = (from bulkbm in db.DR_BULKBM
+                          group bulkbm by new { bulkbm.DWGNO, bulkbm.SPECNAME, bulkbm.INDUSTRYCOMMODITYCODE, bulkbm.PART, bulkbm.LONGMATERIALDESCRIPTION, bulkbm.COMMENTS, bulkbm.PARTNUMBER, bulkbm.FABRICATIONTYPE} into g
+                          let dataCount = g.Count()
+                          orderby g.Key descending
+                          select new BMItem
+                          {
+                              JOB_NO = "110670",
+                              DWG_NO = g.Key.DWGNO,
+                              CLASS_CD = g.Key.SPECNAME,
+                              SYMBOL_CD = g.Key.COMMENTS,
+                              BM_CD = g.Key.INDUSTRYCOMMODITYCODE.Substring(0,8),
+                              MAIN_THK = g.Key.INDUSTRYCOMMODITYCODE.Substring(8,2),
+                              SUB_THK = g.Key.INDUSTRYCOMMODITYCODE.Substring(10,2),
+                              DWG_BM_QTY = dataCount,
+                              FS_GUBN = g.Key.FABRICATIONTYPE,
+                              INDUSTRYCOMMODITYCODE = g.Key.INDUSTRYCOMMODITYCODE,
+                              PARTNUMBER = g.Key.PARTNUMBER
+                          }).ToList();
             return Json(result.ToDataSourceResult(request)) ;
         }
     }
