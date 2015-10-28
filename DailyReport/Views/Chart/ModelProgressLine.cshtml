@@ -1,8 +1,6 @@
 ﻿@{
     ViewBag.Title = "ModelProgressLine";
 }
-<h3>PipeLine Progress</h3>
-
 <div class="col-xs-10 col-md-10">
     <div class="radio-section">
         <ul>
@@ -47,7 +45,7 @@
             series.Bar(model => model.Count).Name("전체").Labels(true);
         })
         .CategoryAxis(axis => axis
-            .Categories(categories => categories.Date).Title("날짜")
+            .Categories(categories => categories.Date).Date().Title("날짜")
         )
         .ValueAxis(axis => axis
             .Numeric()
@@ -58,7 +56,7 @@
         .Tooltip(tooltip => tooltip
             .Visible(true)
         )
-        .ChartArea(chart => chart.Height(900))
+        .ChartArea(chart => chart.Height(800))
     )
     </div>
 </div>

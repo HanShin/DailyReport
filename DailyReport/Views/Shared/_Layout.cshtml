@@ -154,7 +154,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-        <div class="col-xs-2 col-md-2 k-header" style=" border-width:1px;border-style:solid; border-color:darkgray; background-color: #F2F8FF; ">
+        <div class="col-xs-4 col-md-2 k-header" style=" border-width:1px;border-style:solid; border-color:darkgray; background-color: #F2F8FF; ">
                 @(Html.Kendo().TreeView().HtmlAttributes(new { style = " color:#003399;" })
             .Name("treeview")
             .Items(treeview =>
@@ -233,7 +233,7 @@
                             .Expanded(true)
                             .Items(children =>
                             {
-                                children.Add().Text("Line 기준으로 Key item list 산출").Url("/Grid/Consistency")
+                                children.Add().Text("Line 기준 Key item list 산출").Url("/Grid/Consistency")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                             });
                         treeview.Add().Text("Model 검증")

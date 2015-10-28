@@ -20,7 +20,7 @@ namespace DailyReportOracleDB.Dal
         public string INDUSTRYCOMMODITYCODE { get; set; }
         public Nullable<decimal> NPD { get; set; }
         public string LONGMATERIALDESCRIPTION { get; set; }
-        public decimal NUM { get; set; }
+        public string NUM { get; set; }
     
         public virtual DR_CONSISTENCY DR_CONSISTENCY { get; set; }
     }
