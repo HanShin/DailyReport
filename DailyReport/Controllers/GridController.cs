@@ -114,12 +114,23 @@ namespace DailyReport.Controllers
                         break;
 
                 }
+                if (item.PARTNUMBER.Length < 10)
+                {
+                    continue;
+                }
+
                 string ItemType = item.PARTNUMBER.Substring(8, 2);
                 string schCode = getSchCode(ItemType);
                 item.PARTNUMBER = item.PARTNUMBER.Replace(item.INDUSTRYCOMMODITYCODE, "");
-                item.PARTNUMBER = item.PARTNUMBER.Replace(schCode, "");
-
-                int portCount = getPortCount(item.LONGMATERIALDESCRIPTON);
+                if (schCode.Length != 0)
+                {
+                    item.PARTNUMBER = item.PARTNUMBER.Replace(schCode, "");
+                }
+                int portCount = 2;
+                if (item.LONGMATERIALDESCRIPTON != null)
+                {
+                    portCount = getPortCount(item.LONGMATERIALDESCRIPTON);
+                }
 
                 string partNumber = item.PARTNUMBER;
                 partNumber.Substring(0, partNumber.Length / portCount);
