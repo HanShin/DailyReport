@@ -39,7 +39,20 @@ namespace DailyReport.Controllers
             return View();
         }
 
-        
+        void addOrUpdate(Dictionary<string, int> dic, string key, int newValue)
+        {
+            int val;
+            if (dic.TryGetValue(key, out val))
+            {
+                // yay, value exists!
+                dic[key] = val + newValue;
+            }
+            else
+            {
+                // darn, lets add the value
+                dic.Add(key, newValue);
+            }
+        }
 
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -49,16 +62,23 @@ namespace DailyReport.Controllers
             {
                 ConsistencyItem consistency = new ConsistencyItem();
                 consistency.PIPE_LINE = item.LINENO;
+                Dictionary<string, int> itemList = new Dictionary<string, int>();
+
                 foreach (var subitem in item.DR_CONSISTENCY_VALVE)
                 {
                     if (string.IsNullOrEmpty(subitem.LONGMATERIALDESCRIPTION))
                     {
                         continue;
                     }
-                    consistency.ITEMS += ",";
-                    consistency.ITEMS +=  subitem.LONGMATERIALDESCRIPTION.Split(' ').First();
-                    //consistency.ITEMS += subitem.LONGMATERIALDESCRIPTION.Substring(0, subitem.LONGMATERIALDESCRIPTION.IndexOf(" "));
+                    string valveItem =  subitem.LONGMATERIALDESCRIPTION.Split(' ').First();
+                    addOrUpdate(itemList, valveItem, 1);
                     subitem.DR_CONSISTENCY = null;
+                }
+
+                foreach(string valveItem in itemList.Keys)
+                {
+                    consistency.ITEMS += ",";
+                    consistency.ITEMS += valveItem + itemList[valveItem].ToString("00");
                 }
 
                 foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
@@ -114,17 +134,22 @@ namespace DailyReport.Controllers
                         break;
 
                 }
-                if (item.PARTNUMBER.Length < 10)
+                // null 체크
+                if (item.PARTNUMBER == null)
                 {
                     continue;
                 }
-
+                if (item.PARTNUMBER.Length < 10 || item.PARTNUMBER.Contains("ATM"))
+                {
+                    continue;
+                }
                 string ItemType = item.PARTNUMBER.Substring(8, 2);
                 string schCode = getSchCode(ItemType);
                 item.PARTNUMBER = item.PARTNUMBER.Replace(item.INDUSTRYCOMMODITYCODE, "");
                 if (schCode.Length != 0)
                 {
-                    item.PARTNUMBER = item.PARTNUMBER.Replace(schCode, "");
+                    item.PARTNUMBER = item.PARTNUMBER.Replace(schCode, "").Replace("BS3", "").Replace("BS4","");
+
                 }
                 int portCount = 2;
                 if (item.LONGMATERIALDESCRIPTON != null)
@@ -133,8 +158,8 @@ namespace DailyReport.Controllers
                 }
 
                 string partNumber = item.PARTNUMBER;
-                partNumber.Substring(0, partNumber.Length / portCount);
-                item.PARTNUMBER = partNumber;
+                partNumber = partNumber.Substring(0, partNumber.Length / portCount);
+                item.MAIN_SIZE = partNumber;
 
             }
             return Json(result.ToDataSourceResult(request)) ;
@@ -148,6 +173,7 @@ namespace DailyReport.Controllers
         public static int getPortCount(string descrip)
         {
             int portCount = 2;
+            descrip = descrip.Split(';')[0];
             if (descrip.Contains("CAP") || descrip.Contains("PLUG") || descrip.Contains("BLIND FLANGE"))
             {
                 portCount = 1;

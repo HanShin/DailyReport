@@ -1,6 +1,15 @@
 ﻿@{
     ViewBag.Title = "ConsistencyValve";
 }
+<style>
+    .k-grid-header-wrap th {
+        font-size: x-small !important;
+    }
+    .k-grid tr td {
+    border-bottom: 1px solid #DBDBDB;
+    }
+
+</style>
 
 <div class="col-xs-10 col-md-10">
         @(Html.Kendo().Grid<DailyReport.Models.BMItem>()
@@ -8,18 +17,18 @@
             .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
             .Columns(column =>
             {
-                column.Bound(p => p.JOB_NO);
+                column.Bound(p => p.JOB_NO).Width(75);
                 column.Bound(p => p.DWG_NO);
-                column.Bound(p => p.CLASS_CD);
-                column.Bound(p => p.SYMBOL_CD);
-                column.Bound(p => p.BM_CD);
-                column.Bound(p => p.MAIN_THK);
-                column.Bound(p => p.SUB_THK);
-                column.Bound(p => p.SIZE_UNIT);
-                column.Bound(p => p.MAIN_SIZE);
-                column.Bound(p => p.SUB_SIZE);
-                column.Bound(p => p.DWG_BM_QTY);
-                column.Bound(p => p.FS_GUBN);
+                column.Bound(p => p.CLASS_CD).Width(95);
+                column.Bound(p => p.SYMBOL_CD).Width(90);
+                column.Bound(p => p.BM_CD).Width(100);
+                column.Bound(p => p.MAIN_THK).Width(80);
+                column.Bound(p => p.SUB_THK).Width(75);
+                column.Bound(p => p.SIZE_UNIT).Width(80);
+                column.Bound(p => p.MAIN_SIZE).Width(80);
+                column.Bound(p => p.SUB_SIZE).Width(77);
+                column.Bound(p => p.DWG_BM_QTY).Width(100);
+                column.Bound(p => p.FS_GUBN).Width(75);
             }
             )
             .Pageable()
@@ -30,5 +39,6 @@
                 .Read("BulkBM_Read","Grid")
                 .PageSize(25)
             )
+            
         )
 </div>
