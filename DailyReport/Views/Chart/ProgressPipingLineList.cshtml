@@ -18,10 +18,9 @@
         
                 .Series(series =>
                 {
-                    series.Bar(model => model.Mpercentage).Name("모델").Spacing(1.5).Tooltip(tooltip => tooltip.Template("#=series.name #: #= dataItem.Mtotal # /  #= dataItem.Total #"));
-                    series.Bar(model => model.Tpercentage).Name("전체").Tooltip(tooltip => tooltip.Template("#=series.name #: #= dataItem.Total # /  #= dataItem.Total #"));
+                    series.Bar(model => model.Mpercentage).Name("모델").Spacing(1.5).Labels(true).Tooltip(tooltip => tooltip.Template("#=series.name #: #= dataItem.Mtotal # /  #= dataItem.Total #"));
+                    series.Bar(model => model.Tpercentage).Name("전체").Labels(true).Tooltip(tooltip => tooltip.Template("#=series.name #: #= dataItem.Total # /  #= dataItem.Total #"));
                 })
-                
         
         .ValueAxis(axis => axis
             .Numeric()
