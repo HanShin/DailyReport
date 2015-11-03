@@ -8,6 +8,7 @@ namespace DailyReport.Models
     public class ModelCountData
     {
         public DateTime? Date { get; set; }
+        public IEnumerable<string> Modeler { get; set; }
         public int Count { get; set; }
     }
 }

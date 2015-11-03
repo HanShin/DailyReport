@@ -15,12 +15,6 @@ namespace DailyReport.Controllers
     {
         private Entities db = new Entities();
 
-        private class tempClass
-        {
-            public Nullable<DateTime> Date { get; set; }
-            public int Count { get; set; }
-        }
-
         private class Progress
         {
             public string Line_no { get; set; }
@@ -29,7 +23,16 @@ namespace DailyReport.Controllers
 
         public ActionResult ModelProgressLine()
         {
-            return View();
+            var result = (from lines in db.DR_MODELPROGRESS_LINE
+
+                          group lines by lines.CREATEDBY into g
+                          let dataCount = g.Count()
+                          orderby g.Key descending
+                          select new ModelCountData
+                          {
+                              Modeler = new string[]{ g.Key }
+                          }).ToList();
+            return View(result);
         }
 
         public ActionResult ModelProgressRun()
@@ -84,13 +87,14 @@ namespace DailyReport.Controllers
         {
             var result = (from lines in db.DR_MODELPROGRESS_LINE
 
-                          group lines by lines.DATECREATED into g
+                          group lines by new { lines.DATECREATED ,lines.CREATEDBY} into g
                           let dataCount = g.Count()
                           orderby g.Key descending
-                          select new tempClass
+                          select new ModelCountData
                          {
                              Count = dataCount,
-                             Date = g.Key
+                             Date = g.Key.DATECREATED,
+                             Modeler = new string[]{ g.Key.CREATEDBY }
                          }).ToList();
             return Json(result);
         }
@@ -101,7 +105,7 @@ namespace DailyReport.Controllers
                         group run by run.DATECREATED into g
                         let dataCount = g.Count()
                         orderby g.Key descending
-                        select new tempClass
+                          select new ModelCountData
                         {
                             Count = dataCount,
                             Date = g.Key
@@ -115,7 +119,7 @@ namespace DailyReport.Controllers
                         group part by part.DATECREATED into g
                         let dataCount = g.Count()
                         orderby g.Key descending
-                        select new tempClass
+                        select new ModelCountData
                         {
                             Count = dataCount,
                             Date = g.Key
@@ -130,7 +134,7 @@ namespace DailyReport.Controllers
                         group instrument by instrument.DATECREATED into g
                         let dataCount = g.Count()
                         orderby g.Key descending
-                        select new tempClass
+                          select new ModelCountData
                         {
                             Count = dataCount,
                             Date = g.Key

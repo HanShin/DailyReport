@@ -26,7 +26,7 @@
         @(Html.Kendo().Button().Name("buttons").Content("검색").Events(ev => ev.Click("onClick")))
     </div>
     <br />
-    <div class="chartArea">
+@*    <div class="chartArea">
         @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
         .Name("LineChart")
         .Title("Pipe Line 작업량")
@@ -43,6 +43,42 @@
         .Series(series =>
         {
             series.Bar(model => model.Count).Name("전체").Labels(true);
+        })
+        .CategoryAxis(axis => axis
+            .Categories(categories => categories.Date).Date().Title("날짜")
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(10)
+
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+        )
+        .ChartArea(chart => chart.Height(800))
+    )
+    </div>*@
+
+    <div class="modelChart">
+        @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
+        .Name("LineChart")
+        .Title("Pipe Line 작업량")
+        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
+        .DataSource(ds => ds
+            .Read(read => read
+            .Action("ModelProgressLine_Chart", "Chart"))
+            .Filter(filter => filter
+                .Add(o => o.Date).IsGreaterThanOrEqualTo(new DateTime(2014,10,1))
+                .And()
+                .IsLessThanOrEqualTo(new DateTime(2014,12,31))
+            )
+        )
+        .Series(series =>
+        {
+            foreach(var item in Model){
+                series.Bar(item.Modeler).Name(item.Modeler);
+            }
         })
         .CategoryAxis(axis => axis
             .Categories(categories => categories.Date).Date().Title("날짜")
