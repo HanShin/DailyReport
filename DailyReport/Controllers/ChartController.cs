@@ -23,16 +23,18 @@ namespace DailyReport.Controllers
 
         public ActionResult ModelProgressLine()
         {
-            var result = (from lines in db.DR_MODELPROGRESS_LINE
+            //var result = (from lines in db.DR_MODELPROGRESS_LINE
 
-                          group lines by lines.CREATEDBY into g
-                          let dataCount = g.Count()
-                          orderby g.Key descending
-                          select new ModelCountData
-                          {
-                              Modeler = new string[]{ g.Key }
-                          }).ToList();
-            return View(result);
+            //              group lines by new { lines.DATECREATED, lines.CREATEDBY } into g
+            //              let dataCount = g.Count()
+            //              orderby g.Key descending
+            //              select new ModelCountData
+            //              {
+            //                  Count = dataCount,
+            //                  Date = g.Key.DATECREATED,
+            //                  Modeler = g.Key.CREATEDBY
+            //              }).ToList();
+            return View();
         }
 
         public ActionResult ModelProgressRun()
@@ -85,17 +87,18 @@ namespace DailyReport.Controllers
 
         public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from lines in db.DR_MODELPROGRESS_LINE
+            //var result = (from lines in db.DR_MODELPROGRESS_LINE
 
-                          group lines by new { lines.DATECREATED ,lines.CREATEDBY} into g
-                          let dataCount = g.Count()
-                          orderby g.Key descending
-                          select new ModelCountData
-                         {
-                             Count = dataCount,
-                             Date = g.Key.DATECREATED,
-                             Modeler = new string[]{ g.Key.CREATEDBY }
-                         }).ToList();
+            //              group lines by new { lines.DATECREATED, lines.CREATEDBY } into g
+            //              let dataCount = g.Count()
+            //              orderby g.Key descending
+            //              select new ModelCountData
+            //              {
+            //                  Count = dataCount,
+            //                  Date = g.Key.DATECREATED,
+            //                  Modeler = g.Key.CREATEDBY
+            //              }).ToList();
+            var result = db.DR_MODELPROGRESS_LINE.ToList();
             return Json(result);
         }
 
