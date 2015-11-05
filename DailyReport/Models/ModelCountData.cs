@@ -7,8 +7,16 @@ namespace DailyReport.Models
 {
     public class ModelCountData
     {
+        public ModelCountData()
+        {
+            ModelCount = new List<int>();
+        }
+        public string Name { get; set; }
         public DateTime? Date { get; set; }
-        public string Modeler { get; set; }
-        public int Count { get; set; }
+        public List<int> ModelCount
+        {
+            get;
+            private set;
+        }
     }
 }
