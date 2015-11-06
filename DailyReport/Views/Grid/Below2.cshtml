@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "ConsistencyValve";
+}
+<style>
+    .k-grid-header-wrap th {
+        font-size: x-small !important;
+    }
+    .k-grid tr td {
+    border-bottom: 1px solid #DBDBDB;
+    }
+
+</style>
+
+<div class="col-xs-10 col-md-10">
+        @(Html.Kendo().Grid<DailyReport.Models.LineList>()
+            .Name("Below2Grid")
+            .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+            .Columns(column =>
+            {
+                column.Bound(p => p.OID);
+                column.Bound(p => p.PIPELINE);
+                column.Bound(p => p.DWGNO);
+                column.Bound(p => p.DESIGN_PRESS);
+                column.Bound(p => p.OPER_PRESS);
+                column.Bound(p => p.TEST_PRESS);
+                column.Bound(p => p.OPER_TEMP);
+                column.Bound(p => p.INSUL_CODE);
+                column.Bound(p => p.INSUL_THK);
+                column.Bound(p => p.PAINT_CODE);
+                column.Bound(p => p.RTPT);
+                column.Bound(p => p.PWHT);
+                column.Bound(p => p.TEST_MEDIUM);
+                column.Bound(p => p.STEAM_TRACE);
+                column.Bound(p => p.STEAM_JACKETING);
+                column.Bound(p => p.ELECTRIC_TRACE);
+                column.Bound(p => p.STRESS_ANALYSIS);
+                column.Bound(p => p.CLEANING);
+                column.Bound(p => p.PIPING_PID);
+                column.Bound(p => p.PIPING_PLAN);
+                column.Bound(p => p.PIPING_STRESS);
+            }
+            )
+            .ColumnMenu().Resizable(resizable=>resizable.Columns(true))
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read("Below2_Read","Grid")
+                .PageSize(25)
+            )
+            
+        )
+</div>

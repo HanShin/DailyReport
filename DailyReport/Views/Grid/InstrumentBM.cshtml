@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "ConsistencyValve";
+}
+<style>
+    .k-grid-header-wrap th {
+        font-size: x-small !important;
+    }
+    .k-grid tr td {
+    border-bottom: 1px solid #DBDBDB;
+    }
+
+</style>
+
+<div class="col-xs-10 col-md-10">
+        @(Html.Kendo().Grid<DailyReport.Models.InstrumentBM>()
+            .Name("InstrumentBMGrid")
+            .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+            .Columns(column =>
+            {
+                column.Bound(p => p.OID).Width(200);
+                column.Bound(p => p.DWGNO).Width(100);
+                column.Bound(p => p.INSTRUMENT).Width(100);
+                column.Bound(p => p.SPECNAME);
+                column.Bound(p => p.NPD);
+                column.Bound(p => p.PARTNUMBER);
+            }
+            )
+            .ColumnMenu().Resizable(resizable=>resizable.Columns(true))
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read("InstrumentBm_Read","Grid")
+                .PageSize(25)
+            )
+            
+        )
+</div>

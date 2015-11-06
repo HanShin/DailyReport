@@ -81,6 +81,21 @@
     <Compile Include="DR_CONSISTENCY_VALVE.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DR_INSTRUMENTBM.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_ISODESCRIPTION.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_ISOREV.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_LINELIST.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_LINENOISO.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DR_MODELPROGRESS_INSTRUMENT.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
@@ -99,36 +114,41 @@
     <Compile Include="DR_PROGRESS_PIPINGLINELIST.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DR_SPECIALTYBM.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_SUPPORTBM.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DailyReportModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DailyReportModel.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DailyReportModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DailyReportModel.edmx</DependentUpon>
-      <LastGenOutput>DailyReportModel.Context.cs</LastGenOutput>
-    </None>
+    <None Include="App.Config" />
     <None Include="DailyReportModel.edmx.diagram">
       <DependentUpon>DailyReportModel.edmx</DependentUpon>
-    </None>
-    <None Include="DailyReportModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DailyReportModel.edmx</DependentUpon>
-      <LastGenOutput>DailyReportModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="DailyReportModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DailyReportModel.edmx</DependentUpon>
+      <LastGenOutput>DailyReportModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DailyReportModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DailyReportModel.edmx</DependentUpon>
+      <LastGenOutput>DailyReportModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

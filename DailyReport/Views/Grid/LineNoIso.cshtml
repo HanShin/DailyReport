@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "ConsistencyValve";
+}
+<style>
+    .k-grid-header-wrap th {
+        font-size: x-small !important;
+    }
+    .k-grid tr td {
+    border-bottom: 1px solid #DBDBDB;
+    }
+
+</style>
+
+<div class="col-xs-10 col-md-10">
+        @(Html.Kendo().Grid<DailyReport.Models.LineNoIso>()
+            .Name("LineNoIsoGrid")
+            .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+            .Columns(column =>
+            {
+                column.Bound(p => p.OID).Width(250);
+                column.Bound(p => p.PIPELINE).Width(150);
+                column.Bound(p => p.DWGNO).Width(150);
+                
+            }
+            )
+            .ColumnMenu().Resizable(resizable=>resizable.Columns(true))
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read("LineNoIso_Read","Grid")
+                .PageSize(25)
+            )
+            
+        )
+</div>

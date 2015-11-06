@@ -4,21 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0f56e1e521264fc19642316713f97565" Name="다이어그램1" ZoomLevel="91">
-        <EntityTypeShape EntityType="Models.DR_BULKBM" Width="1.5" PointX="5.666982536049086" PointY="16.970780544435037" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY" Width="1.5" PointX="7.2045468404910284" PointY="11.202127595991888" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_INSTRUMENT" Width="1.5" PointX="11.107670321645061" PointY="4.06247879753936" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_SPECIALTY" Width="1.5" PointX="4.88778230402981" PointY="17.838246994576533" />
-        <EntityTypeShape EntityType="Models.DR_CONSISTENCY_VALVE" Width="1.5" PointX="7.1829648423860615" PointY="19.653695562693148" />
-        <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_LINE" Width="1.5" PointX="9.8315062289272923" PointY="30.84437519258092" />
-        <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_PART" Width="1.5" PointX="6.6071988374959663" PointY="7.2855124805520814" />
-        <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_RUN" Width="1.5" PointX="1.2580173617499031" PointY="26.303340328067232" />
-        <EntityTypeShape EntityType="Models.DR_PROGRESS_CPIPINGLINELIST" Width="1.5" PointX="6.3676458105294254" PointY="23.485311578719557" />
-        <EntityTypeShape EntityType="Models.DR_PROGRESS_PIPINGLINELIST" Width="1.5" PointX="9.3764207593055549" PointY="10.470115040647851" />
-        <AssociationConnector Association="Models.DR_CONSISTENCY_INSTRUMENT_FK1" />
-        <AssociationConnector Association="Models.DR_CONSISTENCY_SPECIALTY_FK1" />
-        <AssociationConnector Association="Models.DR_CONSISTENCY_VALVE_FK1" />
-        <EntityTypeShape EntityType="Models.DR_MODELPROGRESS_INSTRUMENT" Width="1.5" PointX="10.543884632430917" PointY="25.99595695454439" />
+      <Diagram DiagramId="308d2bbf39fd490b86b7c36717d5198f" Name="다이어그램1">
+        <EntityTypeShape EntityType="Model.DR_BULKBM" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_CONSISTENCY" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_CONSISTENCY_INSTRUMENT" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_CONSISTENCY_SPECIALTY" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_CONSISTENCY_VALVE" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_INSTRUMENTBM" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_ISODESCRIPTION" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_ISOREV" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_LINELIST" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_LINENOISO" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_INSTRUMENT" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_LINE" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_PART" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_RUN" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_PROGRESS_CPIPINGLINELIST" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_PROGRESS_PIPINGLINELIST" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_SPECIALTYBM" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DR_SUPPORTBM" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.DR_CONSISTENCY_INSTRUMENT_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DR_CONSISTENCY_SPECIALTY_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DR_CONSISTENCY_VALVE_FK1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -198,33 +198,33 @@
                                 resources.Add().Text("Size 별 line").Expanded(true)
                                     .Items(item =>
                                     {
-                                        item.Add().Text(@"below 2""")
+                                        item.Add().Text(@"below 2""").Url("~/Grid/Below2")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text(@"2""~6""")
+
+                                        item.Add().Text(@"2""~6""").Url("~/Grid/TwotoSix")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text(@"8""~24""")
+
+                                        item.Add().Text(@"8""~24""").Url("~/Grid/EighttoTwentyFour")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text(@"larger than 24""")
+
+                                        item.Add().Text(@"larger than 24""").Url("~/Grid/LargerThanTwentyFour")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     });
                             
                                 resources.Add().Text("Line 대비 ISO 준비율").Expanded(true)
                                     .Items(item =>
                                     {
-                                        item.Add().Text("Line 별 ISO list")
+                                        item.Add().Text("Line 별 ISO list").Url("~/Grid/LineNoIso")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     });
                             
                                 resources.Add().Text("ISO dwg revision").Expanded(true)
                                     .Items(item =>
                                     {
-                                        item.Add().Text("revision status 확인")
+                                        item.Add().Text("revision status 확인").Url("~/Grid/IsoRev")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text("revision description 확인")
+
+                                        item.Add().Text("revision description 확인").Url("~/Grid/IsoDescription")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     });
                             });
@@ -258,13 +258,13 @@
                                         item.Add().Text("Bulk").Url("~/Grid/BulkBM")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     
-                                        item.Add().Text("Support")
+                                        item.Add().Text("Support").Url("~/Grid/SupportBM")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text("Instrument")
+
+                                        item.Add().Text("Instrument").Url("~/Grid/InstrumentBM")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
-                                    
-                                        item.Add().Text("Specialty")
+
+                                        item.Add().Text("Specialty").Url("~/Grid/SpecialtyBM")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     
                                         item.Add().Text("Electrical")

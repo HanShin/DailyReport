@@ -179,11 +179,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BMItem.cs" />
+    <Compile Include="Models\LineList.cs" />
+    <Compile Include="Models\SupportBM.cs" />
     <Compile Include="Models\CoModelLineNumData.cs" />
     <Compile Include="Models\ConsistencyItem.cs" />
     <Compile Include="Models\ModelCountData.cs" />
     <Compile Include="Models\ModelLineNumData.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\InstrumentBM.cs" />
+    <Compile Include="Models\SpecialtyBM.cs" />
+    <Compile Include="Models\LineNoIso.cs" />
+    <Compile Include="Models\IsoRev.cs" />
+    <Compile Include="Models\IsoDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -870,6 +877,16 @@
     <Content Include="Scripts\kendo\2015.3.930\kendo.window.min.js.map" />
     <Content Include="Views\Chart\ProgressPipingLineList.cshtml" />
     <Content Include="Views\Grid\BulkBM.cshtml" />
+    <Content Include="Views\Grid\SupportBM.cshtml" />
+    <Content Include="Views\Grid\InstrumentBM.cshtml" />
+    <Content Include="Views\Grid\SpecialtyBM.cshtml" />
+    <Content Include="Views\Grid\LineNoIso.cshtml" />
+    <Content Include="Views\Grid\IsoRev.cshtml" />
+    <Content Include="Views\Grid\IsoDescription.cshtml" />
+    <Content Include="Views\Grid\Below2.cshtml" />
+    <Content Include="Views\Grid\TwotoSix.cshtml" />
+    <Content Include="Views\Grid\EighttoTwentyFour.cshtml" />
+    <Content Include="Views\Grid\LargerThanTwentyFour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

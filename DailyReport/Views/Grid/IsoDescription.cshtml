@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "ConsistencyValve";
+}
+<style>
+    .k-grid-header-wrap th {
+        font-size: x-small !important;
+    }
+    .k-grid tr td {
+    border-bottom: 1px solid #DBDBDB;
+    }
+
+</style>
+
+<div class="col-xs-10 col-md-10">
+        @(Html.Kendo().Grid<DailyReport.Models.IsoDescription>()
+            .Name("IsoDescriptionGrid")
+            .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+            .Columns(column =>
+            {
+                column.Bound(p => p.DWGNO).Width(300);
+                column.Bound(p => p.REV_NO);
+                column.Bound(p => p.REV_DATE);
+                column.Bound(p => p.DESCRIPTION).Width(300);
+                column.Bound(p => p.DWN);
+                column.Bound(p => p.CHKD);
+                column.Bound(p => p.AAPD);
+                column.Bound(p => p.PLANT);
+                column.Bound(p => p.AREA);
+                column.Bound(p => p.UNIT);
+            }
+            )
+            .ColumnMenu().Resizable(resizable=>resizable.Columns(true))
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read("IsoDescription_Read","Grid")
+                .PageSize(25)
+            )
+            
+        )
+</div>

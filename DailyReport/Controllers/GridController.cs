@@ -27,12 +27,57 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
+        public ActionResult Below2()
+        {
+            return View();
+        }
+        public ActionResult TwotoSix()
+        {
+            return View();
+        }
+        public ActionResult EighttoTwentyFour()
+        {
+            return View();
+        }
+        public ActionResult LargerThanTwentyFour()
+        {
+            return View();
+        }
+
+        public ActionResult LineNoIso()
+        {
+            return View();
+        }
+
+        public ActionResult IsoRev()
+        {
+            return View();
+        }
+
+        public ActionResult IsoDescription()
+        {
+            return View();
+        }
+        
         public ActionResult BulkBM()
         {
             return View();
         }
 
-       
+        public ActionResult SupportBm()
+        {
+            return View();
+        }
+
+        public ActionResult InstrumentBm()
+        {
+            return View();
+        }
+
+        public ActionResult SpecialtyBm()
+        {
+            return View();
+        }
 
         public ActionResult Consistency()
         {
@@ -52,6 +97,112 @@ namespace DailyReport.Controllers
                 // darn, lets add the value
                 dic.Add(key, newValue);
             }
+        }
+
+        public ActionResult Below2_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            List<LineList> linelist = new List<LineList>();
+            string[] sp;
+            
+            foreach (LineList line in GetLineListAll())
+            {
+                if (line.PIPELINE != null)
+                {
+                    sp = line.PIPELINE.Split('-');
+                    if (sp[0] == "1\"" || sp[0].Contains("1/2\"") || sp[0] == "3/4\"")
+                    {
+                        linelist.Add(line);
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+               
+            }
+
+            return Json(linelist.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+        
+        public ActionResult TwotoSix_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            List<LineList> linelist = new List<LineList>();
+            string[] sp;
+            int a;
+            foreach (LineList line in GetLineListAll())
+            {
+                if (line.PIPELINE != null)
+                {
+                    sp = line.PIPELINE.Split('-');
+                    if (sp[0] == "2\"" || sp[0] == "3\"" || sp[0] == "4\"" || sp[0] == "6\"")
+                    {
+                        linelist.Add(line);
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+
+            }
+            return Json(linelist.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+       
+        public ActionResult EighttoTwentyFour_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            List<LineList> linelist = new List<LineList>();
+            string[] sp;
+
+            foreach (LineList line in GetLineListAll())
+            {
+                if (line.PIPELINE != null)
+                {
+                    sp = line.PIPELINE.Split('-');
+                                        
+                    if (sp[0] == "8\"" || sp[0] == "10\"" || sp[0] == "12\"" || sp[0] == "14\"" ||
+                        sp[0] == "16\"" ||sp[0] == "18\"" ||sp[0] == "20\"" ||sp[0] == "22\"" ||
+                        sp[0] == "24\"")
+                    {
+                        linelist.Add(line);
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+
+            }
+
+            return Json(linelist.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+        
+        public ActionResult LargerThanTwentyFour_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            List<LineList> linelist = new List<LineList>();
+            string[] sp;
+
+            foreach (LineList line in GetLineListAll())
+            {
+                if (line.PIPELINE != null)
+                {
+                    sp = line.PIPELINE.Split('-');
+                    if (sp[0] == "26\"" || sp[0] == "28\"" || sp[0] == "30\"" || sp[0] == "32\"" ||
+                        sp[0] == "34\"" || sp[0] == "36\"" || sp[0] == "38\"" || sp[0] == "40\"" ||
+                        sp[0] == "42\"" || sp[0] == "46\"" || sp[0] == "48\"" || sp[0]==("50") ||
+                        sp[0] == "54\"" || sp[0] == "56\"" ||sp[0] == "58\""||   sp[0] == "60\""||
+                        sp[0] == "64\""||sp[0] == "66\""|| sp[0] == "68\"" || sp[0] == "78\"")
+                    {
+                        linelist.Add(line);
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+
+            }
+
+            return Json(linelist.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
@@ -165,6 +316,106 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request)) ;
         }
 
+        public ActionResult SupportBm_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = (from sup in db.DR_SUPPORTBM
+                          select new SupportBM
+                          {
+                              OID = sup.OID,
+                              DWGNO = sup.DWGNO,
+                              HANGERNAME = sup.HANGERNAME,
+                              DESCRIPTION = sup.DESCRIPTION,
+                          }).ToList();
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult InstrumentBm_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = (from sup in db.DR_INSTRUMENTBM
+                        select new InstrumentBM
+                        {
+                            OID = sup.OID,
+                            DWGNO = sup.DWGNO,
+                            INSTRUMENT = sup.INSTRUMENT,
+                            SPECNAME = sup.SPECNAME,
+                            NPD = sup.NPD,
+                            PARTNUMBER = sup.PARTNUMBER,
+                        }).ToList();
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SpeceltyBm_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = (from sup in db.DR_SPECIALTYBM
+                          select new SpecialtyBM
+                          {
+                              OID = sup.OID,
+                              DWGNO = sup.DWGNO,
+                              TAG = sup.TAG,
+                              SPECNAME = sup.SPECNAME,
+                              NPD1 = sup.NPD1,
+                              NPDUNITTYPE1 = sup.NPDUNITTYPE1,
+                              NPD2 = sup.NPD2,
+                              NPDUNITTYPE2 = sup.NPDUNITTYPE2,
+                              NPD3 = sup.NPD3,
+                              NPDUNITTYPE3 = sup.NPDUNITTYPE3,
+                          }).ToList();
+            
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LineNoIso_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = (from sup in db.DR_LINENOISO
+                          select new LineNoIso
+                          {
+                              OID = sup.OID,
+                              PIPELINE = sup.PIPELINE,
+                              DWGNO = sup.DWGNO,
+                          }).ToList();
+
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult IsoRev_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = (from sup in db.DR_ISOREV
+                          select new IsoRev
+                          {
+                              DWGNO = sup.DWGNO,
+                              REV_NO = sup.REV_NO,
+                              REV_DATE = sup.REV_DATE,
+                              DWN = sup.DWN,
+                              CHKD = sup.CHKD,
+                              AAPD = sup.AAPD,
+                              PLANT = sup.PLANT,
+                              AREA = sup.AREA,
+                              UNIT = sup.UNIT,
+                          }).ToList();
+
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult IsoDescription_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = (from sup in db.DR_ISODESCRIPTION
+                          select new IsoDescription
+                          {
+                              DWGNO = sup.DWGNO,
+                              REV_NO = sup.REV_NO,
+                              REV_DATE = sup.REV_DATE,
+                              DESCRIPTION = sup.DESCRIPTION,
+                              DWN = sup.DWN,
+                              CHKD = sup.CHKD,
+                              AAPD = sup.AAPD,
+                              PLANT = sup.PLANT,
+                              AREA = sup.AREA,
+                              UNIT = sup.UNIT,
+                          }).ToList();
+
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
         /// <summary>
         /// Type에 따라 Port가 몇개인지 체크 대부분의 타입은 2개
         /// </summary>
@@ -258,6 +509,37 @@ namespace DailyReport.Controllers
                     break;
             }
             return schCode;
+        }
+
+        public List<LineList> GetLineListAll()
+        {
+            var result = (from sup in db.DR_LINELIST
+                          select new LineList
+                          {
+                              OID = sup.OID,
+                              PIPELINE = sup.PIPELINE,
+                              DWGNO = sup.DWGNO,
+                              DESIGN_PRESS = sup.DESIGN_PRESS,
+                              OPER_PRESS = sup.OPER_PRESS,
+                              TEST_PRESS = sup.TEST_PRESS,
+                              DESIGN_TEMP = sup.DESIGN_TEMP,
+                              OPER_TEMP = sup.OPER_TEMP,
+                              INSUL_CODE = sup.INSUL_CODE,
+                              INSUL_THK = sup.INSUL_THK,
+                              PAINT_CODE = sup.PAINT_CODE,
+                              RTPT = sup.RTPT,
+                              PWHT = sup.PWHT,
+                              TEST_MEDIUM = sup.TEST_MEDIUM,
+                              STEAM_TRACE = sup.STEAM_TRACE,
+                              STEAM_JACKETING = sup.STEAM_JACKETING,
+                              ELECTRIC_TRACE = sup.ELECTRIC_TRACE,
+                              STRESS_ANALYSIS = sup.STRESS_ANALYSIS,
+                              CLEANING = sup.CLEANING,
+                              PIPING_PID = sup.PIPING_PID,
+                              PIPING_PLAN = sup.PIPING_PLAN,
+                              PIPING_STRESS = sup.PIPING_STRESS,
+                          }).ToList();
+            return result;
         }
     }
 }
