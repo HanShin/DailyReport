@@ -183,7 +183,9 @@
     <Compile Include="Models\SupportBM.cs" />
     <Compile Include="Models\CoModelLineNumData.cs" />
     <Compile Include="Models\ConsistencyItem.cs" />
+    <Compile Include="Models\LineListItem.cs" />
     <Compile Include="Models\ModelCountData.cs" />
+    <Compile Include="Models\ModelerData.cs" />
     <Compile Include="Models\ModelLineNumData.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\InstrumentBM.cs" />

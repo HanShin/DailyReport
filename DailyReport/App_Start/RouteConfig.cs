@@ -24,6 +24,13 @@ namespace DailyReport
            );
 
             routes.MapRoute(
+                name: "Chart",                    // 라우트 이름
+                url: "Chart/{action}/{start}/{end}", // URL (매개변수 포함)
+                //defaults: new { controller = "Chart" ,start = DateTime.Today, end =DateTime.Today.AddMonths(-1) }
+                defaults: new { controller = "Chart", start = new DateTime(2014,10,1), end = new DateTime(2014, 12, 31) }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

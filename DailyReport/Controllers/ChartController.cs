@@ -22,33 +22,47 @@ namespace DailyReport.Controllers
         }
 
 
-        public ActionResult ModelProgressLine()
+        public ActionResult ModelProgressLine(string start, string end)
         {
+            DateTime startDate = Convert.ToDateTime(start);
+            DateTime endDate = Convert.ToDateTime(end);
+            var lineData = (from lines in db.DR_MODELPROGRESS_LINE
+                            where lines.DATECREATED >= startDate && lines.DATECREATED <= endDate
+                          group lines by new { lines.DATECREATED, lines.CREATEDBY } into g
+                          orderby g.Key descending
+                          select new LineListItem
+                          {
+                              Date = g.Key.DATECREATED,
+                              Modeler = g.Key.CREATEDBY,
+                              Count = g.Count()
+
+                          }).ToList();
+            var lineDataGroup = lineData.GroupBy(t => t.Date);
             var modelerDist = db.DR_MODELPROGRESS_LINE.Select(line => line.CREATEDBY).Distinct();
-            List<string> modelerList = new List<string>();
-            List<ModelCountData> result = new List<ModelCountData>();
+            ModelCountData modelCountData = new ModelCountData();
             foreach (var item in modelerDist)
             {
-                ModelCountData modeler = new ModelCountData(){ Name = item };
+                ModelerData modeler = new ModelerData() { Name = item};
+                modelCountData.Modeler.Add(modeler);
             }
-            var lineData = db.DR_MODELPROGRESS_LINE
-                .GroupBy(line => new { line.DATECREATED, line.CREATEDBY })
-                .GroupBy(line => line.Key.DATECREATED);
 
-
-
-            foreach (var date in lineData)
+            foreach (var item in lineDataGroup)
             {
-                ModelCountData modelCountData = new ModelCountData();
-                modelCountData.Date = date.Key;
-                foreach (var modeler in modelerList)
+                modelCountData.Date.Add(item.Key);
+                foreach(var modeler in modelCountData.Modeler)
                 {
-                    // TODO
-
+                    LineListItem listItem = item.Where(t => t.Modeler == modeler.Name).FirstOrDefault();
+                    if (listItem == null)
+                    {
+                        modeler.ModelCount.Add(0);
+                    }
+                    else
+                    {
+                        modeler.ModelCount.Add(listItem.Count);
+                    }
                 }
-                result.Add(modelCountData);
             }
-            return View(result);
+            return View(modelCountData);
         }
 
         public ActionResult ModelProgressRun()
@@ -99,27 +113,46 @@ namespace DailyReport.Controllers
         }
 
 
-        //public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request)
-        //{
-        //    var lineData = db.DR_MODELPROGRESS_LINE
-        //        .GroupBy(line => new { line.DATECREATED, line.CREATEDBY })
-        //        .GroupBy(line => line.Key.DATECREATED);
-        //    List<ModelCountData> result = new List<ModelCountData>();
-        //    foreach (var date in lineData)
-        //    {
-        //        ModelCountData modelCountData = new ModelCountData();
-        //        modelCountData.Date = date.Key;
-        //        foreach (var model in date)
-        //        {
-        //            ModelerCount modeler = new ModelerCount();
-        //            modeler.Modeler = model.Key.CREATEDBY;
-        //            modeler.Count = model.Count();
-        //            modelCountData.ModelerList.Add(modeler);
-        //        }
-        //        result.Add(modelCountData);
-        //    }
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult ModelProgressLine_Chart([DataSourceRequest]DataSourceRequest request, DateTime? start, DateTime? end)
+        {
+            var lineData = (from lines in db.DR_MODELPROGRESS_LINE
+                            where lines.DATECREATED > new DateTime(2014, 10, 1) && lines.DATECREATED < new DateTime(2014, 12, 30)
+                            group lines by new { lines.DATECREATED, lines.CREATEDBY } into g
+                            orderby g.Key descending
+                            select new LineListItem
+                            {
+                                Date = g.Key.DATECREATED,
+                                Modeler = g.Key.CREATEDBY,
+                                Count = g.Count()
+
+                            }).ToList();
+            var lineDataGroup = lineData.GroupBy(t => t.Date);
+            var modelerDist = db.DR_MODELPROGRESS_LINE.Select(line => line.CREATEDBY).Distinct();
+            ModelCountData modelCountData = new ModelCountData();
+            foreach (var item in modelerDist)
+            {
+                ModelerData modeler = new ModelerData() { Name = item };
+                modelCountData.Modeler.Add(modeler);
+            }
+
+            foreach (var item in lineDataGroup)
+            {
+                modelCountData.Date.Add(item.Key);
+                foreach (var modeler in modelCountData.Modeler)
+                {
+                    LineListItem listItem = item.Where(t => t.Modeler == modeler.Name).FirstOrDefault();
+                    if (listItem == null)
+                    {
+                        modeler.ModelCount.Add(0);
+                    }
+                    else
+                    {
+                        modeler.ModelCount.Add(listItem.Count);
+                    }
+                }
+            }
+            return Json(modelCountData, JsonRequestBehavior.AllowGet);
+        }
 
         //public ActionResult ModelProgressRun_Chart([DataSourceRequest]DataSourceRequest request)
         //{

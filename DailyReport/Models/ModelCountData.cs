@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,14 +10,11 @@ namespace DailyReport.Models
     {
         public ModelCountData()
         {
-            ModelCount = new List<int>();
+            Date = new List<DateTime?>();
+            Modeler = new List<ModelerData>();
         }
-        public string Name { get; set; }
-        public DateTime? Date { get; set; }
-        public List<int> ModelCount
-        {
-            get;
-            private set;
-        }
+
+        public List<DateTime?> Date { get; set; }
+        public List<ModelerData> Modeler { get; set; }
     }
 }
