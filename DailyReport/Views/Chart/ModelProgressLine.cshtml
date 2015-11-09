@@ -21,8 +21,8 @@
         @(Html.Kendo().Button().Name("buttons").Content("검색").Events(ev => ev.Click("onClick")))
     </div>
     <br />
-    @*    <div class="chartArea">
-        @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
+    <div class="chartArea">
+        @(Html.Kendo().Chart<DailyReport.Models.ProgressLineListItem>()
         .Name("LineChart")
         .Title("Pipe Line 작업량")
         .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
@@ -53,127 +53,33 @@
         )
         .ChartArea(chart => chart.Height(800))
     )
-    </div>*@
-
-    <div class="modelChart">
-        @*@(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()*@
-        @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
-        .Name("LineChart")
-        .Title("Pipe Line 작업량")
-        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
-                        //.DataSource(ds => ds
-                        //    //.Read(read => read
-                        //    //.Action("ModelProgressLine_Chart", "Chart"))
-                        //    .Filter(filter =>
-                        //            filter.Add(a => a.Date)
-                        //    //filter.Add(o => o.Date.Where(d => d >= new DateTime(2014, 10, 1) && d <= new DateTime(2014,12,30)).Select(t => t.Value))
-                        //    //.IsGreaterThanOrEqualTo(new DateTime(2014, 10, 1))
-                        //    //.And()
-                        //    //.IsLessThanOrEqualTo(new DateTime(2014, 12, 31))
-
-                        //            //.Add(o => o.Date)
-                        //    //.IsGreaterThanOrEqualTo(new DateTime(2014, 10, 1))
-                        //    //.And()
-                        //    //.IsLessThanOrEqualTo(new DateTime(2014, 12, 31))
-                        //    )
-                        //)
-                .Series(series =>
-                {
-                    foreach (var model in Model.Modeler)
-                    {
-                        series.Bar(model.ModelCount).Name(model.Name);
-                    }
-
-                })
-        .CategoryAxis(axis => axis
-                .Categories(Model.Date).Labels(true).Title("날짜")
-        )
-        .ValueAxis(axis => axis
-            .Numeric()
-            .Labels(labels => labels.Visible(true))
-            .MajorUnit(10)
-
-        )
-        .Tooltip(tooltip => tooltip
-            .Visible(true)
-        )
-        .ChartArea(chart => chart.Height(800))
-    )
     </div>
 </div>
 
 <script>
-    //function onClick(e) {
-    //    alert('aa');
-    //    var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());;
-    //    var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());;
-    //    var chart = $("#LineChart").data("kendoChart");
-    //    chart.dataSource.filter([
-    //        {
-    //            "logic": "and",
-    //            "filters": [
-    //                {
-    //                    "field": "Date",
-    //                    "operator": "gte",
-    //                    "value": startDate
-
-    //                },
-    //                {
-    //                    "field": "Date",
-    //                    "operator": "lte",
-    //                    "value": endDate
-    //                }
-    //            ]
-    //        }
-    //    ]);
-    //    chart.refresh();
-    //}
     function onClick(e) {
         var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());;
         var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());;
         var chart = $("#LineChart").data("kendoChart");
-        var url = "/Chart/ModelProgressLine_Chart"
+        chart.dataSource.filter([
+            {
+                "logic": "and",
+                "filters": [
+                    {
+                        "field": "Date",
+                        "operator": "gte",
+                        "value": startDate
 
-        window.location.replace("/Chart/ModelProgressLine");
-        //var dataSource = new kendo.data.DataSource({
-        //    transport: {
-        //        read: {
-        //            url: url,
-        //            dataType : "json"
-        //        }
-        //    }
-        //});
-        //$("#LineChart").kendoChart({
-        //    autoBind: false,
-        //    dataSource: dataSource,
-        //    series: [
-        //        { field: "ModelCount" }
-        //        ]
-        //});
-        //dataSource.read();
-        //chart.setDataSource(dataSource);
-        ////$.ajax({
-        //    type: "GET",
-        //    url: url,
-        //    data: { start: startDate, end: endDate },
-        //    success: function (json) {
-        //        chart({
-        //            dataSource :
-        //                {
-
-        //                }
-        //        })
-        //        //var dataSource = new kendo.data.DataSource( {
-        //        //    data: json,
-        //        //})
-        //        //$("#LineChart").kendoChart({
-        //        //    datasource: {
-        //        //        data: json
-        //        //    }
-        //        //});
-        //        chart.setDataSource(dataSource);
-        //    }
-        //});
-        //chart.setDataSource(dsJson);
+                    },
+                    {
+                        "field": "Date",
+                        "operator": "lte",
+                        "value": endDate
+                    }
+                ]
+            }
+        ]);
+        chart.refresh();
     }
+
 </script>

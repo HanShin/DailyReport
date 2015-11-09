@@ -10,11 +10,11 @@ namespace DailyReport.Models
     {
         public ModelCountData()
         {
-            Date = new List<DateTime?>();
+            Date = new List<string>();
             Modeler = new List<ModelerData>();
         }
 
-        public List<DateTime?> Date { get; set; }
+        public List<string> Date { get; set; }
         public List<ModelerData> Modeler { get; set; }
     }
 }

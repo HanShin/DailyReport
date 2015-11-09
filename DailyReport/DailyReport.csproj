@@ -183,7 +183,7 @@
     <Compile Include="Models\SupportBM.cs" />
     <Compile Include="Models\CoModelLineNumData.cs" />
     <Compile Include="Models\ConsistencyItem.cs" />
-    <Compile Include="Models\LineListItem.cs" />
+    <Compile Include="Models\ProgressLineListItem.cs" />
     <Compile Include="Models\ModelCountData.cs" />
     <Compile Include="Models\ModelerData.cs" />
     <Compile Include="Models\ModelLineNumData.cs" />
@@ -889,6 +889,7 @@
     <Content Include="Views\Grid\TwotoSix.cshtml" />
     <Content Include="Views\Grid\EighttoTwentyFour.cshtml" />
     <Content Include="Views\Grid\LargerThanTwentyFour.cshtml" />
+    <Content Include="Views\Chart\ModelProgressLineModeler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

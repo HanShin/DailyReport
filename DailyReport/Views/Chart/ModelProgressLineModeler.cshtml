@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "ModelProgressLine";
+}
+<div class="col-xs-10 col-md-10">
+    <div class="radio-section">
+        @(Html.Kendo().RadioButton().Name("engine1").HtmlAttributes(new { @name = "selecttype" }).Label("전체"))
+        @(Html.Kendo().RadioButton().Name("engine2").Checked(true).HtmlAttributes(new { @name = "selecttype" }).Label("모델러별"))
+    </div>
+    <br />
+    <div class="dateSelection">
+        @(Html.Kendo().DatePicker().Name("startDate")
+            .Value(DateTime.Today.AddMonths(-1))
+            .Max(DateTime.Today)
+            .Culture("ko-KR")
+            ) - 
+        @(Html.Kendo().DatePicker().Name("endDate")
+            .Value(DateTime.Today)
+            .Max(DateTime.Today)
+            .Culture("ko-KR")
+        )
+        @(Html.Kendo().Button().Name("buttons").Content("검색").Events(ev => ev.Click("onClick")))
+    </div>
+    <br />
+    <div class="modelChart">
+        @*@(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()*@
+        @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
+        .Name("LineChart")
+        .Title("Pipe Line 작업량")
+        .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
+                .Series(series =>
+                {
+                    foreach (var model in Model.Modeler)
+                    {
+                        series.Bar(model.ModelCount).Name(model.Name);
+                    }
+
+                })
+        .CategoryAxis(axis => axis
+                .Categories(Model.Date).Labels(true).Title("날짜")
+        )
+        .ValueAxis(axis => axis
+            .Numeric()
+            .Labels(labels => labels.Visible(true))
+            .MajorUnit(10)
+
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+        )
+        .ChartArea(chart => chart.Height(800))
+    )
+    </div>
+</div>
+
+<script>
+
+    function onClick(e) {
+        var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());
+        startDate = startDate.toDateString();
+        var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());
+        endDate = endDate.toDateString();
+        var chart = $("#LineChart").data("kendoChart");
+        var url = "/Chart/ModelProgressLine_Chart"
+
+        window.location.replace("/Chart/ModelProgressLineModeler/"+ startDate + "/" + endDate);
+
+    }
+</script>

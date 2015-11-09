@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DailyReport.Models
 {
-    public class LineListItem
+    public class ProgressLineListItem
     {
         public DateTime? Date { get; set; }
         public string Modeler { get; set; }
