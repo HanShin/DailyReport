@@ -31,14 +31,17 @@ namespace DailyReport.Controllers
         {
             return View();
         }
+
         public ActionResult TwotoSix()
         {
             return View();
         }
+
         public ActionResult EighttoTwentyFour()
         {
             return View();
         }
+
         public ActionResult LargerThanTwentyFour()
         {
             return View();

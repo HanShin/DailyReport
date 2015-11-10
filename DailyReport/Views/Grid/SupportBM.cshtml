@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "ConsistencyValve";
+    ViewBag.Title = "SupportBoM";
 }
 <style>
     .k-grid-header-wrap th {
@@ -13,17 +13,18 @@
 
 <div class="col-xs-10 col-md-10">
         @(Html.Kendo().Grid<DailyReport.Models.SupportBM>()
-            .Name("SupportBMGrid")
+            .Name("SupportBoMGrid")
             .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
             .Columns(column =>
             {
                 column.Bound(p => p.OID).Width(300);
-                column.Bound(p => p.DWGNO).Width(150);
-                column.Bound(p => p.HANGERNAME).Width(150);
+                column.Bound(p => p.DWGNO).Width(150).Filterable(ftb=>ftb.Cell(cell => cell.Operator("contains")));
+                column.Bound(p => p.HANGERNAME).Width(150).Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
                 column.Bound(p => p.DESCRIPTION);
             }
             )
             .ColumnMenu().Resizable(resizable=>resizable.Columns(true))
+            .Filterable(filterable=>filterable.Extra(false))
             .Pageable()
             .Sortable()
             .Scrollable()
