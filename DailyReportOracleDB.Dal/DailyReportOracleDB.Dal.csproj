@@ -96,6 +96,12 @@
     <Compile Include="DR_LINENOISO.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DR_MMODEL_MTOOFF.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DR_MMODEL_TODOLIST.cs">
+      <DependentUpon>DailyReportModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DR_MODELPROGRESS_INSTRUMENT.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>

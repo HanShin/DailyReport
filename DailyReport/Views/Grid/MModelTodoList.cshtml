@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "M-Model TodoList";
+}
+
+<style>
+    .k-grid-header-wrap th {
+        font-size: x-small !important;
+    }
+    .k-grid tr td {
+    border-bottom: 1px solid #DBDBDB;
+    }
+
+</style>
+
+<div class="col-xs-10 col-md-10">
+        @(Html.Kendo().Grid<DailyReportOracleDB.Dal.DR_MMODEL_TODOLIST>()
+            .Name("TodoListGrid")
+            .HtmlAttributes(new { style = "height : 880px; border-width:1px;border-style:solid; border-color:darkgray;"})
+            .Columns(column =>
+            {
+                column.Bound(p => p.OID);
+                column.Bound(p => p.OBJECTTYPE);
+                column.Bound(p => p.STATE);
+                column.Bound(p => p.CREATEDBY);
+                column.Bound(p => p.DATECREATED);
+                column.Bound(p => p.LASTMODIFIEDBY);
+                column.Bound(p => p.DATELASTMODIFIED);
+                column.Bound(p => p.INFORM);
+
+            }
+            )
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read("TodoList_Read","Grid")
+                .PageSize(25)
+            )
+            
+        )
+</div>

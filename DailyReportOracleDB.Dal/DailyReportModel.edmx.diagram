@@ -26,6 +26,8 @@
         <AssociationConnector Association="Model.DR_CONSISTENCY_INSTRUMENT_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DR_CONSISTENCY_SPECIALTY_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DR_CONSISTENCY_VALVE_FK1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.DR_MMODEL_MTOOFF" Width="1.5" PointX="11.105365739718716" PointY="18.05736548549373" />
+        <EntityTypeShape EntityType="Model.DR_MMODEL_TODOLIST" Width="1.5" PointX="2.1551694619260586" PointY="25.312236097321023" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

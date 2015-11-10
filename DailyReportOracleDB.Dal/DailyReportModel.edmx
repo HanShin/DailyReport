@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="DR_BULKBM" EntityType="Model.Store.DR_BULKBM" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_CONSISTENCY" EntityType="Model.Store.DR_CONSISTENCY" store:Type="Tables" Schema="SYSTEM" />
@@ -16,6 +16,8 @@
           <EntitySet Name="DR_ISOREV" EntityType="Model.Store.DR_ISOREV" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_LINELIST" EntityType="Model.Store.DR_LINELIST" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_LINENOISO" EntityType="Model.Store.DR_LINENOISO" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_MMODEL_MTOOFF" EntityType="Model.Store.DR_MMODEL_MTOOFF" store:Type="Tables" Schema="SYSTEM" />
+          <EntitySet Name="DR_MMODEL_TODOLIST" EntityType="Model.Store.DR_MMODEL_TODOLIST" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_MODELPROGRESS_INSTRUMENT" EntityType="Model.Store.DR_MODELPROGRESS_INSTRUMENT" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Model.Store.DR_MODELPROGRESS_LINE" store:Type="Tables" Schema="SYSTEM" />
           <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Model.Store.DR_MODELPROGRESS_PART" store:Type="Tables" Schema="SYSTEM" />
@@ -168,6 +170,29 @@
           <Property Name="DWGNO" Type="varchar2" MaxLength="200" />
           <Property Name="NUM" Type="number" Nullable="false" />
         </EntityType>
+        <EntityType Name="DR_MMODEL_MTOOFF">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Name="ITEMNAME" Type="varchar2" MaxLength="500" />
+          <Property Name="MTO" Type="varchar2" MaxLength="50" />
+          <Property Name="PIPERUN" Type="varchar2" MaxLength="500" />
+          <Property Name="NUM" Type="number" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DR_MMODEL_TODOLIST">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Name="OID" Type="varchar2" MaxLength="500" />
+          <Property Name="OBJECTTYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="STATE" Type="varchar2" MaxLength="50" />
+          <Property Name="CREATEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATECREATED" Type="date" />
+          <Property Name="LASTMODIFIEDBY" Type="varchar2" MaxLength="500" />
+          <Property Name="DATELASTMODIFIED" Type="date" />
+          <Property Name="INFORM" Type="varchar2" MaxLength="50" />
+          <Property Name="NUM" Type="number" Nullable="false" />
+        </EntityType>
         <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
           <Key>
             <PropertyRef Name="OID" />
@@ -301,8 +326,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -337,6 +361,8 @@
             <End Role="DR_CONSISTENCY" EntitySet="DR_CONSISTENCY" />
             <End Role="DR_CONSISTENCY_VALVE" EntitySet="DR_CONSISTENCY_VALVE" />
           </AssociationSet>
+          <EntitySet Name="DR_MMODEL_MTOOFF" EntityType="Model.DR_MMODEL_MTOOFF" />
+          <EntitySet Name="DR_MMODEL_TODOLIST" EntityType="Model.DR_MMODEL_TODOLIST" />
         </EntityContainer>
         <EntityType Name="DR_BULKBM">
           <Key>
@@ -608,6 +634,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DR_MMODEL_MTOOFF">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="String" Name="ITEMNAME" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MTO" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PIPERUN" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DR_MMODEL_TODOLIST">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="String" Name="OID" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OBJECTTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="STATE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <Property Type="String" Name="LASTMODIFIEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATELASTMODIFIED" />
+          <Property Type="String" Name="INFORM" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -857,6 +906,31 @@
                 <ScalarProperty Name="HANGERNAME" ColumnName="HANGERNAME" />
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="NUM" ColumnName="NUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MMODEL_MTOOFF">
+            <EntityTypeMapping TypeName="Model.DR_MMODEL_MTOOFF">
+              <MappingFragment StoreEntitySet="DR_MMODEL_MTOOFF">
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="PIPERUN" ColumnName="PIPERUN" />
+                <ScalarProperty Name="MTO" ColumnName="MTO" />
+                <ScalarProperty Name="ITEMNAME" ColumnName="ITEMNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MMODEL_TODOLIST">
+            <EntityTypeMapping TypeName="Model.DR_MMODEL_TODOLIST">
+              <MappingFragment StoreEntitySet="DR_MMODEL_TODOLIST">
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="INFORM" ColumnName="INFORM" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="OBJECTTYPE" ColumnName="OBJECTTYPE" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -43,5 +43,7 @@ namespace DailyReportOracleDB.Dal
         public DbSet<DR_PROGRESS_PIPINGLINELIST> DR_PROGRESS_PIPINGLINELIST { get; set; }
         public DbSet<DR_SPECIALTYBM> DR_SPECIALTYBM { get; set; }
         public DbSet<DR_SUPPORTBM> DR_SUPPORTBM { get; set; }
+        public DbSet<DR_MMODEL_MTOOFF> DR_MMODEL_MTOOFF { get; set; }
+        public DbSet<DR_MMODEL_TODOLIST> DR_MMODEL_TODOLIST { get; set; }
     }
 }

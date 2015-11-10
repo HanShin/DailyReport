@@ -890,6 +890,8 @@
     <Content Include="Views\Grid\EighttoTwentyFour.cshtml" />
     <Content Include="Views\Grid\LargerThanTwentyFour.cshtml" />
     <Content Include="Views\Chart\ModelProgressLineModeler.cshtml" />
+    <Content Include="Views\Grid\MModelTodoList.cshtml" />
+    <Content Include="Views\Grid\MtoOff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

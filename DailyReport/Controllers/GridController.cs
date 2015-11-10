@@ -13,18 +13,14 @@ namespace DailyReport.Controllers
     {
         private Entities db = new Entities();
 
-        public ActionResult Orders_Read([DataSourceRequest]DataSourceRequest request)
+        #region View
+        public ActionResult MtoOff()
         {
-            var result = Enumerable.Range(0, 50).Select(i => new DailyReport.Models.OrderViewModel
-            {
-                OrderID = i,
-                Freight = i * 10,
-                OrderDate = DateTime.Now.AddDays(i),
-                ShipName = "ShipName " + i,
-                ShipCity = "ShipCity " + i
-            });
+            return View();
+        }
 
-            return Json(result.ToDataSourceResult(request));
+        public ActionResult MModelTodoList(){
+            return View();
         }
 
         public ActionResult Below2()
@@ -83,20 +79,19 @@ namespace DailyReport.Controllers
         {
             return View();
         }
+    #endregion 
 
-        void addOrUpdate(Dictionary<string, int> dic, string key, int newValue)
+        #region Json
+        public ActionResult Mto_Read([DataSourceRequest]DataSourceRequest request)
         {
-            int val;
-            if (dic.TryGetValue(key, out val))
-            {
-                // yay, value exists!
-                dic[key] = val + newValue;
-            }
-            else
-            {
-                // darn, lets add the value
-                dic.Add(key, newValue);
-            }
+            var result = db.DR_MMODEL_MTOOFF.ToList();
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult TodoList_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var result = db.DR_MMODEL_TODOLIST.ToList();
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Below2_Read([DataSourceRequest]DataSourceRequest request)
@@ -414,6 +409,21 @@ namespace DailyReport.Controllers
                           }).ToList();
 
             return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        void addOrUpdate(Dictionary<string, int> dic, string key, int newValue)
+        {
+            int val;
+            if (dic.TryGetValue(key, out val))
+            {
+                // yay, value exists!
+                dic[key] = val + newValue;
+            }
+            else
+            {
+                // darn, lets add the value
+                dic.Add(key, newValue);
+            }
         }
 
         /// <summary>

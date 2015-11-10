@@ -241,10 +241,10 @@
                                     .Expanded(true)
                                     .Items(children =>
                                     {
-                                        children.Add().Text("To do list")
+                                        children.Add().Text("To do list").Url("/Grid/MModelTodoList")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     
-                                        children.Add().Text("MTO off list")
+                                        children.Add().Text("MTO off list").Url("/Grid/MtoOff")
                                         .ImageUrl(Url.Content("~/Images/bullet.png"));
                                     });
 
