@@ -1,20 +1,22 @@
 ﻿@{
-    ViewBag.Title = "ModelProgressLine";
+    ViewBag.Title = "ModelProgressLineModeler";
 }
 <div class="col-xs-10 col-md-10">
     <div class="radio-section">
-        @(Html.Kendo().RadioButton().Name("engine1").HtmlAttributes(new { @name = "selecttype" }).Label("전체"))
+        @(Html.Kendo().RadioButton().Name("engine1").HtmlAttributes(new { @name = "selecttype"}).Label("전체"))
         @(Html.Kendo().RadioButton().Name("engine2").Checked(true).HtmlAttributes(new { @name = "selecttype" }).Label("모델러별"))
     </div>
     <br />
     <div class="dateSelection">
         @(Html.Kendo().DatePicker().Name("startDate")
-            .Value(DateTime.Today.AddMonths(-1))
+            //.Value(DateTime.Today.AddMonths(-1))
+            .Value(new DateTime(2014,10,1))
             .Max(DateTime.Today)
             .Culture("ko-KR")
             ) - 
         @(Html.Kendo().DatePicker().Name("endDate")
-            .Value(DateTime.Today)
+            //.Value(DateTime.Today)
+            .Value(new DateTime(2014,12,1))
             .Max(DateTime.Today)
             .Culture("ko-KR")
         )
@@ -53,7 +55,15 @@
 </div>
 
 <script>
-
+    $(document).ready(function () {
+        var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());
+        startDate = startDate.toDateString();
+        var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());
+        endDate = endDate.toDateString();
+        $("#engine1_").click(function () {
+            window.location.replace("/Chart/ModelProgressLine/" + startDate + "/" + endDate);
+        });
+    });
     function onClick(e) {
         var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());
         startDate = startDate.toDateString();

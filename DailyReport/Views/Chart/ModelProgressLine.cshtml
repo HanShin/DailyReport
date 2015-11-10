@@ -9,12 +9,14 @@
     <br />
     <div class="dateSelection">
         @(Html.Kendo().DatePicker().Name("startDate")
-            .Value(DateTime.Today.AddMonths(-1))
+            //.Value(DateTime.Today.AddMonths(-1))
+            .Value(new DateTime(2014,10,1))
             .Max(DateTime.Today)
             .Culture("ko-KR")
             ) - 
         @(Html.Kendo().DatePicker().Name("endDate")
-            .Value(DateTime.Today)
+            //.Value(DateTime.Today)
+            .Value(new DateTime(2014,12,1))
             .Max(DateTime.Today)
             .Culture("ko-KR")
         )
@@ -57,6 +59,15 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());
+        startDate = startDate.toDateString();
+        var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());
+        endDate = endDate.toDateString();
+        $("#engine2_").click(function () {
+            window.location.replace("/Chart/ModelProgressLineModeler/" + startDate + "/" + endDate);
+        });
+    });
     function onClick(e) {
         var startDate = $("#startDate").data("kendoDatePicker").value($("#value").val());;
         var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());;
