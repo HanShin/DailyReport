@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "PipeLine작업량";
+    ViewBag.Title = "Part작업량";
 }
 <div class="col-xs-10 col-md-10">
     <div class="radio-section">
@@ -26,8 +26,8 @@
     <div class="modelChart">
         @*@(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()*@
         @(Html.Kendo().Chart<DailyReport.Models.ModelCountData>()
-        .Name("LineChart")
-        .Title("Pipe Line 작업량")
+        .Name("PartChart")
+        .Title("Part 작업량")
         .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
                 .Series(series =>
                 {
@@ -61,7 +61,7 @@
         var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());
         endDate = endDate.toDateString();
         $("#engine1_").click(function () {
-            window.location.replace("/Chart/ModelProgressLine/" + startDate + "/" + endDate);
+            window.location.replace("/Chart/ModelProgressPart/" + startDate + "/" + endDate);
         });
     });
     function onClick(e) {
@@ -69,9 +69,9 @@
         startDate = startDate.toDateString();
         var endDate = $("#endDate").data("kendoDatePicker").value($("#value").val());
         endDate = endDate.toDateString();
-        var chart = $("#LineChart").data("kendoChart");
+        var chart = $("#PartChart").data("kendoChart");
 
-        window.location.replace("/Chart/ModelProgressLineModeler/"+ startDate + "/" + endDate);
+        window.location.replace("/Chart/ModelProgressPartModeler/"+ startDate + "/" + endDate);
 
     }
 </script>

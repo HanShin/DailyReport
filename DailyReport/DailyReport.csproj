@@ -894,6 +894,9 @@
     <Content Include="Views\Chart\ModelProgressLineModeler.cshtml" />
     <Content Include="Views\Grid\MModelTodoList.cshtml" />
     <Content Include="Views\Grid\MtoOff.cshtml" />
+    <Content Include="Views\Chart\ModelProgressRunModeler.cshtml" />
+    <Content Include="Views\Chart\ModelProgressPartModeler.cshtml" />
+    <Content Include="Views\Chart\ModelProgressInstrumentModeler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
