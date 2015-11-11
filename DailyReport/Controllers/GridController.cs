@@ -414,6 +414,7 @@ namespace DailyReport.Controllers
             return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
         #endregion
+
         void addOrUpdate(Dictionary<string, int> dic, string key, int newValue)
         {
             int val;
