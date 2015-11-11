@@ -65,15 +65,23 @@
         var map = new Map();
         for (var i in listValue) {
             if (i == 0) continue;
-            if (listValue[i].substr(0,2) == "SP") {
+            if (listValue[i].substr(0, 11) == "Instrument_") {
                 html +=
                     "<div class='SPItem'>" +
-	                "<img src='/Images/Items/SP.png'>" +
+	                "<img src='/Images/Items/Instrument.png'>" +
                     "<div class='post-content'>" +
-                    "<p class='post-item'>" + listValue[i] + "</p>" +
+                    "<p class='post-item'>" + listValue[i].substr(11) + "</p>" +
                     "</div>" +
                     "</div>"
                 //"<img src='/Images/Items/SP.png')/>"
+            } else if (listValue[i].substr(0, 10) == "Specialty_") {
+                html +=
+                    "<div class='SPItem'>" +
+	                "<img src='/Images/Items/Specialty.png'>" +
+                    "<div class='post-content'>" +
+                    "<p class='post-item'>" + listValue[i].substr(10) + "</p>" +
+                    "</div>" +
+                    "</div>"
             }
             else {
                 var itemCount = listValue[i].substr(listValue[i].length - 2);

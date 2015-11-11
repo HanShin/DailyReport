@@ -233,14 +233,14 @@ namespace DailyReport.Controllers
                 foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
                 {
                     consistency.ITEMS += ",";
-                    consistency.ITEMS += "SP_" + subitem.INS;
+                    consistency.ITEMS += "Instrument_" + subitem.INS;
                     subitem.DR_CONSISTENCY = null;
                 }
 
                 foreach (var subitem in item.DR_CONSISTENCY_SPECIALTY)
                 {
                     consistency.ITEMS += ",";
-                    consistency.ITEMS += "SP_" + subitem.TAG;
+                    consistency.ITEMS += "Specialty_" + subitem.TAG;
                     subitem.DR_CONSISTENCY = null;
                 }
                 result.Add(consistency);
