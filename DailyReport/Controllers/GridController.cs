@@ -211,6 +211,7 @@ namespace DailyReport.Controllers
             {
                 ConsistencyItem consistency = new ConsistencyItem();
                 consistency.PIPE_LINE = item.LINENO;
+                consistency.NPD = item.NPD;
                 Dictionary<string, int> itemList = new Dictionary<string, int>();
 
                 foreach (var subitem in item.DR_CONSISTENCY_VALVE)
@@ -420,12 +421,12 @@ namespace DailyReport.Controllers
             int val;
             if (dic.TryGetValue(key, out val))
             {
-                // yay, value exists!
+                // value exists!
                 dic[key] = val + newValue;
             }
             else
             {
-                // darn, lets add the value
+                // lets add the value
                 dic.Add(key, newValue);
             }
         }

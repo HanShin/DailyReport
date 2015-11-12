@@ -8,6 +8,7 @@ namespace DailyReport.Models
     public class ConsistencyItem
     {
         public string PIPE_LINE { get; set; }
+        public decimal? NPD { get; set; }
         public string ITEMS { get; set; }
     }
 }

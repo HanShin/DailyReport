@@ -30,7 +30,7 @@
         .Legend(legend => legend.Position(ChartLegendPosition.Bottom))
         .DataSource(ds => ds
             .Read(read => read
-            .Action("ModelProgressInstrument_Chart", "Chart"))
+            .Action("ModelProgressInstrument_Read", "Chart"))
             .Filter(filter => filter
                 .Add(o => o.Date).IsGreaterThanOrEqualTo(new DateTime(2014,10,1))
                 .And()

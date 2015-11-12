@@ -22,6 +22,8 @@ namespace DailyReportOracleDB.Dal
         }
     
         public string LINENO { get; set; }
+        public Nullable<decimal> NPD { get; set; }
+        public string PIPERUN { get; set; }
     
         public virtual ICollection<DR_CONSISTENCY_INSTRUMENT> DR_CONSISTENCY_INSTRUMENT { get; set; }
         public virtual ICollection<DR_CONSISTENCY_SPECIALTY> DR_CONSISTENCY_SPECIALTY { get; set; }

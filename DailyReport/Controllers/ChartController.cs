@@ -21,11 +21,11 @@ namespace DailyReport.Controllers
             public string Operator { get; set; }
         }
 
+        #region View
         public ActionResult ModelProgressLine()
         {
             return View();
         }
-
 
         public ActionResult ModelProgressLineModeler(string start, string end)
         {
@@ -213,36 +213,15 @@ namespace DailyReport.Controllers
             }
             return View(modelCountData);
         }
+        #endregion
 
+        #region Json
         public ActionResult ProgressPipingLineList()
         {
             return View();
         }
 
-        public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_MODELPROGRESS_RUN.ToList();
-
-            return Json(result.ToDataSourceResult(request));
-        }
-
-
-        public ActionResult ModelProgressPart_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_MODELPROGRESS_PART.ToList();
-
-            return Json(result.ToDataSourceResult(request));
-        }
-
-        public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = db.DR_MODELPROGRESS_INSTRUMENT.ToList();
-
-            return Json(result.ToDataSourceResult(request));
-        }
-
-
-        public ActionResult ModelProgressLine_Chart()
+        public ActionResult ModelProgressLine_Read()
         {
             var result = (from lines in db.DR_MODELPROGRESS_LINE
                           group lines by lines.DATECREATED into g
@@ -256,7 +235,7 @@ namespace DailyReport.Controllers
             return Json(result);
         }
 
-        public ActionResult ModelProgressRun_Chart([DataSourceRequest]DataSourceRequest request)
+        public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = (from run in db.DR_MODELPROGRESS_RUN
                           group run by run.DATECREATED into g
@@ -270,7 +249,7 @@ namespace DailyReport.Controllers
             return Json(result);
         }
 
-        public ActionResult ModelProgressPart_Chart([DataSourceRequest]DataSourceRequest request)
+        public ActionResult ModelProgressPart_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = (from part in db.DR_MODELPROGRESS_PART
                           group part by part.DATECREATED into g
@@ -285,7 +264,7 @@ namespace DailyReport.Controllers
             return Json(result);
         }
 
-        public ActionResult ModelProgressInstrument_Chart([DataSourceRequest]DataSourceRequest request)
+        public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
         {
             var result = (from instrument in db.DR_MODELPROGRESS_INSTRUMENT
                           group instrument by instrument.DATECREATED into g
@@ -306,6 +285,7 @@ namespace DailyReport.Controllers
 
             return Json(result.ToDataSourceResult(request));
         }
+
         public ActionResult ProgressPipingLineList_Chart([DataSourceRequest]DataSourceRequest request)
         {
             var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
@@ -340,73 +320,7 @@ namespace DailyReport.Controllers
 
             return Json(ml);
         }
-
-        //public ActionResult ProgressPipingLineList_Chart([DataSourceRequest]DataSourceRequest request)
-        //{
-        //    var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
-        //                select new Progress
-        //                {
-        //                    Line_no = aLineList.LINE_NO,
-        //                    Operator = aLineList.COOPERATOR
-        //                }).ToList();
-        //    /// 협력사별 수량
-        //    int sQuantity = sOperator("S");
-        //    int wQuantity = sOperator("W");
-        //    int kQuantity = sOperator("K");
-
-        //    /// 협력사별 수량 합과 전체 수량
-        //    int mTotal = sQuantity + wQuantity + kQuantity;
-        //    int Total = temp.Count();
-
-        //    //// 전체 수량에 대한 백분율
-        //    int mPercentage = mTotal * 100 / Total;
-        //    int tPercentage = 100;
-        //    string Col1 = "모델"; string Col2 = "전체";
-
-        //    ModelLineNumData mlnd = new ModelLineNumData(Col1, mPercentage, mTotal, Total);
-        //    ModelLineNumData mlnd1 = new ModelLineNumData(Col2, tPercentage, Total, Total);
-
-        //    List<ModelLineNumData> ml = new List<ModelLineNumData>();
-        //    ml.Add(mlnd); ml.Add(mlnd1);
-
-        //    return Json(ml);
-        //}
-
-        //public ActionResult coProgressPipingLineList_Chart([DataSourceRequest]DataSourceRequest request)
-        //{
-        //    var temp = (from aLineList in db.DR_PROGRESS_PIPINGLINELIST
-        //                select new Progress
-        //                {
-        //                    Line_no = aLineList.LINE_NO,
-        //                    Operator = aLineList.COOPERATOR
-        //                }).ToList();
-        //    // /// 협력사별 수량
-        //    int sQuantity = sOperator("S");
-        //    int wQuantity = sOperator("W");
-        //    int kQuantity = sOperator("K");
-
-        //    // /// 협력사별 수량 합과 전체 수량
-        //    int mTotal = sQuantity + wQuantity + kQuantity;
-        //    int Total = temp.Count();
-
-        //    // //// 전체 수량에 대한 백분율
-        //    int mPercentage = mTotal * 100 / Total;
-
-        //    // ///// 협력사별 백분율
-        //    int sPercentage = (int)(sQuantity * 100 / Total);
-        //    int wPercentage = (int)(wQuantity * 100 / Total);
-        //    int kPercentage = (int)(kQuantity * 100 / Total);
-        //    string Col1 = "경신"; string Col2 = "우림"; string Col3 = "스페이스";
-
-        //    CoModelLineNumData cmlnd = new CoModelLineNumData(Col1, kPercentage, kQuantity, Total);
-        //    CoModelLineNumData cmlnd1 = new CoModelLineNumData(Col2, wPercentage, wQuantity, Total);
-        //    CoModelLineNumData cmlnd2 = new CoModelLineNumData(Col3, sPercentage, sQuantity, Total);
-
-        //    List<CoModelLineNumData> ml = new List<CoModelLineNumData>();
-        //    ml.Add(cmlnd); ml.Add(cmlnd1); ml.Add(cmlnd2);
-
-        //    return Json(ml);
-        //}
+        #endregion
 
         private int sOperator(string coOperater)
         {
