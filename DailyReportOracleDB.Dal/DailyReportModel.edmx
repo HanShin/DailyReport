@@ -59,6 +59,8 @@
             <PropertyRef Name="LINENO" />
           </Key>
           <Property Name="LINENO" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="NPD" Type="number" Precision="4" Scale="2" />
+          <Property Name="PIPERUN" Type="varchar2" MaxLength="500" />
         </EntityType>
         <EntityType Name="DR_CONSISTENCY_INSTRUMENT">
           <Key>
@@ -387,6 +389,8 @@
           <NavigationProperty Name="DR_CONSISTENCY_INSTRUMENT" Relationship="Model.DR_CONSISTENCY_INSTRUMENT_FK1" FromRole="DR_CONSISTENCY" ToRole="DR_CONSISTENCY_INSTRUMENT" />
           <NavigationProperty Name="DR_CONSISTENCY_SPECIALTY" Relationship="Model.DR_CONSISTENCY_SPECIALTY_FK1" FromRole="DR_CONSISTENCY" ToRole="DR_CONSISTENCY_SPECIALTY" />
           <NavigationProperty Name="DR_CONSISTENCY_VALVE" Relationship="Model.DR_CONSISTENCY_VALVE_FK1" FromRole="DR_CONSISTENCY" ToRole="DR_CONSISTENCY_VALVE" />
+          <Property Type="Decimal" Name="NPD" Precision="4" Scale="2" />
+          <Property Type="String" Name="PIPERUN" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DR_CONSISTENCY_INSTRUMENT">
           <Key>
@@ -682,6 +686,8 @@
           <EntitySetMapping Name="DR_CONSISTENCY">
             <EntityTypeMapping TypeName="Model.DR_CONSISTENCY">
               <MappingFragment StoreEntitySet="DR_CONSISTENCY">
+                <ScalarProperty Name="PIPERUN" ColumnName="PIPERUN" />
+                <ScalarProperty Name="NPD" ColumnName="NPD" />
                 <ScalarProperty Name="LINENO" ColumnName="LINENO" />
               </MappingFragment>
             </EntityTypeMapping>
