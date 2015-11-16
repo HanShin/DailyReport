@@ -22,9 +22,9 @@
                 column.Bound(p => p.OBJECTTYPE);
                 column.Bound(p => p.STATE);
                 column.Bound(p => p.CREATEDBY);
-                column.Bound(p => p.DATECREATED);
+                column.Bound(p => p.DATECREATED).Format("{0:yyyy년 MM월 dd일}");
                 column.Bound(p => p.LASTMODIFIEDBY);
-                column.Bound(p => p.DATELASTMODIFIED);
+                column.Bound(p => p.DATELASTMODIFIED).Format("{0:yyyy년 MM월 dd일}");
                 column.Bound(p => p.INFORM);
 
             }
