@@ -223,45 +223,140 @@ namespace DailyReport.Controllers
 
         public ActionResult ModelProgressLine_Read()
         {
-            var result = (from lines in db.DR_MODELPROGRESS_LINE
+            var createdResult = (from lines in db.DR_MODELPROGRESS_LINE
                           group lines by lines.DATECREATED into g
                           let dataCount = g.Count()
                           orderby g.Key descending
-                          select new ProgressLineListItem
+                          select new CreatedAndModifiedCountLine
                           {
-                              Count = dataCount,
-                              Date = g.Key
+                              Date = g.Key,
+                              CreatedCount = dataCount
                           }).ToList();
-            return Json(result);
+            var modifiedResult = (from lines in db.DR_MODELPROGRESS_LINE
+                           group lines by lines.DATELASTMODIFIED into g
+                           let dataCount = g.Count()
+                           orderby g.Key descending
+                           select new CreatedAndModifiedCountLine
+                           {
+                               Date = g.Key,
+                               ModifiedCount  = dataCount
+                           }).ToList();
+
+            var leftOuterJoin = (from list1 in createdResult
+                                 join list2 in modifiedResult
+                                on list1.Date equals list2.Date into temp
+                                 from list2 in temp.DefaultIfEmpty(new CreatedAndModifiedCountLine { Date = list1.Date, CreatedCount = default(int) })
+                                 select new CreatedAndModifiedCountLine
+                                 {
+                                     Date = list1.Date,
+                                     CreatedCount = list1.CreatedCount,
+                                     ModifiedCount = list2.ModifiedCount
+                                 });
+            var rightOuterJoin = (from list1 in modifiedResult
+                                 join list2 in  createdResult
+                                on list1.Date equals list2.Date into temp
+                                 from list2 in temp.DefaultIfEmpty(new CreatedAndModifiedCountLine { Date = list1.Date, ModifiedCount = default(int) })
+                                 select new CreatedAndModifiedCountLine
+                                 {
+                                     Date = list1.Date,
+                                     CreatedCount = list2.CreatedCount,
+                                     ModifiedCount = list1.ModifiedCount
+                                 });
+
+            var fullOuterJoin = leftOuterJoin.Union(rightOuterJoin).ToList();
+            return Json(fullOuterJoin);
         }
 
         public ActionResult ModelProgressRun_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from run in db.DR_MODELPROGRESS_RUN
-                          group run by run.DATECREATED into g
-                          let dataCount = g.Count()
-                          orderby g.Key descending
-                          select new ProgressLineListItem
-                        {
-                            Count = dataCount,
-                            Date = g.Key
-                        }).ToList();
-            return Json(result);
+            var createdResult = (from lines in db.DR_MODELPROGRESS_RUN
+                                 group lines by lines.DATECREATED into g
+                                 let dataCount = g.Count()
+                                 orderby g.Key descending
+                                 select new CreatedAndModifiedCountLine
+                                 {
+                                     Date = g.Key,
+                                     CreatedCount = dataCount
+                                 }).ToList();
+            var modifiedResult = (from lines in db.DR_MODELPROGRESS_RUN
+                                  group lines by lines.DATELASTMODIFIED into g
+                                  let dataCount = g.Count()
+                                  orderby g.Key descending
+                                  select new CreatedAndModifiedCountLine
+                                  {
+                                      Date = g.Key,
+                                      ModifiedCount = dataCount
+                                  }).ToList();
+
+            var leftOuterJoin = (from list1 in createdResult
+                                 join list2 in modifiedResult
+                                on list1.Date equals list2.Date into temp
+                                 from list2 in temp.DefaultIfEmpty(new CreatedAndModifiedCountLine { Date = list1.Date, CreatedCount = default(int) })
+                                 select new CreatedAndModifiedCountLine
+                                 {
+                                     Date = list1.Date,
+                                     CreatedCount = list1.CreatedCount,
+                                     ModifiedCount = list2.ModifiedCount
+                                 });
+            var rightOuterJoin = (from list1 in modifiedResult
+                                  join list2 in createdResult
+                                 on list1.Date equals list2.Date into temp
+                                  from list2 in temp.DefaultIfEmpty(new CreatedAndModifiedCountLine { Date = list1.Date, ModifiedCount = default(int) })
+                                  select new CreatedAndModifiedCountLine
+                                  {
+                                      Date = list1.Date,
+                                      CreatedCount = list2.CreatedCount,
+                                      ModifiedCount = list1.ModifiedCount
+                                  });
+
+            var fullOuterJoin = leftOuterJoin.Union(rightOuterJoin).ToList();
+            return Json(fullOuterJoin);
         }
 
         public ActionResult ModelProgressPart_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from part in db.DR_MODELPROGRESS_PART
-                          group part by part.DATECREATED into g
-                          let dataCount = g.Count()
-                          orderby g.Key descending
-                          select new ProgressLineListItem
-                          {
-                              Count = dataCount,
-                              Date = g.Key
-                          }).ToList();
+            var createdResult = (from lines in db.DR_MODELPROGRESS_PART
+                                 group lines by lines.DATECREATED into g
+                                 let dataCount = g.Count()
+                                 orderby g.Key descending
+                                 select new CreatedAndModifiedCountLine
+                                 {
+                                     Date = g.Key,
+                                     CreatedCount = dataCount
+                                 }).ToList();
+            var modifiedResult = (from lines in db.DR_MODELPROGRESS_PART
+                                  group lines by lines.DATELASTMODIFIED into g
+                                  let dataCount = g.Count()
+                                  orderby g.Key descending
+                                  select new CreatedAndModifiedCountLine
+                                  {
+                                      Date = g.Key,
+                                      ModifiedCount = dataCount
+                                  }).ToList();
 
-            return Json(result);
+            var leftOuterJoin = (from list1 in createdResult
+                                 join list2 in modifiedResult
+                                on list1.Date equals list2.Date into temp
+                                 from list2 in temp.DefaultIfEmpty(new CreatedAndModifiedCountLine { Date = list1.Date, CreatedCount = default(int) })
+                                 select new CreatedAndModifiedCountLine
+                                 {
+                                     Date = list1.Date,
+                                     CreatedCount = list1.CreatedCount,
+                                     ModifiedCount = list2.ModifiedCount
+                                 });
+            var rightOuterJoin = (from list1 in modifiedResult
+                                  join list2 in createdResult
+                                 on list1.Date equals list2.Date into temp
+                                  from list2 in temp.DefaultIfEmpty(new CreatedAndModifiedCountLine { Date = list1.Date, ModifiedCount = default(int) })
+                                  select new CreatedAndModifiedCountLine
+                                  {
+                                      Date = list1.Date,
+                                      CreatedCount = list2.CreatedCount,
+                                      ModifiedCount = list1.ModifiedCount
+                                  });
+
+            var fullOuterJoin = leftOuterJoin.Union(rightOuterJoin).ToList();
+            return Json(fullOuterJoin);
         }
 
         public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)

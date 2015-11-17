@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BMItem.cs" />
+    <Compile Include="Models\CreatedAndModifiedCountLine.cs" />
     <Compile Include="Models\LineList.cs" />
     <Compile Include="Models\SupportBM.cs" />
     <Compile Include="Models\CoModelLineNumData.cs" />
@@ -187,7 +188,6 @@
     <Compile Include="Models\ModelCountData.cs" />
     <Compile Include="Models\ModelerData.cs" />
     <Compile Include="Models\ModelLineNumData.cs" />
-    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\InstrumentBM.cs" />
     <Compile Include="Models\SpecialtyBM.cs" />
     <Compile Include="Models\LineNoIso.cs" />
