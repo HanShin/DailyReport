@@ -14,11 +14,11 @@ namespace DailyReportOracleDB.Dal
     
     public partial class DR_CONSISTENCY_INSTRUMENT
     {
-        public string OID { get; set; }
         public string LINENO { get; set; }
         public string INS { get; set; }
-        public string NUM { get; set; }
-    
-        public virtual DR_CONSISTENCY DR_CONSISTENCY { get; set; }
+        public string PIPERUN { get; set; }
+        public string OID { get; set; }
+        public decimal NUM { get; set; }
+        public Nullable<decimal> NPD { get; set; }
     }
 }

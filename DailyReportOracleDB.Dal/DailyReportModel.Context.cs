@@ -26,10 +26,6 @@ namespace DailyReportOracleDB.Dal
         }
     
         public DbSet<DR_BULKBM> DR_BULKBM { get; set; }
-        public DbSet<DR_CONSISTENCY> DR_CONSISTENCY { get; set; }
-        public DbSet<DR_CONSISTENCY_INSTRUMENT> DR_CONSISTENCY_INSTRUMENT { get; set; }
-        public DbSet<DR_CONSISTENCY_SPECIALTY> DR_CONSISTENCY_SPECIALTY { get; set; }
-        public DbSet<DR_CONSISTENCY_VALVE> DR_CONSISTENCY_VALVE { get; set; }
         public DbSet<DR_INSTRUMENTBM> DR_INSTRUMENTBM { get; set; }
         public DbSet<DR_ISODESCRIPTION> DR_ISODESCRIPTION { get; set; }
         public DbSet<DR_ISOREV> DR_ISOREV { get; set; }
@@ -45,5 +41,8 @@ namespace DailyReportOracleDB.Dal
         public DbSet<DR_MODELPROGRESS_LINE> DR_MODELPROGRESS_LINE { get; set; }
         public DbSet<DR_MODELPROGRESS_PART> DR_MODELPROGRESS_PART { get; set; }
         public DbSet<DR_MODELPROGRESS_RUN> DR_MODELPROGRESS_RUN { get; set; }
+        public DbSet<DR_CONSISTENCY_INSTRUMENT> DR_CONSISTENCY_INSTRUMENT { get; set; }
+        public DbSet<DR_CONSISTENCY_SPECIALTY> DR_CONSISTENCY_SPECIALTY { get; set; }
+        public DbSet<DR_CONSISTENCY_VALVE> DR_CONSISTENCY_VALVE { get; set; }
     }
 }

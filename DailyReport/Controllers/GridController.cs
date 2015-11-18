@@ -205,47 +205,47 @@ namespace DailyReport.Controllers
 
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var tempItem = db.DR_CONSISTENCY.Take(500).ToList();
+            var tempItem = db.DR_CONSISTENCY_INSTRUMENT;
             List<ConsistencyItem> result = new List<ConsistencyItem>();
-            foreach (var item in tempItem)
-            {
-                ConsistencyItem consistency = new ConsistencyItem();
-                consistency.PIPE_LINE = item.LINENO;
-                consistency.NPD = item.NPD;
-                Dictionary<string, int> itemList = new Dictionary<string, int>();
+            //foreach (var item in tempItem)
+            //{
+            //    ConsistencyItem consistency = new ConsistencyItem();
+            //    consistency.PIPE_LINE = item.LINENO;
+            //    consistency.NPD = item.NPD;
+            //    Dictionary<string, int> itemList = new Dictionary<string, int>();
 
-                foreach (var subitem in item.DR_CONSISTENCY_VALVE)
-                {
-                    if (string.IsNullOrEmpty(subitem.LONGMATERIALDESCRIPTION))
-                    {
-                        continue;
-                    }
-                    string valveItem =  subitem.LONGMATERIALDESCRIPTION.Split(' ').First();
-                    addOrUpdate(itemList, valveItem, 1);
-                    subitem.DR_CONSISTENCY = null;
-                }
+            //    foreach (var subitem in item.DR_CONSISTENCY_VALVE)
+            //    {
+            //        if (string.IsNullOrEmpty(subitem.LONGMATERIALDESCRIPTION))
+            //        {
+            //            continue;
+            //        }
+            //        string valveItem =  subitem.LONGMATERIALDESCRIPTION.Split(' ').First();
+            //        addOrUpdate(itemList, valveItem, 1);
+            //        subitem.DR_CONSISTENCY = null;
+            //    }
 
-                foreach(string valveItem in itemList.Keys)
-                {
-                    consistency.ITEMS += ",";
-                    consistency.ITEMS += valveItem + itemList[valveItem].ToString("00");
-                }
+            //    foreach(string valveItem in itemList.Keys)
+            //    {
+            //        consistency.ITEMS += ",";
+            //        consistency.ITEMS += valveItem + itemList[valveItem].ToString("00");
+            //    }
 
-                foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
-                {
-                    consistency.ITEMS += ",";
-                    consistency.ITEMS += "Instrument_" + subitem.INS;
-                    subitem.DR_CONSISTENCY = null;
-                }
+            //    foreach (var subitem in item.DR_CONSISTENCY_INSTRUMENT)
+            //    {
+            //        consistency.ITEMS += ",";
+            //        consistency.ITEMS += "Instrument_" + subitem.INS;
+            //        subitem.DR_CONSISTENCY = null;
+            //    }
 
-                foreach (var subitem in item.DR_CONSISTENCY_SPECIALTY)
-                {
-                    consistency.ITEMS += ",";
-                    consistency.ITEMS += "Specialty_" + subitem.TAG;
-                    subitem.DR_CONSISTENCY = null;
-                }
-                result.Add(consistency);
-            }
+            //    foreach (var subitem in item.DR_CONSISTENCY_SPECIALTY)
+            //    {
+            //        consistency.ITEMS += ",";
+            //        consistency.ITEMS += "Specialty_" + subitem.TAG;
+            //        subitem.DR_CONSISTENCY = null;
+            //    }
+            //    result.Add(consistency);
+            //}
             return Json(result.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
         }
 

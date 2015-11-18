@@ -69,9 +69,6 @@
     <Compile Include="DR_BULKBM.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DR_CONSISTENCY.cs">
-      <DependentUpon>DailyReportModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DR_CONSISTENCY_INSTRUMENT.cs">
       <DependentUpon>DailyReportModel.tt</DependentUpon>
     </Compile>
