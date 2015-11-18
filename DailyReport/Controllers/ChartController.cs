@@ -361,17 +361,71 @@ namespace DailyReport.Controllers
 
         public ActionResult ModelProgressInstrument_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var result = (from instrument in db.DR_MODELPROGRESS_INSTRUMENT
-                          group instrument by instrument.DATECREATED into g
-                          let dataCount = g.Count()
-                          orderby g.Key descending
-                          select new ProgressLineListItem
-                        {
-                            Count = dataCount,
-                            Date = g.Key
-                        }).ToList();
+            var tempCreatedResult = (from lines in db.DR_MODELPROGRESS_INSTRUMENT
+                                 group lines by lines.DATECREATED into g
+                                 let dataCount = g.Count()
+                                 orderby g.Key descending
+                                 select new 
+                                 {
+                                     Date = g.Key,
+                                     CreatedCount = dataCount,
+                                     CreatedItem = g
+                                 }).ToList();
 
-            return Json(result);
+            var createdResult = (from temp in tempCreatedResult
+                                select new InstrumentItem
+                                {
+                                    Date = temp.Date,
+                                    CreatedCount = temp.CreatedCount,
+                                    CreatedItem = string.Join(",", temp.CreatedItem.Select(t => t.INST))
+                                }).ToList();
+
+            var tempModifiedResult = (from lines in db.DR_MODELPROGRESS_INSTRUMENT
+                                  group lines by lines.DATELASTMODIFIED into g
+                                  let dataCount = g.Count()
+                                  orderby g.Key descending
+                                  select new
+                                  {
+                                      Date = g.Key,
+                                      ModifiedCount = dataCount,
+                                      ModifiedItem = g
+                                  }).ToList();
+
+            var modifiedResult = (from temp in tempModifiedResult
+                                 select new InstrumentItem
+                                 {
+                                     Date = temp.Date,
+                                     ModifiedCount = temp.ModifiedCount,
+                                     ModifiedItem = string.Join(",", temp.ModifiedItem.Select(t => t.INST))
+                                 }).ToList();
+
+            var leftOuterJoin = (from list1 in createdResult
+                                 join list2 in modifiedResult
+                                on list1.Date equals list2.Date into temp
+                                 from list2 in temp.DefaultIfEmpty(new InstrumentItem { Date = list1.Date, CreatedCount = default(int), CreatedItem = default(string)})
+                                 select new InstrumentItem
+                                 {
+                                     Date = list1.Date,
+                                     CreatedCount = list1.CreatedCount,
+                                     CreatedItem = list1.CreatedItem,
+                                     ModifiedCount = list2.ModifiedCount,
+                                     ModifiedItem = list2.ModifiedItem
+                                 });
+            var rightOuterJoin = (from list1 in modifiedResult
+                                  join list2 in createdResult
+                                 on list1.Date equals list2.Date into temp
+                                  from list2 in temp.DefaultIfEmpty(new InstrumentItem { Date = list1.Date, ModifiedCount = default(int), ModifiedItem = default(string) })
+                                  select new InstrumentItem
+                                  {
+                                      Date = list1.Date,
+                                      CreatedCount = list2.CreatedCount,
+                                      CreatedItem = list2.CreatedItem,
+                                      ModifiedCount = list1.ModifiedCount,
+                                      ModifiedItem = list1.ModifiedItem
+                                  });
+
+            var fullOuterJoin = leftOuterJoin.Union(rightOuterJoin).ToList();
+            return Json(fullOuterJoin);
         }
 
         public ActionResult ProgressPipingLineList_Read([DataSourceRequest]DataSourceRequest request)

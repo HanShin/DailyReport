@@ -180,6 +180,7 @@
     </Compile>
     <Compile Include="Models\BMItem.cs" />
     <Compile Include="Models\CreatedAndModifiedCountLine.cs" />
+    <Compile Include="Models\InstrumentItem.cs" />
     <Compile Include="Models\LineList.cs" />
     <Compile Include="Models\SupportBM.cs" />
     <Compile Include="Models\CoModelLineNumData.cs" />
