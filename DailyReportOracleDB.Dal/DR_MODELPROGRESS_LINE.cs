@@ -21,5 +21,7 @@ namespace DailyReportOracleDB.Dal
         public string LASTMODIFIEDBY { get; set; }
         public Nullable<System.DateTime> DATELASTMODIFIED { get; set; }
         public string PROJECT { get; set; }
+        public string DWGNO { get; set; }
+        public decimal NUM { get; set; }
     }
 }

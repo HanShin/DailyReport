@@ -350,10 +350,6 @@
           <EntitySet Name="DR_ISOREV" EntityType="Model.DR_ISOREV" />
           <EntitySet Name="DR_LINELIST" EntityType="Model.DR_LINELIST" />
           <EntitySet Name="DR_LINENOISO" EntityType="Model.DR_LINENOISO" />
-          <EntitySet Name="DR_MODELPROGRESS_INSTRUMENT" EntityType="Model.DR_MODELPROGRESS_INSTRUMENT" />
-          <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Model.DR_MODELPROGRESS_LINE" />
-          <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Model.DR_MODELPROGRESS_PART" />
-          <EntitySet Name="DR_MODELPROGRESS_RUN" EntityType="Model.DR_MODELPROGRESS_RUN" />
           <EntitySet Name="DR_PROGRESS_CPIPINGLINELIST" EntityType="Model.DR_PROGRESS_CPIPINGLINELIST" />
           <EntitySet Name="DR_PROGRESS_PIPINGLINELIST" EntityType="Model.DR_PROGRESS_PIPINGLINELIST" />
           <EntitySet Name="DR_SPECIALTYBM" EntityType="Model.DR_SPECIALTYBM" />
@@ -372,6 +368,10 @@
           </AssociationSet>
           <EntitySet Name="DR_MMODEL_MTOOFF" EntityType="Model.DR_MMODEL_MTOOFF" />
           <EntitySet Name="DR_MMODEL_TODOLIST" EntityType="Model.DR_MMODEL_TODOLIST" />
+          <EntitySet Name="DR_MODELPROGRESS_INSTRUMENT" EntityType="Model.DR_MODELPROGRESS_INSTRUMENT" />
+          <EntitySet Name="DR_MODELPROGRESS_LINE" EntityType="Model.DR_MODELPROGRESS_LINE" />
+          <EntitySet Name="DR_MODELPROGRESS_PART" EntityType="Model.DR_MODELPROGRESS_PART" />
+          <EntitySet Name="DR_MODELPROGRESS_RUN" EntityType="Model.DR_MODELPROGRESS_RUN" />
         </EntityContainer>
         <EntityType Name="DR_BULKBM">
           <Key>
@@ -512,70 +512,6 @@
           <Property Name="DWGNO" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="NUM" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
         </EntityType>
-        <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
-          <Key>
-            <PropertyRef Name="OID" />
-            <PropertyRef Name="NUM" />
-          </Key>
-          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="INST" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="E" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="N" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="EL" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATECREATED" Type="DateTime" />
-          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATELASTMODIFIED" Type="DateTime" />
-          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="DR_MODELPROGRESS_LINE">
-          <Key>
-            <PropertyRef Name="OID" />
-            <PropertyRef Name="NUM" />
-          </Key>
-          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="PIPELINE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATECREATED" Type="DateTime" />
-          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="DATELASTMODIFIED" Type="DateTime" />
-          <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
-        </EntityType>
-        <EntityType Name="DR_MODELPROGRESS_PART">
-          <Key>
-            <PropertyRef Name="OID" />
-            <PropertyRef Name="NUM" />
-          </Key>
-          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="PART" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="INDUSTRYCOMMODITYCODE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATECREATED" Type="DateTime" />
-          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATELASTMODIFIED" Type="DateTime" />
-          <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="DR_MODELPROGRESS_RUN">
-          <Key>
-            <PropertyRef Name="OID" />
-            <PropertyRef Name="NUM" />
-          </Key>
-          <Property Name="OID" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="PIPERUN" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="SPECNAME" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="FLUIDCODE" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="CREATEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATECREATED" Type="DateTime" />
-          <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="DATELASTMODIFIED" Type="DateTime" />
-          <Property Name="PROJECT" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
-        </EntityType>
         <EntityType Name="DR_PROGRESS_CPIPINGLINELIST">
           <Key>
             <PropertyRef Name="IND" />
@@ -677,6 +613,66 @@
           <Property Type="String" Name="LASTMODIFIEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="DATELASTMODIFIED" />
           <Property Type="String" Name="INFORM" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_INSTRUMENT">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="String" Name="OID" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INST" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="E" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="N" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EL" Precision="38" Scale="0" />
+          <Property Type="String" Name="CREATEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <Property Type="String" Name="LASTMODIFIEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATELASTMODIFIED" />
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_LINE">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="String" Name="OID" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PIPELINE" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <Property Type="String" Name="LASTMODIFIEDBY" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATELASTMODIFIED" />
+          <Property Type="String" Name="PROJECT" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_PART">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="String" Name="OID" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PART" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INDUSTRYCOMMODITYCODE" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <Property Type="String" Name="LASTMODIFIEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATELASTMODIFIED" />
+          <Property Type="String" Name="PROJECT" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="DWGNO" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DR_MODELPROGRESS_RUN">
+          <Key>
+            <PropertyRef Name="NUM" />
+          </Key>
+          <Property Type="String" Name="OID" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PIPERUN" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SPECNAME" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FLUIDCODE" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATECREATED" />
+          <Property Type="String" Name="LASTMODIFIEDBY" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATELASTMODIFIED" />
+          <Property Type="String" Name="PROJECT" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="NUM" Nullable="false" Precision="38" Scale="0" />
         </EntityType>
       </Schema>
@@ -828,70 +824,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DR_MODELPROGRESS_INSTRUMENT">
-            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_INSTRUMENT">
-              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_INSTRUMENT">
-                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
-                <ScalarProperty Name="NUM" ColumnName="NUM" />
-                <ScalarProperty Name="OID" ColumnName="OID" />
-                <ScalarProperty Name="INST" ColumnName="INST" />
-                <ScalarProperty Name="E" ColumnName="E" />
-                <ScalarProperty Name="N" ColumnName="N" />
-                <ScalarProperty Name="EL" ColumnName="EL" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
-                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
-                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DR_MODELPROGRESS_LINE">
-            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_LINE">
-              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_LINE">
-                <ScalarProperty Name="NUM" ColumnName="NUM" />
-                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
-                <ScalarProperty Name="OID" ColumnName="OID" />
-                <ScalarProperty Name="PIPELINE" ColumnName="PIPELINE" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
-                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
-                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
-                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DR_MODELPROGRESS_PART">
-            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_PART">
-              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_PART">
-                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
-                <ScalarProperty Name="NUM" ColumnName="NUM" />
-                <ScalarProperty Name="OID" ColumnName="OID" />
-                <ScalarProperty Name="PART" ColumnName="PART" />
-                <ScalarProperty Name="INDUSTRYCOMMODITYCODE" ColumnName="INDUSTRYCOMMODITYCODE" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
-                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
-                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
-                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DR_MODELPROGRESS_RUN">
-            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_RUN">
-              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_RUN">
-                <ScalarProperty Name="NUM" ColumnName="NUM" />
-                <ScalarProperty Name="OID" ColumnName="OID" />
-                <ScalarProperty Name="PIPERUN" ColumnName="PIPERUN" />
-                <ScalarProperty Name="SPECNAME" ColumnName="SPECNAME" />
-                <ScalarProperty Name="FLUIDCODE" ColumnName="FLUIDCODE" />
-                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
-                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
-                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
-                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
-                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DR_PROGRESS_CPIPINGLINELIST">
             <EntityTypeMapping TypeName="Model.DR_PROGRESS_CPIPINGLINELIST">
               <MappingFragment StoreEntitySet="DR_PROGRESS_CPIPINGLINELIST">
@@ -961,6 +893,70 @@
                 <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
                 <ScalarProperty Name="STATE" ColumnName="STATE" />
                 <ScalarProperty Name="OBJECTTYPE" ColumnName="OBJECTTYPE" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_INSTRUMENT">
+            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_INSTRUMENT">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_INSTRUMENT">
+                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="EL" ColumnName="EL" />
+                <ScalarProperty Name="N" ColumnName="N" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="INST" ColumnName="INST" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_LINE">
+            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_LINE">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_LINE">
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="PIPELINE" ColumnName="PIPELINE" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_PART">
+            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_PART">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_PART">
+                <ScalarProperty Name="DWGNO" ColumnName="DWGNO" />
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="INDUSTRYCOMMODITYCODE" ColumnName="INDUSTRYCOMMODITYCODE" />
+                <ScalarProperty Name="PART" ColumnName="PART" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DR_MODELPROGRESS_RUN">
+            <EntityTypeMapping TypeName="Model.DR_MODELPROGRESS_RUN">
+              <MappingFragment StoreEntitySet="DR_MODELPROGRESS_RUN">
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="PROJECT" ColumnName="PROJECT" />
+                <ScalarProperty Name="DATELASTMODIFIED" ColumnName="DATELASTMODIFIED" />
+                <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="FLUIDCODE" ColumnName="FLUIDCODE" />
+                <ScalarProperty Name="SPECNAME" ColumnName="SPECNAME" />
+                <ScalarProperty Name="PIPERUN" ColumnName="PIPERUN" />
                 <ScalarProperty Name="OID" ColumnName="OID" />
               </MappingFragment>
             </EntityTypeMapping>

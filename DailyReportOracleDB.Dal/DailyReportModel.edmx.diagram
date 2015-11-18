@@ -15,10 +15,6 @@
         <EntityTypeShape EntityType="Model.DR_ISOREV" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DR_LINELIST" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DR_LINENOISO" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_INSTRUMENT" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_LINE" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_PART" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_RUN" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DR_PROGRESS_CPIPINGLINELIST" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DR_PROGRESS_PIPINGLINELIST" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DR_SPECIALTYBM" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
@@ -28,6 +24,10 @@
         <AssociationConnector Association="Model.DR_CONSISTENCY_VALVE_FK1" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.DR_MMODEL_MTOOFF" Width="1.5" PointX="11.105365739718716" PointY="18.05736548549373" />
         <EntityTypeShape EntityType="Model.DR_MMODEL_TODOLIST" Width="1.5" PointX="2.1551694619260586" PointY="25.312236097321023" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_INSTRUMENT" Width="1.5" PointX="10.339419788839026" PointY="15.707584284109801" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_LINE" Width="1.5" PointX="9.8384943948306578" PointY="9.814034377138146" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_PART" Width="1.5" PointX="6.6628545348825181" PointY="29.911595403175614" />
+        <EntityTypeShape EntityType="Model.DR_MODELPROGRESS_RUN" Width="1.5" PointX="6.074299874750106" PointY="30.32707646411242" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
