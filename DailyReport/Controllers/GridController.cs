@@ -205,7 +205,33 @@ namespace DailyReport.Controllers
 
         public ActionResult Consistency_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var tempItem = db.DR_CONSISTENCY_INSTRUMENT;
+            // Linq Query에서는 .Net 메서드를 사용 못하는 것 들이 많아서 두번 나눠서 값을 얻는다.
+            var tempInstrument = (from instru in db.DR_CONSISTENCY_INSTRUMENT
+                            group instru by new { instru.LINENO, instru.NPD } into g
+                            orderby g.Key.LINENO descending
+                            select new
+                            {
+                                PIPE_LINE = g.Key.LINENO,
+                                NPD = g.Key.NPD,
+                                ITEMS = g
+                            });
+
+            var instrument = (from temp in tempInstrument
+                              select new ConsistencyItem
+                              {
+                                  PIPE_LINE = temp.PIPE_LINE,
+                                  NPD = temp.NPD,
+                                  ITEMS = string.Join(",",temp.ITEMS.Select(t=>t.INS))
+                              }).ToList();
+
+            var tempValve = (from valve in db.DR_CONSISTENCY_VALVE
+                             group valve by new { valve.PIPELINE, valve.NPD } into g
+                             orderby g.Key.PIPELINE descending
+                             select new
+                             {
+                                 PIPE_LINE = g.Key.PIPELINE,
+                                 NPD = g.
+                             });
             List<ConsistencyItem> result = new List<ConsistencyItem>();
             //foreach (var item in tempItem)
             //{
