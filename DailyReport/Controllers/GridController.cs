@@ -221,8 +221,27 @@ namespace DailyReport.Controllers
                               {
                                   PIPE_LINE = temp.PIPE_LINE,
                                   NPD = temp.NPD,
-                                  ITEMS = string.Join(",",temp.ITEMS.Select(t=>t.INS))
+                                  ITEMS = string.Join(",",temp.ITEMS.Select(t=> "Instrument_" + t.INS))
                               }).ToList();
+
+            var tempSpecialty = (from valve in db.DR_CONSISTENCY_SPECIALTY
+                                group valve by new { valve.LINENO, valve.NPD } into g
+                                 orderby g.Key.LINENO descending
+                                 select new
+                                 {
+                                     PIPE_LINE = g.Key.LINENO,
+                                     NPD = g.Key.NPD,
+                                     ITEMS = g
+                                 });
+
+            var Specialty = (from temp in tempSpecialty
+                                 select new ConsistencyItem
+                                 {
+                                     PIPE_LINE = temp.PIPE_LINE,
+                                     NPD = temp.NPD,
+                                     ITEMS = string.Join(",", temp.ITEMS.Select(t => "Specialty_"+ t.TAG))
+                                 }).ToList();
+
 
             var tempValve = (from valve in db.DR_CONSISTENCY_VALVE
                              group valve by new { valve.PIPELINE, valve.NPD } into g
@@ -230,9 +249,19 @@ namespace DailyReport.Controllers
                              select new
                              {
                                  PIPE_LINE = g.Key.PIPELINE,
-                                 NPD = g.
+                                 NPD = g.Key.NPD,
+                                 ITEMS = g
                              });
+
+            var Valve = (from temp in tempValve
+                         select new ConsistencyItem
+                         {
+                             PIPE_LINE = temp.PIPE_LINE,
+                             NPD = temp.NPD,
+                             ITEMS = string.Join(",", temp.ITEMS.Select(t => t.ITEMNAME))
+                         }).ToList();
             List<ConsistencyItem> result = new List<ConsistencyItem>();
+
             //foreach (var item in tempItem)
             //{
             //    ConsistencyItem consistency = new ConsistencyItem();
