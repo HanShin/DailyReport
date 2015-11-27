@@ -242,6 +242,15 @@ namespace DailyReport.Controllers
                                      ITEMS = string.Join(",", temp.ITEMS.Select(t => "Specialty_"+ t.TAG))
                                  }).ToList();
 
+            var leftOuterJoin1 = (from list1 in instrument
+                                 join list2 in Specialty on new {list1.PIPE_LINE,list1.NPD} equals new {list2.PIPE_LINE, list2.NPD}
+                                 into temp
+                                      select new ConsistencyItem {
+                                          PIPE_LINE = list1.PIPE_LINE,
+                                          NPD = list1.NPD,
+                                          ITEMS = list1.ITEMS
+                                      });
+            System.Collections.ArrayList a = new System.Collections.ArrayList();
 
             var tempValve = (from valve in db.DR_CONSISTENCY_VALVE
                              group valve by new { valve.PIPELINE, valve.NPD } into g
