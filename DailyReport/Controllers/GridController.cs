@@ -214,14 +214,14 @@ namespace DailyReport.Controllers
                                 PIPE_LINE = g.Key.LINENO,
                                 NPD = g.Key.NPD,
                                 ITEMS = g
-                            });
+                            }).ToList();
 
             var instrument = (from temp in tempInstrument
                               select new ConsistencyItem
                               {
                                   PIPE_LINE = temp.PIPE_LINE,
                                   NPD = temp.NPD,
-                                  ITEMS = string.Join(",",temp.ITEMS.Select(t=> "Instrument_" + t.INS))
+                                  ITEMS = string.Join(",", temp.ITEMS.Select(t => "Instrument_" + t.INS))
                               }).ToList();
 
             var tempSpecialty = (from valve in db.DR_CONSISTENCY_SPECIALTY
@@ -232,7 +232,7 @@ namespace DailyReport.Controllers
                                      PIPE_LINE = g.Key.LINENO,
                                      NPD = g.Key.NPD,
                                      ITEMS = g
-                                 });
+                                 }).ToList();
 
             var Specialty = (from temp in tempSpecialty
                                  select new ConsistencyItem
@@ -249,8 +249,19 @@ namespace DailyReport.Controllers
                                           PIPE_LINE = list1.PIPE_LINE,
                                           NPD = list1.NPD,
                                           ITEMS = list1.ITEMS
-                                      });
-            System.Collections.ArrayList a = new System.Collections.ArrayList();
+                                      }).ToList();
+
+            var RightOuterJoin1 = (from list1 in Specialty
+                                   join list2 in instrument on new { list1.PIPE_LINE, list1.NPD } equals new { list2.PIPE_LINE, list2.NPD }
+                                  into temp
+                                  select new ConsistencyItem
+                                  {
+                                      PIPE_LINE = list1.PIPE_LINE,
+                                      NPD = list1.NPD,
+                                      ITEMS = list1.ITEMS
+                                  }).ToList();
+
+            var fullOuterJoin1 = leftOuterJoin1.Union(RightOuterJoin1).ToList();
 
             var tempValve = (from valve in db.DR_CONSISTENCY_VALVE
                              group valve by new { valve.PIPELINE, valve.NPD } into g
@@ -260,17 +271,51 @@ namespace DailyReport.Controllers
                                  PIPE_LINE = g.Key.PIPELINE,
                                  NPD = g.Key.NPD,
                                  ITEMS = g
-                             });
+                             }).ToList();
 
             var Valve = (from temp in tempValve
                          select new ConsistencyItem
                          {
                              PIPE_LINE = temp.PIPE_LINE,
                              NPD = temp.NPD,
-                             ITEMS = string.Join(",", temp.ITEMS.Select(t => t.ITEMNAME))
+                             ITEMS = string.Join(",", temp.ITEMS.Select(t => t.LONGMATERIALDESCRIPTION))
                          }).ToList();
-            List<ConsistencyItem> result = new List<ConsistencyItem>();
 
+            foreach (ConsistencyItem item in Valve)
+            {
+                item.ITEMS = item.ITEMS.Split(' ').First();
+            }
+
+            var leftOuterJoin2 = (from list1 in fullOuterJoin1
+                                  join list2 in Valve on new { list1.PIPE_LINE, list1.NPD } equals new { list2.PIPE_LINE, list2.NPD }
+                                  into temp
+                                  select new ConsistencyItem
+                                  {
+                                      PIPE_LINE = list1.PIPE_LINE,
+                                      NPD = list1.NPD,
+                                      ITEMS = list1.ITEMS
+                                  }).ToList();
+
+            var RightOuterJoin2 = (from list1 in Valve
+                                   join list2 in fullOuterJoin1 on new { list1.PIPE_LINE, list1.NPD } equals new { list2.PIPE_LINE, list2.NPD }
+                                  into temp
+                                   select new ConsistencyItem
+                                   {
+                                       PIPE_LINE = list1.PIPE_LINE,
+                                       NPD = list1.NPD,
+                                       ITEMS = list1.ITEMS
+                                   }).ToList();
+            var fullOuterJoin2 = leftOuterJoin2.Union(RightOuterJoin2).ToList();
+
+            var result = (from list in fullOuterJoin2
+                          group list by new {list.PIPE_LINE, list.NPD}
+                         into g
+                          select new ConsistencyItem
+                          {
+                              PIPE_LINE = g.Key.PIPE_LINE,
+                              NPD = g.Key.NPD,
+                              ITEMS = string.Join(",", g.Select(t => t.ITEMS))
+                          }).ToList();
             //foreach (var item in tempItem)
             //{
             //    ConsistencyItem consistency = new ConsistencyItem();
