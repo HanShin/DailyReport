@@ -281,9 +281,19 @@ namespace DailyReport.Controllers
                              ITEMS = string.Join(",", temp.ITEMS.Select(t => t.LONGMATERIALDESCRIPTION))
                          }).ToList();
 
-            foreach (ConsistencyItem item in Valve)
+            foreach (ConsistencyItem consistencyItem in Valve)
             {
-                item.ITEMS = item.ITEMS.Split(' ').First();
+                Dictionary<string, int> itemList = new Dictionary<string, int>();
+                foreach (string valveItem in consistencyItem.ITEMS.Split(','))
+                {
+                    addOrUpdate(itemList, valveItem.Split(' ').First(), 1);
+                }
+                consistencyItem.ITEMS = string.Empty;
+                foreach (string Item in itemList.Keys)
+                {
+                    consistencyItem.ITEMS += ",";
+                    consistencyItem.ITEMS += Item + itemList[Item].ToString("00");
+                }
             }
 
             var leftOuterJoin2 = (from list1 in fullOuterJoin1

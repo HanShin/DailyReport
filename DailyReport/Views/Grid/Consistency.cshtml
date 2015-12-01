@@ -66,7 +66,7 @@
         var html = "";
         var map = new Map();
         for (var i in listValue) {
-            if (i == 0) continue;
+            if (listValue[i] == "") continue;
             if (listValue[i].substr(0, 11) == "Instrument_") {
                 html +=
                     "<div class='SPItem'>" +
@@ -86,6 +86,7 @@
                     "</div>"
             }
             else {
+
                 var itemCount = listValue[i].substr(listValue[i].length - 2);
                 if (itemCount.substr(0, 1) == "0") {
                     itemCount = itemCount.substr(1);
